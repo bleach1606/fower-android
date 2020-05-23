@@ -184,12 +184,13 @@ public class SignInFragment extends Fragment {
             @Override
             public void onResponse(Call<UserLoginResult> call, Response<UserLoginResult> response) {
                 if (response.isSuccessful()) {
-                    Toast.makeText(getContext(), response.body().getDataLoginResult().getUser().toString(), Toast.LENGTH_SHORT).show();
+                    Users user = response.body().getDataLoginResult().getUser();
                     signInBtn.setEnabled(false);
                     signInBtn.setTextColor(Color.rgb(238,180,180));
 
                     progressBar.setVisibility(View.VISIBLE);
                     Intent homeIntent = new Intent(getActivity(), HomeActivity.class);
+                    homeIntent.putExtra("user", user);
                     startActivity(homeIntent);
                     getActivity().finish();
                 } else {

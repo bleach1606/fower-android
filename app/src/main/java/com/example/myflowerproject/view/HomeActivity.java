@@ -1,13 +1,16 @@
 package com.example.myflowerproject.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.Menu;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import com.example.myflowerproject.fragment.HomeFragment;
 import com.example.myflowerproject.fragment.ListItemFragment;
 import com.example.myflowerproject.R;
+import com.example.myflowerproject.model.entity.Users;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -24,12 +27,18 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private AppBarConfiguration mAppBarConfiguration;
     private FrameLayout frameLayout;
     private NavigationView navigationView;
+    private Users user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         Toolbar toolbar = findViewById(R.id.toolbar);
+
+        Intent intent = getIntent();
+        user = (Users) intent.getSerializableExtra("user");
+        Toast.makeText( getBaseContext(), user.toString(), Toast.LENGTH_SHORT).show();
+
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 

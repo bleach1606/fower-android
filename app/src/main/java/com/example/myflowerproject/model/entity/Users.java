@@ -3,8 +3,10 @@ package com.example.myflowerproject.model.entity;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 
-public class Users{
+
+public class Users implements Serializable {
 
     @SerializedName("id")
     @Expose
