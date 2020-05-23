@@ -12,3 +12,4 @@ public class MyAccount extends AppCompatActivity {
         setContentView(R.layout.activity_my_account);
     }
 }
+// ca day nua - to inbox bang dt nhe
