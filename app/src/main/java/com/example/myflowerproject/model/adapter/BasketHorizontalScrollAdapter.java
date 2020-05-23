@@ -1,4 +1,4 @@
-package com.example.myflowerproject;
+package com.example.myflowerproject.model.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +8,9 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.myflowerproject.PreviewItemModel;
+import com.example.myflowerproject.R;
 
 import java.util.List;
 

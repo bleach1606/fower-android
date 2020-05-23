@@ -13,6 +13,9 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.myflowerproject.model.adapter.BouquetGridLayoutAdapter;
+import com.example.myflowerproject.model.adapter.CategoryAdapter;
+
 import java.util.ArrayList;
 import java.util.List;
 
