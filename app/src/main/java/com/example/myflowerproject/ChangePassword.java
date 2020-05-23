@@ -22,7 +22,7 @@ public class ChangePassword extends AppCompatActivity {
         txtForgotPass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ChangePassword.this, RegisterActivity.class);
+                Intent intent = new Intent(ChangePassword.this, ChangePassword.class);
                 startActivity(intent);
             }
         });
