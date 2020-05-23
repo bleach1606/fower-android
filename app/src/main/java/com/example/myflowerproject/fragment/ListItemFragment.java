@@ -1,4 +1,4 @@
-package com.example.myflowerproject;
+package com.example.myflowerproject.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,8 +13,11 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.myflowerproject.R;
 import com.example.myflowerproject.model.adapter.BouquetGridLayoutAdapter;
 import com.example.myflowerproject.model.adapter.CategoryAdapter;
+import com.example.myflowerproject.model.entity.CategoryModel;
+import com.example.myflowerproject.model.entity.PreviewItemModel;
 
 import java.util.ArrayList;
 import java.util.List;

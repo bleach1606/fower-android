@@ -10,8 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.myflowerproject.CategoryModel;
-import com.example.myflowerproject.ListItemFragment;
+import com.example.myflowerproject.model.entity.CategoryModel;
+import com.example.myflowerproject.fragment.ListItemFragment;
 import com.example.myflowerproject.R;
 
 import java.util.List;

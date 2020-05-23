@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 
 import com.example.myflowerproject.R;
-import com.example.myflowerproject.SliderModel;
+import com.example.myflowerproject.model.entity.SliderModel;
 
 import java.util.List;
 

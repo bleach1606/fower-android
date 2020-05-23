@@ -7,7 +7,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.myflowerproject.PreviewItemModel;
+import com.example.myflowerproject.model.entity.PreviewItemModel;
 import com.example.myflowerproject.R;
 
 import java.util.List;
