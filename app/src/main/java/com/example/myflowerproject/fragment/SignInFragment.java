@@ -26,6 +26,7 @@ import android.widget.Toast;
 import com.example.myflowerproject.R;
 import com.example.myflowerproject.model.api.ApiUtils;
 import com.example.myflowerproject.model.api.UserAPI;
+import com.example.myflowerproject.model.entity.People;
 import com.example.myflowerproject.model.entity.Users;
 import com.example.myflowerproject.model.results.UserLoginResult;
 import com.example.myflowerproject.view.HomeActivity;
@@ -176,6 +177,21 @@ public class SignInFragment extends Fragment {
         Users users = new Users(username, passWord);
         sendPost(users);
 
+    }
+
+    private void sendPostLocal(Users user) {
+        People people = new People();
+        people.setName("Nguyen Khac Thanh");
+        people.setEmail("bl.bleach1606@gmail.com");
+        user.setPeople(people);
+        signInBtn.setEnabled(false);
+        signInBtn.setTextColor(Color.rgb(238,180,180));
+
+        progressBar.setVisibility(View.VISIBLE);
+        Intent homeIntent = new Intent(getActivity(), HomeActivity.class);
+        homeIntent.putExtra("user", user);
+        startActivity(homeIntent);
+        getActivity().finish();
     }
 
     private void sendPost(final Users users) {

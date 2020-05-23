@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.Menu;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myflowerproject.fragment.HomeFragment;
@@ -28,16 +29,14 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private FrameLayout frameLayout;
     private NavigationView navigationView;
     private Users user;
+    private TextView txtNameUser;
+    private TextView txtEmailUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         Toolbar toolbar = findViewById(R.id.toolbar);
-
-        Intent intent = getIntent();
-        user = (Users) intent.getSerializableExtra("user");
-        Toast.makeText( getBaseContext(), user.toString(), Toast.LENGTH_SHORT).show();
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -50,9 +49,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.getMenu().getItem(0).setChecked(true);
-
         frameLayout = findViewById(R.id.home_framelayout);
         setFragment(new HomeFragment());
+
+
     }
 
     @Override
@@ -69,6 +69,14 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.home, menu);
+        txtNameUser = findViewById(R.id.nav_header_home_fullname);
+        txtEmailUser = findViewById(R.id.nav_header_home_email);
+        Intent intent = getIntent();
+        user = (Users) intent.getSerializableExtra("user");
+        Toast.makeText( getBaseContext(), user.toString(), Toast.LENGTH_SHORT).show();
+
+        txtNameUser.setText(user.getPeople().getName());
+        txtEmailUser.setText(user.getUsername());
         return true;
     }
 
