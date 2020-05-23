@@ -1,10 +1,9 @@
-package com.example.myflowerproject;
+package com.example.myflowerproject.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
@@ -17,6 +16,15 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.TextView;
+
+import com.example.myflowerproject.R;
+import com.example.myflowerproject.model.adapter.BasketHorizontalScrollAdapter;
+import com.example.myflowerproject.model.adapter.BouquetGridLayoutAdapter;
+import com.example.myflowerproject.model.adapter.CategoryAdapter;
+import com.example.myflowerproject.model.adapter.SliderAdapter;
+import com.example.myflowerproject.model.entity.CategoryModel;
+import com.example.myflowerproject.model.entity.PreviewItemModel;
+import com.example.myflowerproject.model.entity.SliderModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -163,7 +171,7 @@ public class HomeFragment extends Fragment {
         btnBasketProductViewAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(view.getContext(),ListItemFragment.class);
+                Intent intent = new Intent(view.getContext(), ListItemFragment.class);
                 view.getContext().startActivity(intent);
             }
         });

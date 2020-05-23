@@ -1,7 +1,11 @@
-package com.example.myflowerproject;
+package com.example.myflowerproject.model.entity;
 
-public class CategoryModel {
+import java.io.Serializable;
 
+import lombok.Data;
+
+@Data
+public class CategoryModel implements Serializable {
     private int categoryIconLink;
     private String categoryName;
 

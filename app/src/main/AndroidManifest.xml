@@ -6,19 +6,19 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:icon="@drawable/main_activity_background"
         android:label="Camelia Florist"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".Notification"></activity>
-        <activity android:name=".MyAccount" />
-        <activity android:name=".ChangePassword" />
+        android:theme="@style/AppTheme"
+        tools:targetApi="n">
+
         <activity
-            android:name=".HomeActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:name=".view.HomeActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".view.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/MainTheme"
             tools:ignore="LockedOrientationActivity">
@@ -29,7 +29,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".RegisterActivity"
+            android:name=".view.RegisterActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
     </application>

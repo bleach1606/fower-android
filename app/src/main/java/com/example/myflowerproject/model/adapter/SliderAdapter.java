@@ -1,4 +1,4 @@
-package com.example.myflowerproject;
+package com.example.myflowerproject.model.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,6 +7,9 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
+
+import com.example.myflowerproject.R;
+import com.example.myflowerproject.model.entity.SliderModel;
 
 import java.util.List;
 
