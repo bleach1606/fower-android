@@ -36,6 +36,7 @@ public class ResetPasswordFragment extends Fragment {
 
     private FrameLayout parentFrameLayout;
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

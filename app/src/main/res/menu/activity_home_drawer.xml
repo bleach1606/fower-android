@@ -24,6 +24,10 @@
             android:id="@+id/nav_my_account"
             android:icon="@mipmap/account_icon"
             android:title="My Account" />
+        <item
+            android:id="@+id/nav_change_password"
+            android:icon="@drawable/ic_vpn_key_black_24dp"
+            android:title="Change Password" />
     </group>
     <item
         android:id="@+id/nav_sign_out"

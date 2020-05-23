@@ -1,5 +1,6 @@
 package com.example.myflowerproject;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -68,6 +69,25 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         getMenuInflater().inflate(R.menu.home, menu);
         return true;
     }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId())
+        {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+            case R.id.home_cart_icon:
+                Intent intent = new Intent(HomeActivity.this, Notification.class);
+                startActivity(intent);
+                break;
+            case R.id.home_notification_icon:
+                //code xử lý khi bấm menu2
+                break;
+            default:break;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
@@ -87,7 +107,12 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             setFragment(new ListItemFragment());
         }
         else if(id == R.id.nav_my_account){
-
+            Intent intent = new Intent(HomeActivity.this, MyAccount.class);
+            startActivity(intent);
+        }
+        else if(id == R.id.nav_change_password){
+            Intent intent = new Intent(HomeActivity.this, ChangePassword.class);
+            startActivity(intent);
         }
         else if(id == R.id.nav_sign_out){
 

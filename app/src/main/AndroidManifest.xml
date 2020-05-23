@@ -11,9 +11,12 @@
         android:label="Camelia Florist"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".Notification"></activity>
+        <activity android:name=".MyAccount" />
+        <activity android:name=".ChangePassword" />
         <activity
             android:name=".HomeActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait"
