@@ -1,9 +1,13 @@
-package com.example.myflowerproject;
+package com.example.myflowerproject.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.widget.ListView;
+
+import com.example.myflowerproject.R;
+import com.example.myflowerproject.model.adapter.NotificationAdapter;
+import com.example.myflowerproject.model.entity.NotificationModel;
 
 import java.util.ArrayList;
 
