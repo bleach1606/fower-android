@@ -1,8 +1,10 @@
-package com.example.myflowerproject;
+package com.example.myflowerproject.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.myflowerproject.R;
 
 public class MyAccount extends AppCompatActivity {
 
