@@ -176,7 +176,7 @@ public class SignInFragment extends Fragment {
         String passWord = txtpassword.getText().toString();
         Users users = new Users(username, passWord);
         sendPost(users);
-        //sendPostLocal(users);
+
     }
 
     private void sendPostLocal(Users user) {
