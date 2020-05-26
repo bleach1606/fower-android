@@ -10,7 +10,6 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.myflowerproject.Notification;
 import com.example.myflowerproject.R;
 import com.example.myflowerproject.model.entity.Users;
 
