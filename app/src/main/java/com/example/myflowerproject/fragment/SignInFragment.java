@@ -210,7 +210,7 @@ public class SignInFragment extends Fragment {
                     startActivity(homeIntent);
                     getActivity().finish();
                 } else {
-                    Toast.makeText(getContext(), "error login", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Sai Mật khẩu", Toast.LENGTH_SHORT).show();
                     progressBar.setVisibility(View.INVISIBLE);
                     signInBtn.setEnabled(true);
                     signInBtn.setTextColor(Color.rgb(255,255,255));
