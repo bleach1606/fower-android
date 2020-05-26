@@ -8,9 +8,6 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.myflowerproject.ChangePassword;
-import com.example.myflowerproject.MyAccount;
-import com.example.myflowerproject.Notification;
 import com.example.myflowerproject.fragment.HomeFragment;
 import com.example.myflowerproject.fragment.ListItemFragment;
 import com.example.myflowerproject.R;
