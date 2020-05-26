@@ -16,7 +16,14 @@
 
         <activity
             android:name=".view.HomeActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+
+        <activity
+            android:name=".view.Notification"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+
         <activity
             android:name=".view.MainActivity"
             android:screenOrientation="portrait"

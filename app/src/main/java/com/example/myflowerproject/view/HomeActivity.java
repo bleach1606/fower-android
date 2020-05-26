@@ -87,8 +87,13 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 onBackPressed();
                 return true;
             case R.id.home_cart_icon:
-                Intent intent = new Intent(HomeActivity.this, Notification.class);
-                startActivity(intent);
+                try {
+                    Intent intent = new Intent(HomeActivity.this, Notification.class);
+                    startActivity(intent);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+
                 break;
             case R.id.home_notification_icon:
                 //code xử lý khi bấm menu2
