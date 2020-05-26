@@ -13,7 +13,7 @@ public interface UserAPI {
     Call<UserLoginResult> postLogin(@Body Users user);
 
     @POST("/public/sigup")
-    void postCreateUser(Call<String> user);
+    Call<UserLoginResult> signup(@Body Users user);
 
 
 }

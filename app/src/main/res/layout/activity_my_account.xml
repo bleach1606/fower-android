@@ -17,7 +17,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:navigationIcon="@drawable/abc_vector_test"
+        app:navigationIcon="@drawable/ic_keyboard_backspace_black_24dp"
         app:title="My Account"
         app:titleTextColor="@color/colorAccent" />
 

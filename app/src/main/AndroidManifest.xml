@@ -23,7 +23,18 @@
             android:name=".view.Notification"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
-
+        <activity
+            android:name=".view.MyAccount"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name=".view.ChangePassword"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name=".fragment.ResetPasswordFragment"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
         <activity
             android:name=".view.MainActivity"
             android:screenOrientation="portrait"

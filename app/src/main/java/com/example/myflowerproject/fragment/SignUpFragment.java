@@ -19,11 +19,22 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
+import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.myflowerproject.R;
-import com.example.myflowerproject.fragment.SignInFragment;
+import com.example.myflowerproject.model.api.ApiUtils;
+import com.example.myflowerproject.model.api.UserAPI;
+import com.example.myflowerproject.model.entity.People;
+import com.example.myflowerproject.model.entity.Users;
+import com.example.myflowerproject.model.results.UserLoginResult;
 import com.example.myflowerproject.view.HomeActivity;
+import com.example.myflowerproject.view.MainActivity;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 /**
@@ -39,10 +50,13 @@ public class SignUpFragment extends Fragment {
     private FrameLayout parentFrameLayout;
 
     private EditText email;
-    private EditText fullName;
+    private EditText firstName;
     private EditText password;
     private EditText confirmPassword;
-
+    private EditText lastName;
+    private EditText phoneNumber;
+    private RadioButton btnMale;
+    private RadioButton btnFemale;
     private Button signUpBtn;
 
     private ProgressBar progressBar;
@@ -58,13 +72,49 @@ public class SignUpFragment extends Fragment {
         parentFrameLayout = getActivity().findViewById(R.id.register_framelayout);
 
         email = view.findViewById(R.id.sign_up_email);
-        fullName = view.findViewById(R.id.sign_up_fullname);
+
+        firstName = view.findViewById(R.id.sign_up_first_name);
+        lastName = view.findViewById(R.id.sign_up_last_name);
+        phoneNumber = view.findViewById(R.id.sign_up_phone_number);
         password = view.findViewById(R.id.sign_up_password);
         confirmPassword = view.findViewById(R.id.sign_up_confirm_password);
 
         signUpBtn = view.findViewById(R.id.sign_up_btn);
+        btnMale = view.findViewById(R.id.sign_up_sex_male);
+        btnFemale = view.findViewById(R.id.sign_up_sex_female);
 
         progressBar = view.findViewById(R.id.sign_up_progressbar);
+
+        signUpBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try{
+                    String _username = firstName.getText().toString();
+                    String _password = password.getText().toString();
+                    Users user = new Users();
+                    user.setPassword(_password);
+                    user.setUsername(_username);
+                    user.setPeople(new People());
+                    UserAPI userAPI = ApiUtils.getAPIService();
+                    userAPI.signup(user).enqueue(new Callback<UserLoginResult>() {
+                        @Override
+                        public void onResponse(Call<UserLoginResult> call, Response<UserLoginResult> response) {
+                            if(response.isSuccessful()){
+                                Intent intent = new Intent(getActivity(), MainActivity.class);
+                                startActivity(intent);
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<UserLoginResult> call, Throwable t) {
+                            Toast.makeText(getContext(), t.toString(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }catch(Exception ex){
+
+                }
+            }
+        });
 
         return view;
     }
@@ -96,7 +146,39 @@ public class SignUpFragment extends Fragment {
 
             }
         });
-        fullName.addTextChangedListener(new TextWatcher() {
+        firstName.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                checkInputs();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        lastName.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                checkInputs();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        phoneNumber.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -160,34 +242,41 @@ public class SignUpFragment extends Fragment {
         fragmentTransaction.replace(parentFrameLayout.getId(),fragment);
         fragmentTransaction.commit();
     }
-    private void checkInputs(){
-        if(!TextUtils.isEmpty(email.getText())){
-            if(!TextUtils.isEmpty(fullName.getText())){
-                if(!TextUtils.isEmpty(password.getText())){
-                    if(!TextUtils.isEmpty(confirmPassword.getText())){
-                        signUpBtn.setEnabled(true);
-                        signUpBtn.setTextColor(Color.rgb(255,255,255));
-                    }
-                    else {
+    private void checkInputs() {
+        if (!TextUtils.isEmpty(firstName.getText())) {
+            if (!TextUtils.isEmpty(lastName.getText())) {
+                if (!TextUtils.isEmpty(email.getText())) {
+                    if (!TextUtils.isEmpty(phoneNumber.getText())) {
+                        if (!TextUtils.isEmpty(password.getText())) {
+                            if (!TextUtils.isEmpty(confirmPassword.getText())) {
+                                signUpBtn.setEnabled(true);
+                                signUpBtn.setTextColor(Color.rgb(255, 255, 255));
+                            } else {
+                                signUpBtn.setEnabled(false);
+                                signUpBtn.setTextColor(Color.rgb(238, 180, 180));
+                            }
+                        } else {
+                            signUpBtn.setEnabled(false);
+                            signUpBtn.setTextColor(Color.rgb(238, 180, 180));
+                        }
+                    } else {
                         signUpBtn.setEnabled(false);
-                        signUpBtn.setTextColor(Color.rgb(238,180,180));
+                        signUpBtn.setTextColor(Color.rgb(238, 180, 180));
                     }
-                }
-                else {
+                } else {
                     signUpBtn.setEnabled(false);
-                    signUpBtn.setTextColor(Color.rgb(238,180,180));
+                    signUpBtn.setTextColor(Color.rgb(238, 180, 180));
                 }
-            }
-            else {
+            } else {
                 signUpBtn.setEnabled(false);
-                signUpBtn.setTextColor(Color.rgb(238,180,180));
+                signUpBtn.setTextColor(Color.rgb(238, 180, 180));
             }
-        }
-        else {
+        } else {
             signUpBtn.setEnabled(false);
-            signUpBtn.setTextColor(Color.rgb(238,180,180));
+            signUpBtn.setTextColor(Color.rgb(238, 180, 180));
         }
     }
+
     private void checkEmailAndPassword() {
         signUpBtn.setEnabled(false);
         signUpBtn.setTextColor(Color.rgb(238,180,180));

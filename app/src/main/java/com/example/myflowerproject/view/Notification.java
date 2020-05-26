@@ -2,7 +2,10 @@ package com.example.myflowerproject.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ListView;
 
 import com.example.myflowerproject.R;
@@ -14,11 +17,19 @@ import java.util.ArrayList;
 public class Notification extends AppCompatActivity {
     ListView lvNotifi ;
     ArrayList<NotificationModel> arrNotifi;
-
+    ImageButton btnBack;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notification);
+        btnBack = findViewById(R.id.btnBack);
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Notification.this, HomeActivity.class);
+                startActivity(intent);
+            }
+        });
         lvNotifi = findViewById(R.id.lvNotifi);
         arrNotifi = new ArrayList<NotificationModel>();
         arrNotifi.add(new NotificationModel("Chấp nhận yêu cầu hủy đơn","Yêu cầu hủy đơn hàng của bạn đã được chấp nhận.Đơn hàng đã được hủy thành công",R.mipmap.doc_hong_bk33));
