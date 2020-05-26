@@ -22,12 +22,7 @@ public class BouquetGridLayoutAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        if(previewItemModelList.size() > 4){
-            return 4;
-        }
-        else {
-            return previewItemModelList.size();
-        }
+        return previewItemModelList.size();
     }
 
     @Override
@@ -45,7 +40,7 @@ public class BouquetGridLayoutAdapter extends BaseAdapter {
         View view;
         if(convertView == null){
             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.preview_item_layout,null);
-            ImageView productImage = view.findViewById(R.id.preview_item_image);
+            ImageView productImage = view.findViewById(R.id.product_image);
             TextView productName = view.findViewById(R.id.preview_item_name);
             TextView productPrice = view.findViewById(R.id.preview_item_price);
 

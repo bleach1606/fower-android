@@ -1,15 +1,10 @@
 package com.example.myflowerproject.fragment;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.GridView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -22,10 +17,7 @@ import com.example.myflowerproject.model.entity.PreviewItemModel;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListItemFragment extends Fragment {
-
-    public ListItemFragment() {
-    }
+public class ListItem extends AppCompatActivity {
 
     private RecyclerView categoryRecyclerView;
     private CategoryAdapter categoryAdapter;
@@ -33,14 +25,13 @@ public class ListItemFragment extends Fragment {
     private TextView itemGridLayoutTitle;
     private GridView itemGridLayoutGridView;
 
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.list_item_grid_layout);
 
-        View view = inflater.inflate(R.layout.list_item_grid_layout, container, false);
-
-        categoryRecyclerView = view.findViewById(R.id.category_recyclerview1);
-        LinearLayoutManager layoutManagerCategory = new LinearLayoutManager(getActivity());
+        categoryRecyclerView = findViewById(R.id.category_recyclerview1);
+        LinearLayoutManager layoutManagerCategory = new LinearLayoutManager(ListItem.this);
         layoutManagerCategory.setOrientation(LinearLayoutManager.HORIZONTAL); //list view ngang
         categoryRecyclerView.setLayoutManager(layoutManagerCategory);
 
@@ -60,8 +51,8 @@ public class ListItemFragment extends Fragment {
 
         ////////////////////////////
 
-        itemGridLayoutTitle = view.findViewById(R.id.item_grid_layout_title);
-        itemGridLayoutGridView = view.findViewById(R.id.item_grid_layout_grid_view);
+        itemGridLayoutTitle = findViewById(R.id.item_grid_layout_title);
+        itemGridLayoutGridView = findViewById(R.id.item_grid_layout_grid_view);
 
         List<PreviewItemModel> listItem = new ArrayList<>();
         listItem.add(new PreviewItemModel(R.mipmap.vuong_do_bq15,"Bouqet Red","800.000 VND"));
@@ -78,6 +69,5 @@ public class ListItemFragment extends Fragment {
 
         ////////////////////////////
 
-        return view;
     }
 }

@@ -4,18 +4,13 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
@@ -39,11 +34,7 @@ import retrofit2.Response;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SignInFragment extends Fragment {
-
-    public SignInFragment() {
-        // Required empty public constructor
-    }
+public class SignIn extends AppCompatActivity {
 
     private TextView dontHaveAnAccount;
     private FrameLayout parentFrameLayout;
@@ -58,37 +49,33 @@ public class SignInFragment extends Fragment {
     private UserAPI userAPI;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_sign_in, container, false);
-        dontHaveAnAccount = view.findViewById(R.id.tv_already_have_an_account);
-        parentFrameLayout = getActivity().findViewById(R.id.register_framelayout);
-        txtemail = view.findViewById(R.id.sign_in_email);
-        txtpassword = view.findViewById(R.id.sign_in_password);
-        signInBtn = view.findViewById(R.id.sign_in_btn);
-        signInFacebookBtn = view.findViewById(R.id.sign_in_facebook_btn);
-        signInGoogleBtn = view.findViewById(R.id.sign_in_google_btn);
-        progressBar = view.findViewById(R.id.sign_in_progressbar);
-        forgotPassword = view.findViewById(R.id.sign_in_forgot_passwod);
-        return view;
-    }
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.fragment_sign_in);
+        dontHaveAnAccount = findViewById(R.id.tv_already_have_an_account);
+        parentFrameLayout = findViewById(R.id.register_framelayout);
+        txtemail = findViewById(R.id.sign_in_email);
+        txtpassword = findViewById(R.id.sign_in_password);
+        signInBtn = findViewById(R.id.sign_in_btn);
+        signInFacebookBtn = findViewById(R.id.sign_in_facebook_btn);
+        signInGoogleBtn = findViewById(R.id.sign_in_google_btn);
+        progressBar = findViewById(R.id.sign_in_progressbar);
+        forgotPassword = findViewById(R.id.sign_in_forgot_passwod);
 
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
 
         dontHaveAnAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setFragment(new SignUpFragment());
+                Intent intent = new Intent(SignIn.this, SignUp.class);
+                startActivity(intent);
             }
         });
 
         forgotPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setFragment(new ResetPasswordFragment());
+                Intent intent = new Intent(SignIn.this, ResetPassword.class);
+                startActivity(intent);
             }
         });
 
@@ -147,13 +134,6 @@ public class SignInFragment extends Fragment {
         });
     }
 
-    private void setFragment(Fragment fragment) {
-        FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.setCustomAnimations(R.anim.slide_from_right,R.anim.slideout_from_left);
-        fragmentTransaction.replace(parentFrameLayout.getId(),fragment);
-        fragmentTransaction.commit();
-    }
-
     private void checkInputs() {
         if(!TextUtils.isEmpty(txtemail.getText())){
             if(!TextUtils.isEmpty(txtpassword.getText())){
@@ -175,8 +155,8 @@ public class SignInFragment extends Fragment {
         String username = txtemail.getText().toString();
         String passWord = txtpassword.getText().toString();
         Users users = new Users(username, passWord);
-        sendPost(users);
-        //sendPostLocal(users);
+        //sendPost(users);
+        sendPostLocal(users);
     }
 
     private void sendPostLocal(Users user) {
@@ -188,10 +168,10 @@ public class SignInFragment extends Fragment {
         signInBtn.setTextColor(Color.rgb(238,180,180));
 
         progressBar.setVisibility(View.VISIBLE);
-        Intent homeIntent = new Intent(getActivity(), HomeActivity.class);
+        Intent homeIntent = new Intent(SignIn.this, HomeActivity.class);
         homeIntent.putExtra("user", user);
         startActivity(homeIntent);
-        getActivity().finish();
+        finish();
     }
 
     private void sendPost(final Users users) {
@@ -205,12 +185,12 @@ public class SignInFragment extends Fragment {
                     signInBtn.setTextColor(Color.rgb(238,180,180));
 
                     progressBar.setVisibility(View.VISIBLE);
-                    Intent homeIntent = new Intent(getActivity(), HomeActivity.class);
+                    Intent homeIntent = new Intent(SignIn.this, HomeActivity.class);
                     homeIntent.putExtra("user", user);
                     startActivity(homeIntent);
-                    getActivity().finish();
+                    finish();
                 } else {
-                    Toast.makeText(getContext(), "Sai Mật khẩu", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignIn.this, "Sai Mật khẩu", Toast.LENGTH_SHORT).show();
                     progressBar.setVisibility(View.INVISIBLE);
                     signInBtn.setEnabled(true);
                     signInBtn.setTextColor(Color.rgb(255,255,255));
@@ -219,7 +199,7 @@ public class SignInFragment extends Fragment {
 
             @Override
             public void onFailure(Call<UserLoginResult> call, Throwable t) {
-                Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(SignIn.this, t.getMessage(), Toast.LENGTH_SHORT).show();
                 progressBar.setVisibility(View.INVISIBLE);
                 signInBtn.setEnabled(true);
                 signInBtn.setTextColor(Color.rgb(255,255,255));

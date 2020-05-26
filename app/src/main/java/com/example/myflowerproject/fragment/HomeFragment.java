@@ -3,6 +3,7 @@ package com.example.myflowerproject.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,7 +16,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.GridView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.myflowerproject.R;
@@ -38,12 +38,9 @@ import java.util.TimerTask;
  */
 public class HomeFragment extends Fragment {
 
-
-
     public HomeFragment() {
         // Required empty public constructor
     }
-
     private RecyclerView categoryRecyclerView;
     private CategoryAdapter categoryAdapter;
 
@@ -153,7 +150,6 @@ public class HomeFragment extends Fragment {
         basketProductLayoutTitle = view.findViewById(R.id.basket_horizontal_scroll_layout_title);
         btnBasketProductViewAll = view.findViewById(R.id.basket_horizontal_scroll_layout_view_all_btn);
         recyclerViewBasketProduct = view.findViewById(R.id.basket_horizontal_scroll_layout_recycler_view);
-
         LinearLayoutManager linearLayoutManagerBasketProduct = new LinearLayoutManager(getContext());
         linearLayoutManagerBasketProduct.setOrientation(LinearLayoutManager.HORIZONTAL);
         recyclerViewBasketProduct.setLayoutManager(linearLayoutManagerBasketProduct);
@@ -169,13 +165,11 @@ public class HomeFragment extends Fragment {
         recyclerViewBasketProduct.setAdapter(basketHorizontalScrollAdapter);
         basketHorizontalScrollAdapter.notifyDataSetChanged();
 
-        basketProductLayoutTitle.setText("Flower Basket");
 
         btnBasketProductViewAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(view.getContext(), ListItemFragment.class);
-                view.getContext().startActivity(intent);
+
             }
         });
         //// Basket Layout
@@ -194,6 +188,12 @@ public class HomeFragment extends Fragment {
         BouquetGridLayoutAdapter bouquetGridLayoutAdapter = new BouquetGridLayoutAdapter(bouquetList);
         bouquetGridLayoutGridView.setAdapter(bouquetGridLayoutAdapter);
 
+        btnBouquetGridLayoutViewAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
         //// Bouquet Layout
 

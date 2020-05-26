@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -22,18 +23,13 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.myflowerproject.R;
-import com.example.myflowerproject.fragment.SignInFragment;
 import com.example.myflowerproject.view.HomeActivity;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SignUpFragment extends Fragment {
-
-    public SignUpFragment() {
-
-    }
+public class SignUp extends AppCompatActivity {
 
     private TextView alreadyHaveAnAccount;
     private FrameLayout parentFrameLayout;
@@ -48,35 +44,28 @@ public class SignUpFragment extends Fragment {
     private ProgressBar progressBar;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_sign_up, container, false);
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.fragment_sign_up);
 
-        alreadyHaveAnAccount = view.findViewById(R.id.tv_already_have_an_account);
+        alreadyHaveAnAccount = findViewById(R.id.tv_already_have_an_account);
 
-        parentFrameLayout = getActivity().findViewById(R.id.register_framelayout);
+        parentFrameLayout = findViewById(R.id.register_framelayout);
 
-        email = view.findViewById(R.id.sign_up_email);
-        fullName = view.findViewById(R.id.sign_up_fullname);
-        password = view.findViewById(R.id.sign_up_password);
-        confirmPassword = view.findViewById(R.id.sign_up_confirm_password);
+        email = findViewById(R.id.sign_up_email);
+        fullName = findViewById(R.id.sign_up_fullname);
+        password = findViewById(R.id.sign_up_password);
+        confirmPassword = findViewById(R.id.sign_up_confirm_password);
 
-        signUpBtn = view.findViewById(R.id.sign_up_btn);
+        signUpBtn = findViewById(R.id.sign_up_btn);
 
-        progressBar = view.findViewById(R.id.sign_up_progressbar);
-
-        return view;
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+        progressBar = findViewById(R.id.sign_up_progressbar);
 
         alreadyHaveAnAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setFragment(new SignInFragment());
+                Intent intent = new Intent(SignUp.this, SignIn.class);
+                startActivity(intent);
             }
         });
 
@@ -154,12 +143,6 @@ public class SignUpFragment extends Fragment {
         });
     }
 
-    private void setFragment(Fragment fragment) {
-        FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.setCustomAnimations(R.anim.slide_from_left,R.anim.slideout_from_right);
-        fragmentTransaction.replace(parentFrameLayout.getId(),fragment);
-        fragmentTransaction.commit();
-    }
     private void checkInputs(){
         if(!TextUtils.isEmpty(email.getText())){
             if(!TextUtils.isEmpty(fullName.getText())){
@@ -195,9 +178,9 @@ public class SignUpFragment extends Fragment {
         progressBar.setVisibility(View.VISIBLE);
 
         //Nếu không có lỗi
-        Intent homeIntent = new Intent(getActivity(), HomeActivity.class);
+        Intent homeIntent = new Intent(SignUp.this, HomeActivity.class);
         startActivity(homeIntent);
-        getActivity().finish();
+        finish();
 
         /*
         //Nếu có lỗi
