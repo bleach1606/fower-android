@@ -22,7 +22,12 @@ public class BouquetGridLayoutAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return previewItemModelList.size();
+        if(previewItemModelList.size() > 4){
+            return 4;
+        }
+        else {
+            return previewItemModelList.size();
+        }
     }
 
     @Override

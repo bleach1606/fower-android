@@ -43,7 +43,12 @@ public class BasketHorizontalScrollAdapter extends RecyclerView.Adapter<BasketHo
 
     @Override
     public int getItemCount() {
-        return previewItemModelList.size();
+        if(previewItemModelList.size() > 6){
+            return 6;
+        }
+        else {
+            return previewItemModelList.size();
+        }
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

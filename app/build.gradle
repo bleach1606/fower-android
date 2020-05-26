@@ -42,4 +42,9 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'com.squareup.retrofit2:retrofit:2.5.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
+    implementation 'androidx.annotation:annotation:1.1.0'
 }
+// cam giac lag the nhi
+// được k - duoc
+// add thu vien hoi lau mang sida ban chi to cho doan viet cai nguyen thi thanh tam di
+

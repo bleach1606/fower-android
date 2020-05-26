@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.myflowerproject.R;
@@ -152,6 +153,7 @@ public class HomeFragment extends Fragment {
         basketProductLayoutTitle = view.findViewById(R.id.basket_horizontal_scroll_layout_title);
         btnBasketProductViewAll = view.findViewById(R.id.basket_horizontal_scroll_layout_view_all_btn);
         recyclerViewBasketProduct = view.findViewById(R.id.basket_horizontal_scroll_layout_recycler_view);
+
         LinearLayoutManager linearLayoutManagerBasketProduct = new LinearLayoutManager(getContext());
         linearLayoutManagerBasketProduct.setOrientation(LinearLayoutManager.HORIZONTAL);
         recyclerViewBasketProduct.setLayoutManager(linearLayoutManagerBasketProduct);
@@ -167,6 +169,7 @@ public class HomeFragment extends Fragment {
         recyclerViewBasketProduct.setAdapter(basketHorizontalScrollAdapter);
         basketHorizontalScrollAdapter.notifyDataSetChanged();
 
+        basketProductLayoutTitle.setText("Flower Basket");
 
         btnBasketProductViewAll.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -193,6 +196,28 @@ public class HomeFragment extends Fragment {
 
 
         //// Bouquet Layout
+
+        //////////////////////////
+
+        RecyclerView testing = view.findViewById(R.id.testing);
+        LinearLayoutManager testingLayoutManager = new LinearLayoutManager(getContext());
+        testingLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        testing.setLayoutManager(testingLayoutManager);
+
+        List<HomePageModel> homePageModelList = new ArrayList<>();
+        homePageModelList.add(new HomePageModel(0,sliderModelList));
+        homePageModelList.add(new HomePageModel(1,"Flower Basket", basketList));
+        homePageModelList.add(new HomePageModel(2,"Flower Bouquet", bouquetList));
+        homePageModelList.add(new HomePageModel(2,"Flower Box", bouquetList));
+        homePageModelList.add(new HomePageModel(1,"Flower Shelf", basketList));
+        homePageModelList.add(new HomePageModel(2,"Flower Vase", bouquetList));
+
+        HomePageAdapter adapter = new HomePageAdapter(homePageModelList);
+        testing.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+
+        //////////////////////////
+
         return view;
     }
 

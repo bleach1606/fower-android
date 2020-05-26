@@ -89,6 +89,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             case android.R.id.home:
                 onBackPressed();
                 return true;
+            case R.id.app_bar_search:
+                ///to do : Search
+                return true;
             case R.id.home_cart_icon:
                 Intent intent = new Intent(HomeActivity.this, Notification.class);
                 startActivity(intent);
