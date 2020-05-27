@@ -89,7 +89,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             case R.id.app_bar_search:
                 ///to do : Search
                 return true;
-            case R.id.home_cart_icon:
+            case R.id.home_notification_icon:
                 try {
                     Intent intent = new Intent(HomeActivity.this, Notification.class);
                     startActivity(intent);
@@ -98,7 +98,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 }
 
                 break;
-            case R.id.home_notification_icon:
+            case R.id.home_cart_icon:
                 //code xử lý khi bấm menu2
                 break;
             default:break;
