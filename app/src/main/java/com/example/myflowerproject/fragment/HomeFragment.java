@@ -156,6 +156,7 @@ public class HomeFragment extends Fragment {
         linearLayoutManagerBasketProduct.setOrientation(LinearLayoutManager.HORIZONTAL);
         recyclerViewBasketProduct.setLayoutManager(linearLayoutManagerBasketProduct);
 
+        //todo get du lieu
         List<PreviewItemModel> basketList = new ArrayList<>();
         basketList.add(new PreviewItemModel(R.mipmap.doc_do_bk34,"Congratulation","2.500.000 VND"));
         basketList.add(new PreviewItemModel(R.mipmap.doc_do_bk32,"Picture Red","3.000.000 VND"));
