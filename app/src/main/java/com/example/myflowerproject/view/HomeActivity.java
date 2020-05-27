@@ -75,7 +75,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         user = (Users) intent.getSerializableExtra("user");
         Toast.makeText( getBaseContext(), user.toString(), Toast.LENGTH_SHORT).show();
 
-        txtNameUser.setText(user.getPeople().getName());
+        txtNameUser.setText(user.getPeople().getFirstName() + user.getPeople().getLastName());
         txtEmailUser.setText(user.getUsername());
         return true;
     }

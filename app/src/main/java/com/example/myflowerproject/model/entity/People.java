@@ -14,9 +14,13 @@ public class People implements Serializable {
     @Expose
     private int id;
 
-    @SerializedName("name")
+    @SerializedName("firstName")
     @Expose
-    private String name;
+    private String firstName;
+
+    @SerializedName("lastName")
+    @Expose
+    private String lastName;
 
     @SerializedName("address")
     @Expose
@@ -57,12 +61,20 @@ public class People implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getAddress() {
@@ -125,7 +137,8 @@ public class People implements Serializable {
     public String toString() {
         return "People{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
                 ", address='" + address + '\'' +
                 ", birthday=" + birthday +
                 ", sex='" + sex + '\'' +
