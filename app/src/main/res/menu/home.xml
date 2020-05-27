@@ -11,13 +11,13 @@
         app:actionViewClass="android.widget.SearchView"
         app:showAsAction="always" />
     <item
-        android:id="@+id/home_cart_icon"
+        android:id="@+id/home_notification_icon"
         android:orderInCategory="100"
         android:icon="@mipmap/notification_bell_icon"
         android:title="cart"
         app:showAsAction="always" />
     <item
-        android:id="@+id/home_notification_icon"
+        android:id="@+id/home_cart_icon"
         android:orderInCategory="100"
         android:icon="@mipmap/cart_icon_white"
         android:title="notification"

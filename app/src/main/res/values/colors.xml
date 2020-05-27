@@ -4,4 +4,5 @@
     <color name="colorPrimaryDark">#FF9999</color>
     <color name="colorAccent">#FFFFFF</color>
     <color name="btnPink">#FFCCCC</color>
+    <color name="starGrey">#D6D6D6</color>
 </resources>
