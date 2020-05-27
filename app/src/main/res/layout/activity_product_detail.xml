@@ -41,6 +41,8 @@
             <include layout="@layout/product_image_layout"/>
 
             <include layout="@layout/product_description_layout"/>
+
+            <include layout="@layout/rating_layout"/>
         </LinearLayout>
     </ScrollView>
 

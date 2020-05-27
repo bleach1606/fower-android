@@ -27,9 +27,6 @@ public class ProductDetailsAdapter extends FragmentPagerAdapter {
             case 1:
                 ProductSpecificationFragment productSpecificationFragment = new ProductSpecificationFragment();
                 return productSpecificationFragment;
-            case 2:
-                ProductDescriptionFragment productDescriptionFragment2 = new ProductDescriptionFragment();
-                return productDescriptionFragment2;
             default:
                 return null;
         }

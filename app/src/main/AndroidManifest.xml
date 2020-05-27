@@ -41,6 +41,9 @@
             android:name=".fragment.ResetPassword"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
+            android:name=".view.ProductDetailActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".view.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/MainTheme"
