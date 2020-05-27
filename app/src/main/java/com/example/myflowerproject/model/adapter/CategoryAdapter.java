@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myflowerproject.model.entity.CategoryModel;
-import com.example.myflowerproject.fragment.ListItemFragment;
+import com.example.myflowerproject.fragment.ListItem;
 import com.example.myflowerproject.R;
 
 import java.util.List;
@@ -65,7 +65,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(itemView.getContext(), ListItemFragment.class);
+                    Intent intent = new Intent(itemView.getContext(), ListItem.class);
                     itemView.getContext().startActivity(intent);
                 }
             });

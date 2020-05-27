@@ -1,19 +1,16 @@
 package com.example.myflowerproject.fragment;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
@@ -26,11 +23,7 @@ import com.example.myflowerproject.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ResetPasswordFragment extends Fragment {
-
-    public ResetPasswordFragment() {
-        // Required empty public constructor
-    }
+public class ResetPassword extends AppCompatActivity {
 
     private EditText registeredEmail;
     private Button resetPasswordBtn;
@@ -40,23 +33,15 @@ public class ResetPasswordFragment extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_reset_password, container, false);
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.fragment_reset_password);
 
-        registeredEmail = view.findViewById(R.id.forgot_password_email);
-        resetPasswordBtn = view.findViewById(R.id.reset_password_btn);
-        goBack = view.findViewById(R.id.tv_forgot_password_go_back);
+        registeredEmail = findViewById(R.id.forgot_password_email);
+        resetPasswordBtn = findViewById(R.id.reset_password_btn);
+        goBack = findViewById(R.id.tv_forgot_password_go_back);
 
-        parentFrameLayout = getActivity().findViewById(R.id.register_framelayout);
-
-        return view;
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+        parentFrameLayout = findViewById(R.id.register_framelayout);
 
         registeredEmail.addTextChangedListener(new TextWatcher() {
             @Override
@@ -74,6 +59,7 @@ public class ResetPasswordFragment extends Fragment {
 
             }
         });
+
         resetPasswordBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -83,7 +69,7 @@ public class ResetPasswordFragment extends Fragment {
                 //Nếu tồn tại Email registed
                 //send email
                 //Nếu đã gửi email xong
-                Toast.makeText(getActivity(),"Email sent successfully! Please check your email.",Toast.LENGTH_LONG).show();
+                Toast.makeText(ResetPassword.this,"Email sent successfully! Please check your email.",Toast.LENGTH_LONG).show();
 
                 //Nếu Email không tồn tại
                 /*
@@ -96,10 +82,10 @@ public class ResetPasswordFragment extends Fragment {
         goBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setFragment(new SignInFragment());
+                Intent intent = new Intent(ResetPassword.this, SignIn.class);
+                startActivity(intent);
             }
         });
-
     }
 
     private void checkInputs() {
@@ -113,10 +99,4 @@ public class ResetPasswordFragment extends Fragment {
         }
     }
 
-    private void setFragment(Fragment fragment) {
-        FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.setCustomAnimations(R.anim.slide_from_right,R.anim.slideout_from_left);
-        fragmentTransaction.replace(parentFrameLayout.getId(),fragment);
-        fragmentTransaction.commit();
-    }
 }

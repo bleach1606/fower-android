@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -40,11 +41,7 @@ import retrofit2.Response;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SignUpFragment extends Fragment {
-
-    public SignUpFragment() {
-
-    }
+public class SignUp extends AppCompatActivity {
 
     private TextView alreadyHaveAnAccount;
     private FrameLayout parentFrameLayout;
@@ -62,14 +59,11 @@ public class SignUpFragment extends Fragment {
     private ProgressBar progressBar;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_sign_up, container, false);
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.fragment_sign_up);
 
-        alreadyHaveAnAccount = view.findViewById(R.id.tv_already_have_an_account);
-
-        parentFrameLayout = getActivity().findViewById(R.id.register_framelayout);
+        alreadyHaveAnAccount = findViewById(R.id.tv_already_have_an_account);
 
         email = view.findViewById(R.id.sign_up_email);
 
@@ -78,12 +72,17 @@ public class SignUpFragment extends Fragment {
         phoneNumber = view.findViewById(R.id.sign_up_phone_number);
         password = view.findViewById(R.id.sign_up_password);
         confirmPassword = view.findViewById(R.id.sign_up_confirm_password);
+        parentFrameLayout = findViewById(R.id.register_framelayout);
 
         signUpBtn = view.findViewById(R.id.sign_up_btn);
         btnMale = view.findViewById(R.id.sign_up_sex_male);
         btnFemale = view.findViewById(R.id.sign_up_sex_female);
+        email = findViewById(R.id.sign_up_email);
+        fullName = findViewById(R.id.sign_up_fullname);
+        password = findViewById(R.id.sign_up_password);
+        confirmPassword = findViewById(R.id.sign_up_confirm_password);
 
-        progressBar = view.findViewById(R.id.sign_up_progressbar);
+        signUpBtn = findViewById(R.id.sign_up_btn);
 
         signUpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,11 +121,13 @@ public class SignUpFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        progressBar = findViewById(R.id.sign_up_progressbar);
 
         alreadyHaveAnAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setFragment(new SignInFragment());
+                Intent intent = new Intent(SignUp.this, SignIn.class);
+                startActivity(intent);
             }
         });
 
@@ -272,6 +273,30 @@ public class SignUpFragment extends Fragment {
                 signUpBtn.setTextColor(Color.rgb(238, 180, 180));
             }
         } else {
+    private void checkInputs(){
+        if(!TextUtils.isEmpty(email.getText())){
+            if(!TextUtils.isEmpty(fullName.getText())){
+                if(!TextUtils.isEmpty(password.getText())){
+                    if(!TextUtils.isEmpty(confirmPassword.getText())){
+                        signUpBtn.setEnabled(true);
+                        signUpBtn.setTextColor(Color.rgb(255,255,255));
+                    }
+                    else {
+                        signUpBtn.setEnabled(false);
+                        signUpBtn.setTextColor(Color.rgb(238,180,180));
+                    }
+                }
+                else {
+                    signUpBtn.setEnabled(false);
+                    signUpBtn.setTextColor(Color.rgb(238,180,180));
+                }
+            }
+            else {
+                signUpBtn.setEnabled(false);
+                signUpBtn.setTextColor(Color.rgb(238,180,180));
+            }
+        }
+        else {
             signUpBtn.setEnabled(false);
             signUpBtn.setTextColor(Color.rgb(238, 180, 180));
         }
@@ -284,9 +309,9 @@ public class SignUpFragment extends Fragment {
         progressBar.setVisibility(View.VISIBLE);
 
         //Nếu không có lỗi
-        Intent homeIntent = new Intent(getActivity(), HomeActivity.class);
+        Intent homeIntent = new Intent(SignUp.this, HomeActivity.class);
         startActivity(homeIntent);
-        getActivity().finish();
+        finish();
 
         /*
         //Nếu có lỗi

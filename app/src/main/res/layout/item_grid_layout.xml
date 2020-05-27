@@ -11,9 +11,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Flower Bouquet"
-        android:textSize="19sp"
+        android:textSize="22sp"
         android:textStyle="bold"
-        android:textColor="#777777"
+        android:textColor="@color/colorPrimary"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,14 +21,13 @@
 
     <GridView
         android:id="@+id/item_grid_layout_grid_view"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:background="#D8D8D8"
         android:horizontalSpacing="1dp"
         android:numColumns="2"
         android:verticalSpacing="1dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/item_grid_layout_title" />

@@ -9,7 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myflowerproject.fragment.HomeFragment;
-import com.example.myflowerproject.fragment.ListItemFragment;
+import com.example.myflowerproject.fragment.ListItem;
 import com.example.myflowerproject.R;
 import com.example.myflowerproject.model.entity.Users;
 import com.google.android.material.navigation.NavigationView;
@@ -49,9 +49,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.getMenu().getItem(0).setChecked(true);
+
         frameLayout = findViewById(R.id.home_framelayout);
         setFragment(new HomeFragment());
-
 
     }
 
@@ -86,6 +86,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             case android.R.id.home:
                 onBackPressed();
                 return true;
+            case R.id.app_bar_search:
+                ///to do : Search
+                return true;
             case R.id.home_cart_icon:
                 try {
                     Intent intent = new Intent(HomeActivity.this, Notification.class);
@@ -113,13 +116,15 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         }
         else if(id == R.id.nav_home){
-            setFragment(new HomeFragment());
+            Intent homeIntent = new Intent(HomeActivity.this, HomeFragment.class);
+            startActivity(homeIntent);
         }
         else if(id == R.id.nav_my_orders){
 
         }
         else if(id == R.id.nav_my_rewards){
-            setFragment(new ListItemFragment());
+            Intent homeIntent = new Intent(HomeActivity.this, ListItem.class);
+            startActivity(homeIntent);
         }
         else if(id == R.id.nav_my_account){
             Intent intent = new Intent(HomeActivity.this, MyAccount.class);

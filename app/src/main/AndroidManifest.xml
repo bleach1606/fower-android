@@ -35,6 +35,26 @@
             android:name=".fragment.ResetPasswordFragment"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
+
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".fragment.SignIn"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".fragment.HomeFragment"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".fragment.ListItem"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".fragment.SignUp"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".fragment.ResetPassword"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".view.ProductDetailActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".view.MainActivity"
             android:screenOrientation="portrait"
