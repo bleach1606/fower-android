@@ -35,6 +35,7 @@ public class HomeActivityVer2 extends AppCompatActivity implements NavigationVie
     private AppBarConfiguration mAppBarConfiguration;
     private FrameLayout frameLayout;
     private NavigationView navigationView;
+
     private Users user;
     private TextView txtNameUser;
     private TextView txtEmailUser;
@@ -51,7 +52,7 @@ public class HomeActivityVer2 extends AppCompatActivity implements NavigationVie
         categoryViewPager = findViewById(R.id.category_viewpager);
         categoryTabLayout = findViewById(R.id.category_tab_layout);
 
-        CategoryAdapter2 categoryAdapter = new CategoryAdapter2(getSupportFragmentManager(), categoryTabLayout.getTabCount());
+        final CategoryAdapter2 categoryAdapter = new CategoryAdapter2(getSupportFragmentManager(), categoryTabLayout.getTabCount());
         categoryViewPager.setAdapter(categoryAdapter);
 
         categoryViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(categoryTabLayout));

@@ -196,7 +196,7 @@ public class HomePageAdapter extends RecyclerView.Adapter {
 
         }
 
-        private void setHorizontalProductLayout(List<PreviewItemModel> previewItemModelList, String title, int typeProduct){
+        private void setHorizontalProductLayout(List<PreviewItemModel> previewItemModelList, String title, final int typeProduct){
             LinearLayoutManager linearLayoutManagerBasketProduct = new LinearLayoutManager(itemView.getContext());
             linearLayoutManagerBasketProduct.setOrientation(LinearLayoutManager.HORIZONTAL);
             recyclerViewBasketProduct.setLayoutManager(linearLayoutManagerBasketProduct);
@@ -237,7 +237,7 @@ public class HomePageAdapter extends RecyclerView.Adapter {
 
         }
 
-        private void setGridProductLayout(List<PreviewItemModel> previewItemModelList, String title, int typeProduct){
+        private void setGridProductLayout(List<PreviewItemModel> previewItemModelList, String title, final int typeProduct){
             BouquetGridLayoutAdapter bouquetGridLayoutAdapter = new BouquetGridLayoutAdapter(previewItemModelList);
             bouquetGridLayoutGridView.setAdapter(bouquetGridLayoutAdapter);
 
