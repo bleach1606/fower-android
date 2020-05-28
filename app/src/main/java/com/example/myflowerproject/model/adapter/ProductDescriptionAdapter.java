@@ -8,11 +8,11 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import com.example.myflowerproject.fragment.ProductDescriptionFragment;
 import com.example.myflowerproject.fragment.ProductSpecificationFragment;
 
-public class ProductDetailsAdapter extends FragmentPagerAdapter {
+public class ProductDescriptionAdapter extends FragmentPagerAdapter {
 
     private int totalTabs;
 
-    public ProductDetailsAdapter(@NonNull FragmentManager fm, int totalTabs) {
+    public ProductDescriptionAdapter(@NonNull FragmentManager fm, int totalTabs) {
         super(fm);
         this.totalTabs = totalTabs;
     }

@@ -90,17 +90,17 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 ///to do : Search
                 return true;
             case R.id.home_cart_icon:
+                Intent cart_intent = new Intent(HomeActivity.this, MyCartActivity.class);
+                startActivity(cart_intent);
+                return true;
+            case R.id.home_notification_icon:
                 try {
-                    Intent intent = new Intent(HomeActivity.this, Notification.class);
-                    startActivity(intent);
+                    Intent notification_intent = new Intent(HomeActivity.this, Notification.class);
+                    startActivity(notification_intent);
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
-
-                break;
-            case R.id.home_notification_icon:
-                //code xử lý khi bấm menu2
-                break;
+                return true;
             default:break;
         }
 
@@ -123,8 +123,11 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         }
         else if(id == R.id.nav_my_rewards){
-            Intent homeIntent = new Intent(HomeActivity.this, ListItem.class);
-            startActivity(homeIntent);
+
+        }
+        else if(id == R.id.nav_my_cart){
+            Intent intent = new Intent(HomeActivity.this, MyCartActivity.class);
+            startActivity(intent);
         }
         else if(id == R.id.nav_my_account){
             Intent intent = new Intent(HomeActivity.this, MyAccount.class);

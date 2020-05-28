@@ -169,7 +169,8 @@ public class HomeFragment extends Fragment {
         btnBasketProductViewAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent homeIntent = new Intent(getContext(), ListItem.class);
+                startActivity(homeIntent);
             }
         });
         //// Basket Layout
@@ -191,7 +192,8 @@ public class HomeFragment extends Fragment {
         btnBouquetGridLayoutViewAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent homeIntent = new Intent(getContext(), ListItem.class);
+                startActivity(homeIntent);
             }
         });
 

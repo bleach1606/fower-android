@@ -212,7 +212,8 @@ public class HomePageAdapter extends RecyclerView.Adapter {
             btnBasketProductViewAll.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    Intent homeIntent = new Intent(itemView.getContext(), ListItem.class);
+                    itemView.getContext().startActivity(homeIntent);
                 }
             });
         }
