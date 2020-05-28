@@ -162,7 +162,7 @@ public class CartItemAdapter extends RecyclerView.Adapter {
             cartTotalPriceTitle = itemView.findViewById(R.id.textview_cart_price_total);
             cartTotalPrice = itemView.findViewById(R.id.cart_total_price);
             cartDiscount = itemView.findViewById(R.id.cart_total_discount);
-            cartTotalAmount = itemView.findViewById(R.id.cart_total_amount);
+            cartTotalAmount = itemView.findViewById(R.id.order_total_bill);
             cartDiscountCode = itemView.findViewById(R.id.cart_discount_code_editText);
         }
         private void setTotalDetail(){
@@ -188,13 +188,13 @@ public class CartItemAdapter extends RecyclerView.Adapter {
 
                 @Override
                 public void afterTextChanged(Editable s) {
-                    String discountCode = s.toString();
-                    //nếu tồn tại mã giảm giá này, lấy dữ liệu về discountValue
-                    cartDiscountCode.setText(discountCode);
-                    discount = 10;
-                    cartDiscount.setText(discount + "%");
-                    double totalAmount = totalPrice * (100 - discount) / 100;
-                    cartTotalAmount.setText("VND " + (int)totalAmount);
+                    String discount_Code = s.toString();
+//                    //nếu tồn tại mã giảm giá này, lấy dữ liệu về discountValue
+//                    cartDiscountCode.setText(discount_Code);
+//                    discount = 10;
+//                    cartDiscount.setText(discount + "%");
+//                    double totalAmount = totalPrice * (100 - discount) / 100;
+//                    cartTotalAmount.setText("VND " + (int)totalAmount);
                 }
             });
         }

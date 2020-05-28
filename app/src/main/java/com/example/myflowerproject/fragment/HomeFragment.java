@@ -39,10 +39,12 @@ import java.util.TimerTask;
 public class HomeFragment extends Fragment {
 
     public HomeFragment() {
+
         // Required empty public constructor
     }
-    private RecyclerView categoryRecyclerView;
-    private CategoryAdapter categoryAdapter;
+
+//    private RecyclerView categoryRecyclerView;
+//    private CategoryAdapter categoryAdapter;
 
     //// Banner Slider
     private ViewPager bannerSliderViewPager;
@@ -53,42 +55,28 @@ public class HomeFragment extends Fragment {
     final private long PERIOD_TIME = 3000;
     //// Banner Slider
 
-    //// Basket Scroll Layout
-    private TextView basketProductLayoutTitle;
-    private Button btnBasketProductViewAll;
-    private RecyclerView recyclerViewBasketProduct;
-    //// Basket Scroll Layout
-
-    ////Bouquet Grid Layout
-    private TextView bouquetGridLayoutTitle;
-    private Button btnBouquetGridLayoutViewAll;
-    private GridView bouquetGridLayoutGridView;
-    ////Bouquet Grid Layout
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        final View view = inflater.inflate(R.layout.fragment_home2, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        super.onCreateView(inflater, container, savedInstanceState);
+        View view = inflater.inflate(R.layout.fragment_home2, container, false);
 
-        categoryRecyclerView = view.findViewById(R.id.category_recyclerview);
-        LinearLayoutManager layoutManagerCategory = new LinearLayoutManager(getActivity());
-        layoutManagerCategory.setOrientation(LinearLayoutManager.HORIZONTAL); //list view ngang
-        categoryRecyclerView.setLayoutManager(layoutManagerCategory);
-
-        List<CategoryModel> categoryModelList = new ArrayList<CategoryModel>();
-        categoryModelList.add(new CategoryModel(R.mipmap.home_icon,"Home"));
-        categoryModelList.add(new CategoryModel(R.mipmap.color_icon,"Color"));
-        categoryModelList.add(new CategoryModel(R.mipmap.bo_hoa_icon,"Bouquet"));
-        categoryModelList.add(new CategoryModel(R.mipmap.hop_hoa_icon,"Box"));
-        categoryModelList.add(new CategoryModel(R.mipmap.ke_hoa_icon,"Shelf"));
-        categoryModelList.add(new CategoryModel(R.mipmap.gio_hoa_icon,"Basket"));
-        categoryModelList.add(new CategoryModel(R.mipmap.lo_hoa_icon,"Vase"));
-        categoryModelList.add(new CategoryModel(R.mipmap.hoa_cuoi_icon,"Wedding"));
-
-        categoryAdapter = new CategoryAdapter(categoryModelList);
-        categoryRecyclerView.setAdapter(categoryAdapter);
-        categoryAdapter.notifyDataSetChanged();
+//        categoryRecyclerView = view.findViewById(R.id.category_recyclerview);
+//        LinearLayoutManager layoutManagerCategory = new LinearLayoutManager(getActivity());
+//        layoutManagerCategory.setOrientation(LinearLayoutManager.HORIZONTAL); //list view ngang
+//        categoryRecyclerView.setLayoutManager(layoutManagerCategory);
+//
+//        List<CategoryModel> categoryModelList = new ArrayList<CategoryModel>();
+//        categoryModelList.add(new CategoryModel(R.mipmap.home_icon,"Home",0));
+//        categoryModelList.add(new CategoryModel(R.mipmap.bo_hoa_icon,"Bouquet",1));
+//        categoryModelList.add(new CategoryModel(R.mipmap.hop_hoa_icon,"Box",2));
+//        categoryModelList.add(new CategoryModel(R.mipmap.ke_hoa_icon,"Shelf",3));
+//        categoryModelList.add(new CategoryModel(R.mipmap.gio_hoa_icon,"Basket",4));
+//        categoryModelList.add(new CategoryModel(R.mipmap.lo_hoa_icon,"Vase",5));
+//        categoryModelList.add(new CategoryModel(R.mipmap.hoa_cuoi_icon,"Wedding",6));
+//
+//        categoryAdapter = new CategoryAdapter(categoryModelList);
+//        categoryRecyclerView.setAdapter(categoryAdapter);
+//        categoryAdapter.notifyDataSetChanged();
 
         //BannerSlider
         bannerSliderViewPager = view.findViewById(R.id.banner_slider_view_pager);
@@ -144,17 +132,7 @@ public class HomeFragment extends Fragment {
                 return false;
             }
         });
-        //
 
-        //// Basket Layout
-        basketProductLayoutTitle = view.findViewById(R.id.basket_horizontal_scroll_layout_title);
-        btnBasketProductViewAll = view.findViewById(R.id.basket_horizontal_scroll_layout_view_all_btn);
-        recyclerViewBasketProduct = view.findViewById(R.id.basket_horizontal_scroll_layout_recycler_view);
-        LinearLayoutManager linearLayoutManagerBasketProduct = new LinearLayoutManager(getContext());
-        linearLayoutManagerBasketProduct.setOrientation(LinearLayoutManager.HORIZONTAL);
-        recyclerViewBasketProduct.setLayoutManager(linearLayoutManagerBasketProduct);
-
-        //todo get du lieu
         List<PreviewItemModel> basketList = new ArrayList<>();
         basketList.add(new PreviewItemModel(R.mipmap.doc_do_bk34,"Congratulation","2.500.000 VND"));
         basketList.add(new PreviewItemModel(R.mipmap.doc_do_bk32,"Picture Red","3.000.000 VND"));
@@ -162,43 +140,11 @@ public class HomeFragment extends Fragment {
         basketList.add(new PreviewItemModel(R.mipmap.doc_cam_bk3,"Picture Orange","2.000.000 VND"));
         basketList.add(new PreviewItemModel(R.mipmap.doc_vang_bk4,"Picture Yellow","2.500.000 VND"));
 
-        BasketHorizontalScrollAdapter basketHorizontalScrollAdapter = new BasketHorizontalScrollAdapter(basketList);
-        recyclerViewBasketProduct.setAdapter(basketHorizontalScrollAdapter);
-        basketHorizontalScrollAdapter.notifyDataSetChanged();
-
-
-        btnBasketProductViewAll.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent homeIntent = new Intent(getContext(), ListItem.class);
-                startActivity(homeIntent);
-            }
-        });
-        //// Basket Layout
-
-        //// Bouquet Layout
-        bouquetGridLayoutTitle = view.findViewById(R.id.bouquet_grid_layout_tittle);
-        btnBouquetGridLayoutViewAll = view.findViewById(R.id.bouquet_grid_layout_view_all_btn);
-        bouquetGridLayoutGridView = view.findViewById(R.id.bouquet_grid_layout_grid_view);
-
         List<PreviewItemModel> bouquetList = new ArrayList<>();
         bouquetList.add(new PreviewItemModel(R.mipmap.vuong_do_bq15,"Bouqet Red","800.000 VND"));
         bouquetList.add(new PreviewItemModel(R.mipmap.vuong_do_bq13,"Bouqet Red","500.000 VND"));
         bouquetList.add(new PreviewItemModel(R.mipmap.vuong_hong_bq27,"Bouqet Pink","1.000.000 VND"));
         bouquetList.add(new PreviewItemModel(R.mipmap.vuong_hong_bq17,"Bouqet Pink","800.000 VND"));
-
-        BouquetGridLayoutAdapter bouquetGridLayoutAdapter = new BouquetGridLayoutAdapter(bouquetList);
-        bouquetGridLayoutGridView.setAdapter(bouquetGridLayoutAdapter);
-
-        btnBouquetGridLayoutViewAll.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent homeIntent = new Intent(getContext(), ListItem.class);
-                startActivity(homeIntent);
-            }
-        });
-
-        //// Bouquet Layout
 
         //////////////////////////
 
@@ -209,11 +155,12 @@ public class HomeFragment extends Fragment {
 
         List<HomePageModel> homePageModelList = new ArrayList<>();
         homePageModelList.add(new HomePageModel(0,sliderModelList));
-        homePageModelList.add(new HomePageModel(1,"Flower Basket", basketList));
-        homePageModelList.add(new HomePageModel(2,"Flower Bouquet", bouquetList));
-        homePageModelList.add(new HomePageModel(2,"Flower Box", bouquetList));
-        homePageModelList.add(new HomePageModel(1,"Flower Shelf", basketList));
-        homePageModelList.add(new HomePageModel(2,"Flower Vase", bouquetList));
+        homePageModelList.add(new HomePageModel(1,"Flower Basket", basketList, 4));
+        homePageModelList.add(new HomePageModel(2,"Flower Bouquet", bouquetList, 1));
+        homePageModelList.add(new HomePageModel(2,"Flower Box", bouquetList,2));
+        homePageModelList.add(new HomePageModel(1,"Flower Shelf", basketList,3));
+        homePageModelList.add(new HomePageModel(2,"Flower Vase", bouquetList,5));
+
 
         HomePageAdapter adapter = new HomePageAdapter(homePageModelList);
         testing.setAdapter(adapter);

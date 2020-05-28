@@ -70,6 +70,7 @@ public class HomePageAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
         String title;
         List<PreviewItemModel> previewItemModelList;
+        int typeProduct;
         switch (homePageModelList.get(position).getType()){
             case HomePageModel.BANNERSLIDER:
                 List<SliderModel> sliderModelList = homePageModelList.get(position).getSliderModelList();
@@ -77,13 +78,15 @@ public class HomePageAdapter extends RecyclerView.Adapter {
                 break;
             case HomePageModel.HORIZONTAL_PRODUCT_PREVIEW:
                 title = homePageModelList.get(position).getTitle();
+                typeProduct = homePageModelList.get(position).getTypeProduct();
                 previewItemModelList = homePageModelList.get(position).getPreviewItemModelList();
-                ((HorizontalProductViewHolder) viewHolder).setHorizontalProductLayout(previewItemModelList,title);
+                ((HorizontalProductViewHolder) viewHolder).setHorizontalProductLayout(previewItemModelList,title,typeProduct);
                 break;
             case HomePageModel.GRID_PRODUCT_PREVIEW:
                 title = homePageModelList.get(position).getTitle();
+                typeProduct = homePageModelList.get(position).getTypeProduct();
                 previewItemModelList = homePageModelList.get(position).getPreviewItemModelList();
-                ((GridProductViewHolder) viewHolder).setGridProductLayout(previewItemModelList,title);
+                ((GridProductViewHolder) viewHolder).setGridProductLayout(previewItemModelList,title,typeProduct);
                 break;
             default:
                 return;
@@ -193,7 +196,7 @@ public class HomePageAdapter extends RecyclerView.Adapter {
 
         }
 
-        private void setHorizontalProductLayout(List<PreviewItemModel> previewItemModelList, String title){
+        private void setHorizontalProductLayout(List<PreviewItemModel> previewItemModelList, String title, int typeProduct){
             LinearLayoutManager linearLayoutManagerBasketProduct = new LinearLayoutManager(itemView.getContext());
             linearLayoutManagerBasketProduct.setOrientation(LinearLayoutManager.HORIZONTAL);
             recyclerViewBasketProduct.setLayoutManager(linearLayoutManagerBasketProduct);
@@ -212,8 +215,9 @@ public class HomePageAdapter extends RecyclerView.Adapter {
             btnBasketProductViewAll.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent homeIntent = new Intent(itemView.getContext(), ListItem.class);
-                    itemView.getContext().startActivity(homeIntent);
+                    Intent intent = new Intent(itemView.getContext(), ListItem.class);
+                    intent.putExtra("type category",typeProduct);
+                    itemView.getContext().startActivity(intent);
                 }
             });
         }
@@ -233,7 +237,7 @@ public class HomePageAdapter extends RecyclerView.Adapter {
 
         }
 
-        private void setGridProductLayout(List<PreviewItemModel> previewItemModelList, String title){
+        private void setGridProductLayout(List<PreviewItemModel> previewItemModelList, String title, int typeProduct){
             BouquetGridLayoutAdapter bouquetGridLayoutAdapter = new BouquetGridLayoutAdapter(previewItemModelList);
             bouquetGridLayoutGridView.setAdapter(bouquetGridLayoutAdapter);
 
@@ -248,7 +252,9 @@ public class HomePageAdapter extends RecyclerView.Adapter {
             btnBouquetGridLayoutViewAll.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    Intent intent = new Intent(itemView.getContext(), ListItem.class);
+                    intent.putExtra("type category",typeProduct);
+                    itemView.getContext().startActivity(intent);
                 }
             });
         }

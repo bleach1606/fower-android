@@ -126,7 +126,7 @@
         app:layout_constraintTop_toBottomOf="@+id/divider6" />
 
     <TextView
-        android:id="@+id/cart_total_amount"
+        android:id="@+id/order_total_bill"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
@@ -145,7 +145,7 @@
         android:background="#d3d3d3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cart_total_amount" />
+        app:layout_constraintTop_toBottomOf="@+id/order_total_bill" />
 
     <View
         android:id="@+id/divider8"

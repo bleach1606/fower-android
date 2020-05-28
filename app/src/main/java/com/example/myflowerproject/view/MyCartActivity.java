@@ -9,6 +9,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -16,6 +18,7 @@ import android.widget.TextView;
 import com.example.myflowerproject.R;
 import com.example.myflowerproject.model.adapter.CartItemAdapter;
 import com.example.myflowerproject.model.entity.CartItemModel;
+import com.example.myflowerproject.model.entity.OrderActivity;
 import com.example.myflowerproject.model.entity.Users;
 
 import java.util.ArrayList;
@@ -29,6 +32,8 @@ public class MyCartActivity extends AppCompatActivity {
     private ImageView productImageView;
 
     private RecyclerView cartItemRecyclerView;
+
+    private Button btnOrder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +59,15 @@ public class MyCartActivity extends AppCompatActivity {
         CartItemAdapter cartItemAdapter = new CartItemAdapter(cartItemModelList);
         cartItemRecyclerView.setAdapter(cartItemAdapter);
         cartItemAdapter.notifyDataSetChanged();
+
+        btnOrder = findViewById(R.id.order_btn);
+        btnOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MyCartActivity.this, OrderActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -81,8 +95,7 @@ public class MyCartActivity extends AppCompatActivity {
                 //to do: Search
                 return true;
             case R.id.home_cart_icon:
-                //to do: Search
-                break;
+                return true;
             default:break;
         }
 

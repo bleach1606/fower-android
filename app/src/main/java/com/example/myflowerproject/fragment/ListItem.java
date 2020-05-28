@@ -35,56 +35,90 @@ public class ListItem extends AppCompatActivity {
     private RecyclerView categoryRecyclerView;
     private CategoryAdapter categoryAdapter;
 
+    private Toolbar toolbar;
+
     private GridView itemGridLayoutGridView;
+
+    private List<PreviewItemModel> listItem = new ArrayList<>();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_item_grid_layout);
-
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        categoryRecyclerView = findViewById(R.id.category_recyclerview1);
-        LinearLayoutManager layoutManagerCategory = new LinearLayoutManager(ListItem.this);
-        layoutManagerCategory.setOrientation(LinearLayoutManager.HORIZONTAL); //list view ngang
-        categoryRecyclerView.setLayoutManager(layoutManagerCategory);
-
-        List<CategoryModel> categoryModelList = new ArrayList<CategoryModel>();
-        categoryModelList.add(new CategoryModel(R.mipmap.home_icon,"Home"));
-        categoryModelList.add(new CategoryModel(R.mipmap.color_icon,"Color"));
-        categoryModelList.add(new CategoryModel(R.mipmap.bo_hoa_icon,"Bouquet"));
-        categoryModelList.add(new CategoryModel(R.mipmap.hop_hoa_icon,"Box"));
-        categoryModelList.add(new CategoryModel(R.mipmap.ke_hoa_icon,"Shelf"));
-        categoryModelList.add(new CategoryModel(R.mipmap.gio_hoa_icon,"Basket"));
-        categoryModelList.add(new CategoryModel(R.mipmap.lo_hoa_icon,"Vase"));
-        categoryModelList.add(new CategoryModel(R.mipmap.hoa_cuoi_icon,"Wedding"));
-
-        categoryAdapter = new CategoryAdapter(categoryModelList);
-        categoryRecyclerView.setAdapter(categoryAdapter);
-        categoryAdapter.notifyDataSetChanged();
+//
+//        toolbar = findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
+//        getSupportActionBar().setDisplayShowTitleEnabled(false);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//
+//        categoryRecyclerView = findViewById(R.id.category_recyclerview1);
+//        LinearLayoutManager layoutManagerCategory = new LinearLayoutManager(ListItem.this);
+//        layoutManagerCategory.setOrientation(LinearLayoutManager.HORIZONTAL); //list view ngang
+//        categoryRecyclerView.setLayoutManager(layoutManagerCategory);
+//
+//        List<CategoryModel> categoryModelList = new ArrayList<CategoryModel>();
+//        categoryModelList.add(new CategoryModel(R.mipmap.home_icon,"Home",0));
+//        categoryModelList.add(new CategoryModel(R.mipmap.bo_hoa_icon,"Bouquet",1));
+//        categoryModelList.add(new CategoryModel(R.mipmap.hop_hoa_icon,"Box",2));
+//        categoryModelList.add(new CategoryModel(R.mipmap.ke_hoa_icon,"Shelf",3));
+//        categoryModelList.add(new CategoryModel(R.mipmap.gio_hoa_icon,"Basket",4));
+//        categoryModelList.add(new CategoryModel(R.mipmap.lo_hoa_icon,"Vase",5));
+//        categoryModelList.add(new CategoryModel(R.mipmap.hoa_cuoi_icon,"Wedding",6));
+//
+//        categoryAdapter = new CategoryAdapter(categoryModelList);
+//        categoryRecyclerView.setAdapter(categoryAdapter);
+//        categoryAdapter.notifyDataSetChanged();
 
         ////////////////////////////
 
+        Intent intent = getIntent();
+        int type = intent.getIntExtra("type category",0);
+        switch (type){
+            case 1:
+                toolbar.setTitle("Flower Bouquet");
+                setListItem(type);
+                break;
+            case 2:
+                toolbar.setTitle("Flower Box");
+                setListItem(type);
+                break;
+            case 3:
+                toolbar.setTitle("Flower Shelf");
+                setListItem(type);
+                break;
+            case 4:
+                toolbar.setTitle("Flower Basket");
+                setListItem(type);
+                break;
+            case 5:
+                toolbar.setTitle("Flower Vase");
+                setListItem(type);
+                break;
+            case 6:
+                toolbar.setTitle("Wedding");
+                setListItem(type);
+                break;
+            default:
+
+        }
+
         itemGridLayoutGridView = findViewById(R.id.item_grid_layout_grid_view);
-
-        List<PreviewItemModel> listItem = new ArrayList<>();
-        listItem.add(new PreviewItemModel(R.mipmap.vuong_do_bq15,"Bouqet Red","800.000 VND"));
-        listItem.add(new PreviewItemModel(R.mipmap.vuong_do_bq13,"Bouqet Red","500.000 VND"));
-        listItem.add(new PreviewItemModel(R.mipmap.vuong_hong_bq27,"Bouqet Pink","1.000.000 VND"));
-        listItem.add(new PreviewItemModel(R.mipmap.vuong_hong_bq17,"Bouqet Pink","800.000 VND"));
-        listItem.add(new PreviewItemModel(R.mipmap.vuong_do_bq15,"Bouqet Red","800.000 VND"));
-        listItem.add(new PreviewItemModel(R.mipmap.vuong_do_bq13,"Bouqet Red","500.000 VND"));
-        listItem.add(new PreviewItemModel(R.mipmap.vuong_hong_bq27,"Bouqet Pink","1.000.000 VND"));
-        listItem.add(new PreviewItemModel(R.mipmap.vuong_hong_bq17,"Bouqet Pink","800.000 VND"));
-
         BouquetGridLayoutAdapter bouquetGridLayoutAdapter = new BouquetGridLayoutAdapter(listItem);
         itemGridLayoutGridView.setAdapter(bouquetGridLayoutAdapter);
 
         ////////////////////////////
 
+    }
+
+    public void setListItem(int type){
+        listItem.add(new PreviewItemModel(R.mipmap.vuong_do_bq15,"Bouqet Red","800.000 VND"));
+        listItem.add(new PreviewItemModel(R.mipmap.vuong_do_bq13,"Bouqet Red","500.000 VND"));
+        listItem.add(new PreviewItemModel(R.mipmap.vuong_hong_bq27,"Bouqet Pink","1.000.000 VND"));
+        listItem.add(new PreviewItemModel(R.mipmap.vuong_hong_bq17,"Bouqet Pink","800.000 VND"));
+        listItem.add(new PreviewItemModel(R.mipmap.vuong_do_bq15,"Bouqet Red","800.000 VND"));
+        listItem.add(new PreviewItemModel(R.mipmap.vuong_do_bq13,"Bouqet Red","500.000 VND"));
+        listItem.add(new PreviewItemModel(R.mipmap.vuong_hong_bq27,"Bouqet Pink","1.000.000 VND"));
+        listItem.add(new PreviewItemModel(R.mipmap.vuong_hong_bq17,"Bouqet Pink","800.000 VND"));
     }
 
     @Override

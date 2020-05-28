@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -43,5 +44,22 @@ public class Notification extends AppCompatActivity {
                 arrNotifi
         );
         lvNotifi.setAdapter(adapter);
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId())
+        {
+            case android.R.id.home:
+                finish();
+                return true;
+            case R.id.app_bar_search:
+                //to do: Search
+                return true;
+            case R.id.home_cart_icon:
+                return true;
+            default:break;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }
