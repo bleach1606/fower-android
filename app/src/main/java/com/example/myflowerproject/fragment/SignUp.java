@@ -20,10 +20,22 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
+import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.myflowerproject.R;
+import com.example.myflowerproject.model.api.ApiUtils;
+import com.example.myflowerproject.model.api.UserAPI;
+import com.example.myflowerproject.model.entity.People;
+import com.example.myflowerproject.model.entity.Users;
+import com.example.myflowerproject.model.results.UserLoginResult;
 import com.example.myflowerproject.view.HomeActivity;
+import com.example.myflowerproject.view.MainActivity;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 /**
@@ -35,10 +47,13 @@ public class SignUp extends AppCompatActivity {
     private FrameLayout parentFrameLayout;
 
     private EditText email;
-    private EditText fullName;
+    private EditText firstName;
     private EditText password;
     private EditText confirmPassword;
-
+    private EditText lastName;
+    private EditText phoneNumber;
+    private RadioButton btnMale;
+    private RadioButton btnFemale;
     private Button signUpBtn;
 
     private ProgressBar progressBar;
@@ -50,15 +65,54 @@ public class SignUp extends AppCompatActivity {
 
         alreadyHaveAnAccount = findViewById(R.id.tv_already_have_an_account);
 
+        email = findViewById(R.id.sign_up_email);
+
+        firstName = findViewById(R.id.sign_up_first_name);
+        lastName = findViewById(R.id.sign_up_last_name);
+        phoneNumber = findViewById(R.id.sign_up_phone_number);
+        password = findViewById(R.id.sign_up_password);
+        confirmPassword = findViewById(R.id.sign_up_confirm_password);
         parentFrameLayout = findViewById(R.id.register_framelayout);
 
+        signUpBtn = findViewById(R.id.sign_up_btn);
+        btnMale = findViewById(R.id.sign_up_sex_male);
+        btnFemale = findViewById(R.id.sign_up_sex_female);
         email = findViewById(R.id.sign_up_email);
-        fullName = findViewById(R.id.sign_up_fullname);
         password = findViewById(R.id.sign_up_password);
         confirmPassword = findViewById(R.id.sign_up_confirm_password);
 
         signUpBtn = findViewById(R.id.sign_up_btn);
 
+        signUpBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try{
+                    String _username = firstName.getText().toString();
+                    String _password = password.getText().toString();
+                    Users user = new Users();
+                    user.setPassword(_password);
+                    user.setUsername(_username);
+                    user.setPeople(new People());
+                    UserAPI userAPI = ApiUtils.getAPIService();
+                    userAPI.signup(user).enqueue(new Callback<UserLoginResult>() {
+                        @Override
+                        public void onResponse(Call<UserLoginResult> call, Response<UserLoginResult> response) {
+                            if(response.isSuccessful()){
+                                Intent intent = new Intent(SignUp.this, MainActivity.class);
+                                startActivity(intent);
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<UserLoginResult> call, Throwable t) {
+                            Toast.makeText(SignUp.this, t.toString(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }catch(Exception ex){
+
+                }
+            }
+        });
         progressBar = findViewById(R.id.sign_up_progressbar);
 
         alreadyHaveAnAccount.setOnClickListener(new View.OnClickListener() {
@@ -85,7 +139,39 @@ public class SignUp extends AppCompatActivity {
 
             }
         });
-        fullName.addTextChangedListener(new TextWatcher() {
+        firstName.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                checkInputs();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        lastName.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                checkInputs();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        phoneNumber.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -145,7 +231,7 @@ public class SignUp extends AppCompatActivity {
 
     private void checkInputs(){
         if(!TextUtils.isEmpty(email.getText())){
-            if(!TextUtils.isEmpty(fullName.getText())){
+            if(!TextUtils.isEmpty(firstName.getText())){
                 if(!TextUtils.isEmpty(password.getText())){
                     if(!TextUtils.isEmpty(confirmPassword.getText())){
                         signUpBtn.setEnabled(true);
@@ -168,9 +254,10 @@ public class SignUp extends AppCompatActivity {
         }
         else {
             signUpBtn.setEnabled(false);
-            signUpBtn.setTextColor(Color.rgb(238,180,180));
+            signUpBtn.setTextColor(Color.rgb(238, 180, 180));
         }
     }
+
     private void checkEmailAndPassword() {
         signUpBtn.setEnabled(false);
         signUpBtn.setTextColor(Color.rgb(238,180,180));

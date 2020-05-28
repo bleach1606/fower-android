@@ -155,13 +155,14 @@ public class SignIn extends AppCompatActivity {
         String username = txtemail.getText().toString();
         String passWord = txtpassword.getText().toString();
         Users users = new Users(username, passWord);
-        //sendPost(users);
+//        sendPost(users);
         sendPostLocal(users);
     }
 
     private void sendPostLocal(Users user) {
         People people = new People();
-        people.setName("Nguyen Khac Thanh");
+        people.setFirstName("Nguyen Khac");
+        people.setLastName("Thanh");
         people.setEmail("bl.bleach1606@gmail.com");
         user.setPeople(people);
         signInBtn.setEnabled(false);

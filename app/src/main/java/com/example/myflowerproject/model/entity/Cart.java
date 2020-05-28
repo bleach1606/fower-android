@@ -1,9 +1,5 @@
 package com.example.myflowerproject.model.entity;
 
-import lombok.Data;
-
-
-@Data
 public class Cart {
 
     private int id;

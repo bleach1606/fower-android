@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.myflowerproject" >
+    package="com.example.myflowerproject">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:icon="@drawable/main_activity_background"
         android:label="Camelia Florist"
@@ -18,7 +19,17 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".view.Notification"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name=".view.MyAccount"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name=".view.ChangePassword"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+
         <activity
             android:name=".fragment.SignIn"
             android:theme="@style/AppTheme.NoActionBar" />
