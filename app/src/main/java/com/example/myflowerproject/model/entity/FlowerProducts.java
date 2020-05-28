@@ -1,10 +1,7 @@
 package com.example.myflowerproject.model.entity;
 
-import lombok.Data;
-
 import java.util.List;
 
-@Data
 public class FlowerProducts {
 
     private int id;

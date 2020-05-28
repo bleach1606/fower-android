@@ -14,6 +14,7 @@ public class HomePageModel {
     public static final int GRID_PRODUCT_PREVIEW = 2;
 
     private int type;
+    private int typeProduct;
 
     ////////////////// Banner Slider
     private List<SliderModel> sliderModelList;
@@ -45,10 +46,19 @@ public class HomePageModel {
     private String title;
     private List<PreviewItemModel> previewItemModelList;
 
-    public HomePageModel(int type, String title, List<PreviewItemModel> previewItemModelList) {
+    public HomePageModel(int type, String title, List<PreviewItemModel> previewItemModelList, int typeProduct) {
         this.type = type;
         this.title = title;
         this.previewItemModelList = previewItemModelList;
+        this.typeProduct = typeProduct;
+    }
+
+    public int getTypeProduct() {
+        return typeProduct;
+    }
+
+    public void setTypeProduct(int typeProduct) {
+        this.typeProduct = typeProduct;
     }
 
     public String getTitle() {

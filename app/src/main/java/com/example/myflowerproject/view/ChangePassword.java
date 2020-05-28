@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.myflowerproject.R;
-import com.example.myflowerproject.fragment.ResetPasswordFragment;
 
 public class ChangePassword extends AppCompatActivity {
     TextView txtForgotPass;
@@ -34,7 +33,7 @@ public class ChangePassword extends AppCompatActivity {
                 findViewById(R.id.txtForgotPass).setVisibility(View.INVISIBLE);
                 findViewById(R.id.tbChangPass).setVisibility(View.INVISIBLE);
                 FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(tmp.getId(), new ResetPasswordFragment());
+//                fragmentTransaction.replace(tmp.getId(), new ResetPasswordFragment());
 //                tmp.setVisibility(View.INVISIBLE);
 //                fragmentTransaction.hide();
                 fragmentTransaction.commit();

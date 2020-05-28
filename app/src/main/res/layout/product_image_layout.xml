@@ -23,11 +23,12 @@
         android:id="@+id/product_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
         android:text="Product Name"
         android:textColor="#000000"
-        android:textSize="20sp"
+        android:textSize="22sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/product_image" />
 
@@ -35,7 +36,7 @@
         android:id="@+id/linearLayout2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
         android:background="@color/colorPrimary"
         android:orientation="horizontal"
@@ -64,7 +65,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/product_rating_miniview"
+        android:id="@+id/product_total_rating_miniview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -78,7 +79,7 @@
         android:id="@+id/product_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
         android:text="VND 2.000.000/-"
         android:textSize="24dp"
@@ -108,36 +109,39 @@
         app:layout_constraintTop_toTopOf="@+id/product_ex_price" />
 
     <LinearLayout
-        android:id="@+id/coupen_redemption_layout"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:orientation="horizontal"
-        android:background="@color/colorPrimary"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/product_price"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/product_price">
+        app:layout_constraintTop_toBottomOf="@+id/divider">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_gravity="center"
-            android:text="Them san pham nay vao gio hang?"
-            android:textStyle="bold"
-            android:textSize="15dp"
-            android:textColor="@color/colorAccent"/>
         <Button
-            android:layout_width="wrap_content"
+            android:id="@+id/product_image_layout_btn_sub_quantity"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginStart="32dp"
-            android:background="@color/colorAccent"
-            android:text="Add"
-            android:textColor="@color/colorPrimary"/>
+            android:text="-"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/product_image_layout_editText_quantity"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/starGrey"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="1"
+            android:textAlignment="center"
+            android:textSize="19sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/product_image_layout_btn_add_quantity"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:text="+" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

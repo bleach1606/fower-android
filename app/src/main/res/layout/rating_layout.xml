@@ -380,9 +380,9 @@
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="200dp"
             android:layout_weight="1"
-            android:tint="@color/colorPrimary"
+            android:tint="@color/starGrey"
             app:srcCompat="@mipmap/star" />
 
         <ImageView
@@ -390,9 +390,9 @@
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="200dp"
             android:layout_weight="1"
-            android:tint="@color/colorPrimary"
+            android:tint="@color/starGrey"
             app:srcCompat="@mipmap/star" />
 
         <ImageView
@@ -400,9 +400,9 @@
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="200dp"
             android:layout_weight="1"
-            android:tint="@color/colorPrimary"
+            android:tint="@color/starGrey"
             app:srcCompat="@mipmap/star" />
 
         <ImageView
@@ -410,9 +410,9 @@
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="200dp"
             android:layout_weight="1"
-            android:tint="@color/colorPrimary"
+            android:tint="@color/starGrey"
             app:srcCompat="@mipmap/star" />
 
         <ImageView
@@ -420,7 +420,7 @@
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="200dp"
             android:layout_weight="1"
             android:tint="@color/starGrey"
             app:srcCompat="@mipmap/star" />

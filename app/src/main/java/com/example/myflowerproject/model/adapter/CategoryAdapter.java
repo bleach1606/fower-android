@@ -1,6 +1,7 @@
 package com.example.myflowerproject.model.adapter;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.myflowerproject.model.entity.CategoryModel;
 import com.example.myflowerproject.fragment.ListItem;
 import com.example.myflowerproject.R;
+import com.example.myflowerproject.view.HomeActivity;
 
 import java.util.List;
 
@@ -35,8 +37,8 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     public void onBindViewHolder(@NonNull CategoryAdapter.ViewHolder viewHolder, int position) {
         int icon = categoryModelList.get(position).getCategoryIconLink();
         String name = categoryModelList.get(position).getCategoryName();
-        viewHolder.setCategoryName(name);
-        viewHolder.setCategoryIcon(icon);
+        int type = categoryModelList.get(position).getType();
+        viewHolder.setCategoryItem(icon,name,type);
     }
 
     @Override
@@ -55,18 +57,22 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
             categoryName = itemView.findViewById(R.id.category_name);
         }
 
-        private void setCategoryIcon(int resource){
+        private void setCategoryItem(int resource, String name, int type){
             categoryIcon.setImageResource(resource);
-        }
-
-        private void setCategoryName(String name){
             categoryName.setText(name);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(itemView.getContext(), ListItem.class);
-                    itemView.getContext().startActivity(intent);
+                    if(type == 0){
+                        Intent intent = new Intent(itemView.getContext(), HomeActivity.class);
+                        itemView.getContext().startActivity(intent);
+                    }
+                    else {
+                        Intent intent = new Intent(itemView.getContext(), ListItem.class);
+                        intent.putExtra("type category", type);
+                        itemView.getContext().startActivity(intent);
+                    }
                 }
             });
         }

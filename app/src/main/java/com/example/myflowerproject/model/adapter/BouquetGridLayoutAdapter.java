@@ -1,5 +1,6 @@
 package com.example.myflowerproject.model.adapter;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 
 import com.example.myflowerproject.model.entity.PreviewItemModel;
 import com.example.myflowerproject.R;
+import com.example.myflowerproject.view.ProductDetailActivity;
 
 import java.util.List;
 
@@ -36,7 +38,7 @@ public class BouquetGridLayoutAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, final ViewGroup parent) {
         View view;
         if(convertView == null){
             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.preview_item_layout,null);
@@ -47,6 +49,14 @@ public class BouquetGridLayoutAdapter extends BaseAdapter {
             productImage.setImageResource(previewItemModelList.get(position).getProductImage());
             productName.setText(previewItemModelList.get(position).getProductName());
             productPrice.setText(previewItemModelList.get(position).getProductPrice());
+
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(parent.getContext(), ProductDetailActivity.class);
+                    parent.getContext().startActivity(intent);
+                }
+            });
         }
         else {
             view = convertView;

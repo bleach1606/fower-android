@@ -65,20 +65,19 @@ public class SignUp extends AppCompatActivity {
 
         alreadyHaveAnAccount = findViewById(R.id.tv_already_have_an_account);
 
-        email = view.findViewById(R.id.sign_up_email);
+        email = findViewById(R.id.sign_up_email);
 
-        firstName = view.findViewById(R.id.sign_up_first_name);
-        lastName = view.findViewById(R.id.sign_up_last_name);
-        phoneNumber = view.findViewById(R.id.sign_up_phone_number);
-        password = view.findViewById(R.id.sign_up_password);
-        confirmPassword = view.findViewById(R.id.sign_up_confirm_password);
+        firstName = findViewById(R.id.sign_up_first_name);
+        lastName = findViewById(R.id.sign_up_last_name);
+        phoneNumber = findViewById(R.id.sign_up_phone_number);
+        password = findViewById(R.id.sign_up_password);
+        confirmPassword = findViewById(R.id.sign_up_confirm_password);
         parentFrameLayout = findViewById(R.id.register_framelayout);
 
-        signUpBtn = view.findViewById(R.id.sign_up_btn);
-        btnMale = view.findViewById(R.id.sign_up_sex_male);
-        btnFemale = view.findViewById(R.id.sign_up_sex_female);
+        signUpBtn = findViewById(R.id.sign_up_btn);
+        btnMale = findViewById(R.id.sign_up_sex_male);
+        btnFemale = findViewById(R.id.sign_up_sex_female);
         email = findViewById(R.id.sign_up_email);
-        fullName = findViewById(R.id.sign_up_fullname);
         password = findViewById(R.id.sign_up_password);
         confirmPassword = findViewById(R.id.sign_up_confirm_password);
 
@@ -99,14 +98,14 @@ public class SignUp extends AppCompatActivity {
                         @Override
                         public void onResponse(Call<UserLoginResult> call, Response<UserLoginResult> response) {
                             if(response.isSuccessful()){
-                                Intent intent = new Intent(getActivity(), MainActivity.class);
+                                Intent intent = new Intent(SignUp.this, MainActivity.class);
                                 startActivity(intent);
                             }
                         }
 
                         @Override
                         public void onFailure(Call<UserLoginResult> call, Throwable t) {
-                            Toast.makeText(getContext(), t.toString(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SignUp.this, t.toString(), Toast.LENGTH_SHORT).show();
                         }
                     });
                 }catch(Exception ex){
@@ -114,13 +113,6 @@ public class SignUp extends AppCompatActivity {
                 }
             }
         });
-
-        return view;
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
         progressBar = findViewById(R.id.sign_up_progressbar);
 
         alreadyHaveAnAccount.setOnClickListener(new View.OnClickListener() {
@@ -237,45 +229,9 @@ public class SignUp extends AppCompatActivity {
         });
     }
 
-    private void setFragment(Fragment fragment) {
-        FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.setCustomAnimations(R.anim.slide_from_left,R.anim.slideout_from_right);
-        fragmentTransaction.replace(parentFrameLayout.getId(),fragment);
-        fragmentTransaction.commit();
-    }
-    private void checkInputs() {
-        if (!TextUtils.isEmpty(firstName.getText())) {
-            if (!TextUtils.isEmpty(lastName.getText())) {
-                if (!TextUtils.isEmpty(email.getText())) {
-                    if (!TextUtils.isEmpty(phoneNumber.getText())) {
-                        if (!TextUtils.isEmpty(password.getText())) {
-                            if (!TextUtils.isEmpty(confirmPassword.getText())) {
-                                signUpBtn.setEnabled(true);
-                                signUpBtn.setTextColor(Color.rgb(255, 255, 255));
-                            } else {
-                                signUpBtn.setEnabled(false);
-                                signUpBtn.setTextColor(Color.rgb(238, 180, 180));
-                            }
-                        } else {
-                            signUpBtn.setEnabled(false);
-                            signUpBtn.setTextColor(Color.rgb(238, 180, 180));
-                        }
-                    } else {
-                        signUpBtn.setEnabled(false);
-                        signUpBtn.setTextColor(Color.rgb(238, 180, 180));
-                    }
-                } else {
-                    signUpBtn.setEnabled(false);
-                    signUpBtn.setTextColor(Color.rgb(238, 180, 180));
-                }
-            } else {
-                signUpBtn.setEnabled(false);
-                signUpBtn.setTextColor(Color.rgb(238, 180, 180));
-            }
-        } else {
     private void checkInputs(){
         if(!TextUtils.isEmpty(email.getText())){
-            if(!TextUtils.isEmpty(fullName.getText())){
+            if(!TextUtils.isEmpty(firstName.getText())){
                 if(!TextUtils.isEmpty(password.getText())){
                     if(!TextUtils.isEmpty(confirmPassword.getText())){
                         signUpBtn.setEnabled(true);

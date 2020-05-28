@@ -6,18 +6,21 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:icon="@drawable/main_activity_background"
         android:label="Camelia Florist"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true"
         tools:targetApi="n">
-
+        <activity android:name=".model.entity.OrderActivity">
+        </activity>
         <activity
             android:name=".view.HomeActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".view.HomeActivityVer2"
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
             android:name=".view.Notification"
@@ -31,12 +34,6 @@
             android:name=".view.ChangePassword"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
-        <activity
-            android:name=".fragment.ResetPasswordFragment"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
-
-            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".fragment.SignIn"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -54,6 +51,9 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".view.ProductDetailActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".view.MyCartActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".view.MainActivity"
