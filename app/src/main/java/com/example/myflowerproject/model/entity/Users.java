@@ -32,6 +32,10 @@ public class Users implements Serializable {
     @Expose
     private People people;
 
+    @SerializedName("tokenFCM")
+    @Expose
+    private String tokenFCM;
+
     public Users(String username, String password) {
         this.username = username;
         this.password = password;
@@ -89,15 +93,21 @@ public class Users implements Serializable {
         this.people = people;
     }
 
-    @Override
-    public String toString() {
-        return "Users{" +
-                "id=" + id +
-                ", fiActive=" + fiActive +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", role='" + role + '\'' +
-                ", people=" + people +
-                '}';
+    public String getTokenFCM() {
+        return tokenFCM;
+    }
+
+    public void setTokenFCM(String tokenFCM) {
+        this.tokenFCM = tokenFCM;
+    }
+
+    public Users(int id, Boolean fiActive, String username, String password, String role, People people, String tokenFCM) {
+        this.id = id;
+        this.fiActive = fiActive;
+        this.username = username;
+        this.password = password;
+        this.role = role;
+        this.people = people;
+        this.tokenFCM = tokenFCM;
     }
 }
