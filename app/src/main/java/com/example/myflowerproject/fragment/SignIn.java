@@ -192,10 +192,10 @@ public class SignIn extends AppCompatActivity {
             public void onResponse(Call<UserLoginResult> call, Response<UserLoginResult> response) {
                 if (response.isSuccessful()) {
                     Users user = response.body().getDataLoginResult().getUser();
-                    user.setToken(response.body().getDataLoginResult().getAccessToken());
+                    user.setToken( "Bearer " + response.body().getDataLoginResult().getAccessToken());
 
                     //Lưu user vào share preference
-                    SharedPreferences mPrefs = getPreferences(MODE_PRIVATE);
+                    SharedPreferences mPrefs = getSharedPreferences( "user", MODE_PRIVATE);
                     SharedPreferences.Editor prefsEditor = mPrefs.edit();
                     Gson gson = new Gson();
                     String json = gson.toJson(user);

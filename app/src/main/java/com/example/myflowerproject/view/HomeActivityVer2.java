@@ -21,6 +21,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.myflowerproject.R;
 import com.example.myflowerproject.fragment.HomeFragment;
+import com.example.myflowerproject.fragment.SignIn;
 import com.example.myflowerproject.model.adapter.CategoryAdapter2;
 import com.example.myflowerproject.model.api.ApiUtils;
 import com.example.myflowerproject.model.api.CategoryAPI;
@@ -210,7 +211,12 @@ public class HomeActivityVer2 extends AppCompatActivity implements NavigationVie
         categoryAPI.findCategory(user.getToken()).enqueue(new Callback<CategoryResult>() {
             @Override
             public void onResponse(Call<CategoryResult> call, Response<CategoryResult> response) {
-                categoryModelList = response.body().getCategoryModelList();
+                if (response.isSuccessful()) {
+                    categoryModelList = response.body().getCategoryModelList();
+                } else {
+                    Toast.makeText(HomeActivityVer2.this, "Loi ???", Toast.LENGTH_SHORT).show();
+                }
+
             }
 
             @Override
