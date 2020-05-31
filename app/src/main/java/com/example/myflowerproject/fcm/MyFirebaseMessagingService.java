@@ -1,13 +1,17 @@
 package com.example.myflowerproject.fcm;
 
+import android.content.SharedPreferences;
 import android.util.Log;
 
 import com.example.myflowerproject.model.api.ApiUtils;
 import com.example.myflowerproject.model.api.UserAPI;
+import com.example.myflowerproject.model.entity.Users;
 import com.example.myflowerproject.model.results.UserResult;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
+import com.google.gson.Gson;
+
 import androidx.work.OneTimeWorkRequest;
 import androidx.work.WorkManager;
 
@@ -111,7 +115,12 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private void sendRegistrationToServer(String token) {
         // TODO: Implement this method to send token to your app server.
         userAPI = ApiUtils.getAPIService();
-        userAPI.updateTokenFCM(token).enqueue(new Callback<UserResult>() {
+
+        Gson gson = new Gson();
+        SharedPreferences mPrefs = getSharedPreferences( "user", MODE_PRIVATE);
+        String json = mPrefs.getString("user", "");
+        Users user = gson.fromJson(json, Users.class);
+        userAPI.updateTokenFCM(user.getToken(), token).enqueue(new Callback<UserResult>() {
             @Override
             public void onResponse(Call<UserResult> call, Response<UserResult> response) {
                 //todo update user

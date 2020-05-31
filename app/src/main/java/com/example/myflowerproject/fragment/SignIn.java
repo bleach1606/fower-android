@@ -1,6 +1,7 @@
 package com.example.myflowerproject.fragment;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -26,6 +27,7 @@ import com.example.myflowerproject.model.entity.Users;
 import com.example.myflowerproject.model.results.UserLoginResult;
 import com.example.myflowerproject.view.HomeActivity;
 import com.example.myflowerproject.view.HomeActivityVer2;
+import com.google.gson.Gson;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -156,8 +158,8 @@ public class SignIn extends AppCompatActivity {
         String username = txtemail.getText().toString();
         String passWord = txtpassword.getText().toString();
         Users users = new Users(username, passWord);
-//        sendPost(users);
-        sendPostLocal(users);
+        sendPost(users);
+//        sendPostLocal(users);
     }
 
     private void sendPostLocal(Users user) {
@@ -169,9 +171,16 @@ public class SignIn extends AppCompatActivity {
         signInBtn.setEnabled(false);
         signInBtn.setTextColor(Color.rgb(238,180,180));
 
+        //Lưu user vào share preference
+        SharedPreferences mPrefs = getSharedPreferences( "user", MODE_PRIVATE);
+        SharedPreferences.Editor prefsEditor = mPrefs.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(user);
+        prefsEditor.putString("user", json);
+        prefsEditor.commit();
+
         progressBar.setVisibility(View.VISIBLE);
         Intent homeIntent = new Intent(SignIn.this, HomeActivityVer2.class);
-        homeIntent.putExtra("user", user);
         startActivity(homeIntent);
         finish();
     }
@@ -183,12 +192,21 @@ public class SignIn extends AppCompatActivity {
             public void onResponse(Call<UserLoginResult> call, Response<UserLoginResult> response) {
                 if (response.isSuccessful()) {
                     Users user = response.body().getDataLoginResult().getUser();
+                    user.setToken(response.body().getDataLoginResult().getAccessToken());
+
+                    //Lưu user vào share preference
+                    SharedPreferences mPrefs = getPreferences(MODE_PRIVATE);
+                    SharedPreferences.Editor prefsEditor = mPrefs.edit();
+                    Gson gson = new Gson();
+                    String json = gson.toJson(user);
+                    prefsEditor.putString("user", json);
+                    prefsEditor.commit();
+
                     signInBtn.setEnabled(false);
                     signInBtn.setTextColor(Color.rgb(238,180,180));
 
                     progressBar.setVisibility(View.VISIBLE);
                     Intent homeIntent = new Intent(SignIn.this, HomeActivityVer2.class);
-                    homeIntent.putExtra("user", user);
                     startActivity(homeIntent);
                     finish();
                 } else {

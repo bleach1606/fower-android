@@ -1,6 +1,7 @@
 package com.example.myflowerproject.view;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -8,7 +9,6 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -21,11 +21,21 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.myflowerproject.R;
 import com.example.myflowerproject.fragment.HomeFragment;
-import com.example.myflowerproject.model.adapter.CategoryAdapter;
 import com.example.myflowerproject.model.adapter.CategoryAdapter2;
+import com.example.myflowerproject.model.api.ApiUtils;
+import com.example.myflowerproject.model.api.CategoryAPI;
+import com.example.myflowerproject.model.entity.CategoryModel;
 import com.example.myflowerproject.model.entity.Users;
+import com.example.myflowerproject.model.results.CategoryResult;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
+import com.google.gson.Gson;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class HomeActivityVer2 extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
@@ -37,6 +47,9 @@ public class HomeActivityVer2 extends AppCompatActivity implements NavigationVie
     private NavigationView navigationView;
 
     private Users user;
+    private List<CategoryModel> categoryModelList;
+    private CategoryAPI categoryAPI;
+
     private TextView txtNameUser;
     private TextView txtEmailUser;
 
@@ -103,8 +116,15 @@ public class HomeActivityVer2 extends AppCompatActivity implements NavigationVie
         getMenuInflater().inflate(R.menu.home, menu);
         txtNameUser = findViewById(R.id.nav_header_home_fullname);
         txtEmailUser = findViewById(R.id.nav_header_home_email);
-        Intent intent = getIntent();
-        user = (Users) intent.getSerializableExtra("user");
+
+        // lây dữ liệu về
+        Gson gson = new Gson();
+        SharedPreferences mPrefs = getSharedPreferences( "user", MODE_PRIVATE);
+        String json = mPrefs.getString("user", "");
+        user = gson.fromJson(json, Users.class);
+
+        getListCategory();
+
         Toast.makeText( getBaseContext(), user.toString(), Toast.LENGTH_SHORT).show();
 
         txtNameUser.setText(user.getPeople().getFirstName() + user.getPeople().getLastName());
@@ -183,5 +203,20 @@ public class HomeActivityVer2 extends AppCompatActivity implements NavigationVie
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(frameLayout.getId(),fragment);
         fragmentTransaction.commit();
+    }
+
+    private void getListCategory() {
+        categoryAPI = ApiUtils.getCategoryAPI();
+        categoryAPI.findCategory(user.getToken()).enqueue(new Callback<CategoryResult>() {
+            @Override
+            public void onResponse(Call<CategoryResult> call, Response<CategoryResult> response) {
+                categoryModelList = response.body().getCategoryModelList();
+            }
+
+            @Override
+            public void onFailure(Call<CategoryResult> call, Throwable t) {
+
+            }
+        });
     }
 }

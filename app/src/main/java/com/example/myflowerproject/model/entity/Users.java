@@ -36,6 +36,8 @@ public class Users implements Serializable {
     @Expose
     private String tokenFCM;
 
+    private String token;
+
     public Users(String username, String password) {
         this.username = username;
         this.password = password;
@@ -99,6 +101,14 @@ public class Users implements Serializable {
 
     public void setTokenFCM(String tokenFCM) {
         this.tokenFCM = tokenFCM;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
     public Users(int id, Boolean fiActive, String username, String password, String role, People people, String tokenFCM) {
