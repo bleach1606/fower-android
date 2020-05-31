@@ -2,10 +2,15 @@ package com.example.myflowerproject.view;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,6 +37,10 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.List;
 
 import retrofit2.Call;
@@ -53,6 +62,7 @@ public class HomeActivityVer2 extends AppCompatActivity implements NavigationVie
 
     private TextView txtNameUser;
     private TextView txtEmailUser;
+    private ImageView imgAvatar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,6 +127,7 @@ public class HomeActivityVer2 extends AppCompatActivity implements NavigationVie
         getMenuInflater().inflate(R.menu.home, menu);
         txtNameUser = findViewById(R.id.nav_header_home_fullname);
         txtEmailUser = findViewById(R.id.nav_header_home_email);
+//        imgAvatar = findViewById(R.id.imageView);
 
         // lây dữ liệu về
         Gson gson = new Gson();
@@ -130,7 +141,34 @@ public class HomeActivityVer2 extends AppCompatActivity implements NavigationVie
 
         txtNameUser.setText(user.getPeople().getFirstName() + user.getPeople().getLastName());
         txtEmailUser.setText(user.getUsername());
+        new DownloadImageTask(findViewById(R.id.imageView))
+                .execute(user.getPeople().getAvatar());
         return true;
+    }
+
+    private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
+        ImageView bmImage;
+
+        public DownloadImageTask(ImageView bmImage) {
+            this.bmImage = bmImage;
+        }
+
+        protected Bitmap doInBackground(String... urls) {
+            String urldisplay = urls[0];
+            Bitmap mIcon11 = null;
+            try {
+                InputStream in = new java.net.URL(urldisplay).openStream();
+                mIcon11 = BitmapFactory.decodeStream(in);
+            } catch (Exception e) {
+                Log.e("Error", e.getMessage());
+                e.printStackTrace();
+            }
+            return mIcon11;
+        }
+
+        protected void onPostExecute(Bitmap result) {
+            bmImage.setImageBitmap(result);
+        }
     }
 
     @Override

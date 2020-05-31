@@ -120,6 +120,10 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         SharedPreferences mPrefs = getSharedPreferences( "user", MODE_PRIVATE);
         String json = mPrefs.getString("user", "");
         Users user = gson.fromJson(json, Users.class);
+        if (user.getToken() == null) {
+            return;
+        }
+
         userAPI.updateTokenFCM(user.getToken(), token).enqueue(new Callback<UserResult>() {
             @Override
             public void onResponse(Call<UserResult> call, Response<UserResult> response) {
