@@ -68,7 +68,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         // If you want to send messages to this application instance or
         // manage this apps subscriptions on the server side, send the
         // Instance ID token to your app server.
-        sendRegistrationToServer(refreshedToken);
+//        sendRegistrationToServer(refreshedToken);
     }
     /**
      * Called if InstanceID token is updated. This may occur if the security of
@@ -82,7 +82,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         // If you want to send messages to this application instance or
         // manage this apps subscriptions on the server side, send the
         // Instance ID token to your app server.
-        sendRegistrationToServer(token);
+//        sendRegistrationToServer(token);
     }
     // [END on_new_token]
 
@@ -112,25 +112,25 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
      *
      * @param token The new token.
      */
-    private void sendRegistrationToServer(String token) {
-        // TODO: Implement this method to send token to your app server.
-        userAPI = ApiUtils.getAPIService();
-
-        Gson gson = new Gson();
-        SharedPreferences mPrefs = getSharedPreferences( "user", MODE_PRIVATE);
-        String json = mPrefs.getString("user", "");
-        Users user = gson.fromJson(json, Users.class);
-        userAPI.updateTokenFCM(user.getToken(), token).enqueue(new Callback<UserResult>() {
-            @Override
-            public void onResponse(Call<UserResult> call, Response<UserResult> response) {
-                //todo update user
-            }
-
-            @Override
-            public void onFailure(Call<UserResult> call, Throwable t) {
-
-            }
-        });
-    }
+//    private void sendRegistrationToServer(String token) {
+//        // TODO: Implement this method to send token to your app server.
+//        userAPI = ApiUtils.getAPIService();
+//
+//        Gson gson = new Gson();
+//        SharedPreferences mPrefs = getSharedPreferences( "user", MODE_PRIVATE);
+//        String json = mPrefs.getString("user", "");
+//        Users user = gson.fromJson(json, Users.class);
+//        userAPI.updateTokenFCM(user.getToken(), token).enqueue(new Callback<UserResult>() {
+//            @Override
+//            public void onResponse(Call<UserResult> call, Response<UserResult> response) {
+//                //todo update user
+//            }
+//
+//            @Override
+//            public void onFailure(Call<UserResult> call, Throwable t) {
+//
+//            }
+//        });
+//    }
 
 }

@@ -71,7 +71,7 @@ public class CartItemAdapter extends RecyclerView.Adapter {
                 String name = cartItemModelList.get(position).getProductName();
                 double price = cartItemModelList.get(position).getProductPrice();
                 double exPrice = cartItemModelList.get(position).getProductExPrice();
-                ((CartItemViewHolder) viewHolder).setItemDetail(resource,name,price,exPrice);
+                ((CartItemViewHolder) viewHolder).setItemDetail(resource,name,price,exPrice,position);
                 break;
             case CartItemModel.TOTAL_AMOUNT:
                 ((CartTotalAmountViewHolder) viewHolder).setTotalDetail();
@@ -108,7 +108,7 @@ public class CartItemAdapter extends RecyclerView.Adapter {
             btnSubProductQuantity = itemView.findViewById(R.id.cart_item_btn_sub_quantity);
             productQuantity = itemView.findViewById(R.id.cart_item_editText_quantity);
         }
-        private void setItemDetail(int resource, String name, final double price, final double exPrice){
+        private void setItemDetail(int resource, String name, final double price, final double exPrice,int position){
             productImage.setImageResource(resource);
             productName.setText(name);
             productPrice.setText("VND " + (int)price);
@@ -150,6 +150,12 @@ public class CartItemAdapter extends RecyclerView.Adapter {
                     double exSum = exPrice * quantity[0];
                     productPrice.setText("VND " + (int)sum);
                     productExPrice.setText("VND " + (int)exSum);
+                }
+            });
+            btnCartRemoveItem.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    cartItemModelList.remove(cartItemModelList.get(position));
                 }
             });
         }
