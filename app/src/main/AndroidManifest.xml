@@ -31,9 +31,6 @@
         <activity
             android:name=".view.HomeActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".view.HomeActivityVer2"
-            android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
             android:name=".view.Notification"

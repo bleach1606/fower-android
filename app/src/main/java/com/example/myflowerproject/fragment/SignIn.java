@@ -26,7 +26,6 @@ import com.example.myflowerproject.model.entity.People;
 import com.example.myflowerproject.model.entity.Users;
 import com.example.myflowerproject.model.results.UserLoginResult;
 import com.example.myflowerproject.view.HomeActivity;
-import com.example.myflowerproject.view.HomeActivityVer2;
 import com.google.gson.Gson;
 
 import retrofit2.Call;
@@ -158,8 +157,8 @@ public class SignIn extends AppCompatActivity {
         String username = txtemail.getText().toString();
         String passWord = txtpassword.getText().toString();
         Users users = new Users(username, passWord);
-        sendPost(users);
-//        sendPostLocal(users);
+//        sendPost(users);
+        sendPostLocal(users);
     }
 
     private void sendPostLocal(Users user) {
@@ -180,7 +179,7 @@ public class SignIn extends AppCompatActivity {
         prefsEditor.commit();
 
         progressBar.setVisibility(View.VISIBLE);
-        Intent homeIntent = new Intent(SignIn.this, HomeActivityVer2.class);
+        Intent homeIntent = new Intent(SignIn.this, HomeActivity.class);
         startActivity(homeIntent);
         finish();
     }
@@ -206,7 +205,7 @@ public class SignIn extends AppCompatActivity {
                     signInBtn.setTextColor(Color.rgb(238,180,180));
 
                     progressBar.setVisibility(View.VISIBLE);
-                    Intent homeIntent = new Intent(SignIn.this, HomeActivityVer2.class);
+                    Intent homeIntent = new Intent(SignIn.this, HomeActivity.class);
                     startActivity(homeIntent);
                     finish();
                 } else {

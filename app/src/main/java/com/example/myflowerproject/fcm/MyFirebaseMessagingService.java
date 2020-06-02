@@ -1,6 +1,7 @@
 package com.example.myflowerproject.fcm;
 
 import android.content.SharedPreferences;
+import android.os.SystemClock;
 import android.util.Log;
 
 import com.example.myflowerproject.model.api.ApiUtils;
@@ -120,8 +121,10 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         SharedPreferences mPrefs = getSharedPreferences( "user", MODE_PRIVATE);
         String json = mPrefs.getString("user", "");
         Users user = gson.fromJson(json, Users.class);
-        if (user.getToken() == null) {
-            return;
+        while (user == null) {
+            SystemClock.sleep(2000);
+            json = mPrefs.getString("user", "");
+            user = gson.fromJson(json, Users.class);
         }
 
         userAPI.updateTokenFCM(user.getToken(), token).enqueue(new Callback<UserResult>() {
