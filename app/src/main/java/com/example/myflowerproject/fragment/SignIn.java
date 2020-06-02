@@ -1,6 +1,7 @@
 package com.example.myflowerproject.fragment;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -25,7 +26,7 @@ import com.example.myflowerproject.model.entity.People;
 import com.example.myflowerproject.model.entity.Users;
 import com.example.myflowerproject.model.results.UserLoginResult;
 import com.example.myflowerproject.view.HomeActivity;
-import com.example.myflowerproject.view.HomeActivityVer2;
+import com.google.gson.Gson;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -169,9 +170,19 @@ public class SignIn extends AppCompatActivity {
         signInBtn.setEnabled(false);
         signInBtn.setTextColor(Color.rgb(238,180,180));
 
+        user.setToken( "1312312");
+
+        //Lưu user vào share preference
+        SharedPreferences mPrefs = getSharedPreferences( "user", MODE_PRIVATE);
+        SharedPreferences.Editor prefsEditor = mPrefs.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(user);
+        prefsEditor.putString("user", json);
+        prefsEditor.commit();
+
+
         progressBar.setVisibility(View.VISIBLE);
-        Intent homeIntent = new Intent(SignIn.this, HomeActivityVer2.class);
-        homeIntent.putExtra("user", user);
+        Intent homeIntent = new Intent(SignIn.this, HomeActivity.class);
         startActivity(homeIntent);
         finish();
     }
@@ -183,12 +194,21 @@ public class SignIn extends AppCompatActivity {
             public void onResponse(Call<UserLoginResult> call, Response<UserLoginResult> response) {
                 if (response.isSuccessful()) {
                     Users user = response.body().getDataLoginResult().getUser();
+                    user.setToken( "Bearer " + response.body().getDataLoginResult().getAccessToken());
+
+                    //Lưu user vào share preference
+                    SharedPreferences mPrefs = getSharedPreferences( "user", MODE_PRIVATE);
+                    SharedPreferences.Editor prefsEditor = mPrefs.edit();
+                    Gson gson = new Gson();
+                    String json = gson.toJson(user);
+                    prefsEditor.putString("user", json);
+                    prefsEditor.commit();
+
                     signInBtn.setEnabled(false);
                     signInBtn.setTextColor(Color.rgb(238,180,180));
 
                     progressBar.setVisibility(View.VISIBLE);
-                    Intent homeIntent = new Intent(SignIn.this, HomeActivityVer2.class);
-                    homeIntent.putExtra("user", user);
+                    Intent homeIntent = new Intent(SignIn.this, HomeActivity.class);
                     startActivity(homeIntent);
                     finish();
                 } else {

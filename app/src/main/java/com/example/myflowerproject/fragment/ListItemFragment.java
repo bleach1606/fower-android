@@ -1,38 +1,27 @@
 package com.example.myflowerproject.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myflowerproject.R;
 import com.example.myflowerproject.model.adapter.BouquetGridLayoutAdapter;
-import com.example.myflowerproject.model.adapter.CategoryAdapter;
-import com.example.myflowerproject.model.entity.CategoryModel;
 import com.example.myflowerproject.model.entity.PreviewItemModel;
-import com.example.myflowerproject.model.entity.Users;
-import com.example.myflowerproject.view.MyCartActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListItemFragment2 extends Fragment {
+public class ListItemFragment extends Fragment {
 
     private int productType;
 
-    public ListItemFragment2(int productType) {
+    public ListItemFragment(int productType) {
         this.productType = productType;
     }
 
