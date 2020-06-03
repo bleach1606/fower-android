@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.myflowerproject.model.api.GetImage;
 import com.example.myflowerproject.model.entity.PreviewItemModel;
 import com.example.myflowerproject.R;
 import com.example.myflowerproject.view.ProductDetailActivity;
@@ -34,9 +35,9 @@ public class BasketHorizontalScrollAdapter extends RecyclerView.Adapter<BasketHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
-        int resource = previewItemModelList.get(position).getProductImage();
-        String name = previewItemModelList.get(position).getProductName();
-        String price = previewItemModelList.get(position).getProductPrice();
+        int resource = Integer.parseInt(previewItemModelList.get(position).getProducts().getAvatar());
+        String name = previewItemModelList.get(position).getProducts().getName();
+        String price = ""+previewItemModelList.get(position).getProducts().getPrice();
 
         viewHolder.setProductImage(resource);
         viewHolder.setProductName(name);
@@ -69,13 +70,15 @@ public class BasketHorizontalScrollAdapter extends RecyclerView.Adapter<BasketHo
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(itemView.getContext(), ProductDetailActivity.class);
+                    intent.putExtra("id",  previewItemModelList.get(getAdapterPosition()).getProducts().getId());
                     itemView.getContext().startActivity(intent);
                 }
             });
         }
 
         private void setProductImage(int resource){
-            productImage.setImageResource(resource);
+//            productImage.setImageResource(resource);
+            new GetImage(productImage).execute(String.valueOf(resource));
         }
 
         private void setProductName(String name){

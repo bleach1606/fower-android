@@ -1,6 +1,8 @@
 package com.example.myflowerproject.fragment;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,20 +19,34 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.myflowerproject.Container;
 import com.example.myflowerproject.R;
 import com.example.myflowerproject.model.adapter.BasketHorizontalScrollAdapter;
 import com.example.myflowerproject.model.adapter.BouquetGridLayoutAdapter;
 import com.example.myflowerproject.model.adapter.CategoryAdapter;
 import com.example.myflowerproject.model.adapter.SliderAdapter;
+import com.example.myflowerproject.model.api.ApiUtils;
 import com.example.myflowerproject.model.entity.CategoryModel;
 import com.example.myflowerproject.model.entity.PreviewItemModel;
 import com.example.myflowerproject.model.entity.SliderModel;
+import com.example.myflowerproject.model.entity.Users;
+import com.example.myflowerproject.model.results.CategoryResult;
+import com.example.myflowerproject.view.HomeActivity;
+import com.example.myflowerproject.model.api.*;
+import com.example.myflowerproject.model.entity.*;
+import com.google.gson.Gson;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 /**
@@ -53,30 +69,14 @@ public class HomeFragment extends Fragment {
     private Timer timer;
     final private long DELAY_TIME = 3000;
     final private long PERIOD_TIME = 3000;
+    private List<CategoryModel> categoryModelList;
+    private CategoryAPI categoryAPI;
     //// Banner Slider
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_home2, container, false);
-
-//        categoryRecyclerView = view.findViewById(R.id.category_recyclerview);
-//        LinearLayoutManager layoutManagerCategory = new LinearLayoutManager(getActivity());
-//        layoutManagerCategory.setOrientation(LinearLayoutManager.HORIZONTAL); //list view ngang
-//        categoryRecyclerView.setLayoutManager(layoutManagerCategory);
-//
-//        List<CategoryModel> categoryModelList = new ArrayList<CategoryModel>();
-//        categoryModelList.add(new CategoryModel(R.mipmap.home_icon,"Home",0));
-//        categoryModelList.add(new CategoryModel(R.mipmap.bo_hoa_icon,"Bouquet",1));
-//        categoryModelList.add(new CategoryModel(R.mipmap.hop_hoa_icon,"Box",2));
-//        categoryModelList.add(new CategoryModel(R.mipmap.ke_hoa_icon,"Shelf",3));
-//        categoryModelList.add(new CategoryModel(R.mipmap.gio_hoa_icon,"Basket",4));
-//        categoryModelList.add(new CategoryModel(R.mipmap.lo_hoa_icon,"Vase",5));
-//        categoryModelList.add(new CategoryModel(R.mipmap.hoa_cuoi_icon,"Wedding",6));
-//
-//        categoryAdapter = new CategoryAdapter(categoryModelList);
-//        categoryRecyclerView.setAdapter(categoryAdapter);
-//        categoryAdapter.notifyDataSetChanged();
 
         //BannerSlider
         bannerSliderViewPager = view.findViewById(R.id.banner_slider_view_pager);
@@ -133,34 +133,20 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        List<PreviewItemModel> basketList = new ArrayList<>();
-        basketList.add(new PreviewItemModel(R.mipmap.doc_do_bk34,"Congratulation","2.500.000 VND"));
-        basketList.add(new PreviewItemModel(R.mipmap.doc_do_bk32,"Picture Red","3.000.000 VND"));
-        basketList.add(new PreviewItemModel(R.mipmap.doc_hong_bk33,"Picture Pink","3.000.000 VND"));
-        basketList.add(new PreviewItemModel(R.mipmap.doc_cam_bk3,"Picture Orange","2.000.000 VND"));
-        basketList.add(new PreviewItemModel(R.mipmap.doc_vang_bk4,"Picture Yellow","2.500.000 VND"));
-
-        List<PreviewItemModel> bouquetList = new ArrayList<>();
-        bouquetList.add(new PreviewItemModel(R.mipmap.vuong_do_bq15,"Bouqet Red","800.000 VND"));
-        bouquetList.add(new PreviewItemModel(R.mipmap.vuong_do_bq13,"Bouqet Red","500.000 VND"));
-        bouquetList.add(new PreviewItemModel(R.mipmap.vuong_hong_bq27,"Bouqet Pink","1.000.000 VND"));
-        bouquetList.add(new PreviewItemModel(R.mipmap.vuong_hong_bq17,"Bouqet Pink","800.000 VND"));
-
-        //////////////////////////
+        List<HomePageModel> homePageModelList = new ArrayList<>();
+        for(CategoryModel categoryModel: Container.listCategory){
+            List<PreviewItemModel> list = new ArrayList<>();
+            for(FlowerProducts fp: categoryModel.getFlowerProductsList()){
+                list.add(new PreviewItemModel(fp));
+            }
+            HomePageModel homePageModel = new HomePageModel(1, categoryModel.getCategoryName(), list , categoryModel.getId());
+            homePageModelList.add(homePageModel);
+        }
 
         RecyclerView testing = view.findViewById(R.id.testing);
         LinearLayoutManager testingLayoutManager = new LinearLayoutManager(getContext());
         testingLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         testing.setLayoutManager(testingLayoutManager);
-
-        List<HomePageModel> homePageModelList = new ArrayList<>();
-        homePageModelList.add(new HomePageModel(0,sliderModelList));
-        homePageModelList.add(new HomePageModel(1,"Flower Basket", basketList, 4));
-        homePageModelList.add(new HomePageModel(2,"Flower Bouquet", bouquetList, 1));
-        homePageModelList.add(new HomePageModel(2,"Flower Box", bouquetList,2));
-        homePageModelList.add(new HomePageModel(1,"Flower Shelf", basketList,3));
-        homePageModelList.add(new HomePageModel(2,"Flower Vase", bouquetList,5));
-
 
         HomePageAdapter adapter = new HomePageAdapter(homePageModelList);
         testing.setAdapter(adapter);
@@ -182,6 +168,7 @@ public class HomeFragment extends Fragment {
             bannerSliderViewPager.setCurrentItem(currentPage,false);
         }
     }
+
 
     private void startBannerSlideShow(){
         final Handler handler = new Handler();

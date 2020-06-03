@@ -12,7 +12,7 @@ public class CategoryModel implements Serializable {
     @Expose
     private int id;
 
-    @SerializedName("avatars")
+    @SerializedName("avatar")
     @Expose
     private int categoryIconLink;
 
@@ -20,9 +20,12 @@ public class CategoryModel implements Serializable {
     @Expose
     private String categoryName;
 
-    @SerializedName("type")
-    @Expose
+//    @SerializedName("id")
+//    @Expose
     private int type;
+    public CategoryModel(){
+        type = 1;
+    }
 
     @SerializedName("flowerProductsList")
     @Expose
@@ -52,10 +55,10 @@ public class CategoryModel implements Serializable {
         this.type = type;
     }
 
-    public CategoryModel(int categoryIconLink, String categoryName, int type) {
+    public CategoryModel(int categoryIconLink, String categoryName) {
         this.categoryIconLink = categoryIconLink;
         this.categoryName = categoryName;
-        this.type = type;
+//        this.type = type;
     }
 
     public int getId() {
@@ -64,5 +67,13 @@ public class CategoryModel implements Serializable {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public List<FlowerProducts> getFlowerProductsList() {
+        return flowerProductsList;
+    }
+
+    public void setFlowerProductsList(List<FlowerProducts> flowerProductsList) {
+        this.flowerProductsList = flowerProductsList;
     }
 }

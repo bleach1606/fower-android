@@ -1,7 +1,6 @@
 package com.example.myflowerproject.model.adapter;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.myflowerproject.model.api.GetImage;
 import com.example.myflowerproject.model.entity.CategoryModel;
 import com.example.myflowerproject.fragment.ListItem;
 import com.example.myflowerproject.R;
@@ -58,7 +58,8 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
         }
 
         private void setCategoryItem(int resource, String name, int type){
-            categoryIcon.setImageResource(resource);
+//            categoryIcon.setImageResource(resource);
+            new GetImage(categoryIcon).execute(""+resource);
             categoryName.setText(name);
 
             itemView.setOnClickListener(new View.OnClickListener() {

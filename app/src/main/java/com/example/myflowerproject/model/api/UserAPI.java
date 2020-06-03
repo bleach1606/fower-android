@@ -1,6 +1,7 @@
 package com.example.myflowerproject.model.api;
 
 import com.example.myflowerproject.model.entity.Users;
+import com.example.myflowerproject.model.results.DataSignupResult;
 import com.example.myflowerproject.model.results.UserLoginResult;
 import com.example.myflowerproject.model.results.UserResult;
 
@@ -16,8 +17,8 @@ public interface UserAPI {
     @POST("/public/login")
     Call<UserLoginResult> postLogin(@Body Users user);
 
-    @POST("/public/sigup")
-    Call<UserLoginResult> signup(@Body Users user);
+    @POST("/public/signup")
+    Call<DataSignupResult> signup(@Body Users user);
 
     @POST("/users/update-fcm")
     Call<UserResult> updateTokenFCM(

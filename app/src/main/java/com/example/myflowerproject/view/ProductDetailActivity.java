@@ -17,11 +17,15 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.myflowerproject.Container;
 import com.example.myflowerproject.R;
 import com.example.myflowerproject.model.adapter.ProductDescriptionAdapter;
+import com.example.myflowerproject.model.api.GetImage;
 import com.example.myflowerproject.model.entity.Users;
 import com.google.android.material.tabs.TabLayout;
+import com.example.myflowerproject.model.entity.FlowerProducts;
 
 public class ProductDetailActivity extends AppCompatActivity {
     private Users user;
@@ -63,14 +67,19 @@ public class ProductDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_detail);
+
+        Intent intent = getIntent();
+        int id = intent.getIntExtra("id",0);
+        Toast.makeText(this, ""+id, Toast.LENGTH_SHORT).show();
+        FlowerProducts fp = Container.getProductsById(id);
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         productImageView = findViewById(R.id.product_image);
-        Integer productImage = R.mipmap.doc_do_bk32;
-        productImageView.setImageResource(productImage);
+        new GetImage(productImageView).execute(fp.getAvatar());
 
         productDescriptionViewpager = findViewById(R.id.product_description_viewpager);
         productDescriptionTab = findViewById(R.id.product_description_tab);

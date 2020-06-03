@@ -4,18 +4,13 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
@@ -29,10 +24,9 @@ import com.example.myflowerproject.model.api.ApiUtils;
 import com.example.myflowerproject.model.api.UserAPI;
 import com.example.myflowerproject.model.entity.People;
 import com.example.myflowerproject.model.entity.Users;
-import com.example.myflowerproject.model.results.UserLoginResult;
+import com.example.myflowerproject.model.results.DataSignupResult;
 import com.example.myflowerproject.view.HomeActivity;
 import com.example.myflowerproject.view.MainActivity;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -57,6 +51,7 @@ public class SignUp extends AppCompatActivity {
     private Button signUpBtn;
 
     private ProgressBar progressBar;
+    private UserAPI userAPI;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -66,51 +61,21 @@ public class SignUp extends AppCompatActivity {
         alreadyHaveAnAccount = findViewById(R.id.tv_already_have_an_account);
 
         email = findViewById(R.id.sign_up_email);
-
         firstName = findViewById(R.id.sign_up_first_name);
         lastName = findViewById(R.id.sign_up_last_name);
         phoneNumber = findViewById(R.id.sign_up_phone_number);
         password = findViewById(R.id.sign_up_password);
         confirmPassword = findViewById(R.id.sign_up_confirm_password);
         parentFrameLayout = findViewById(R.id.register_framelayout);
-
         signUpBtn = findViewById(R.id.sign_up_btn);
         btnMale = findViewById(R.id.sign_up_sex_male);
         btnFemale = findViewById(R.id.sign_up_sex_female);
-        email = findViewById(R.id.sign_up_email);
-        password = findViewById(R.id.sign_up_password);
-        confirmPassword = findViewById(R.id.sign_up_confirm_password);
-
-        signUpBtn = findViewById(R.id.sign_up_btn);
+        userAPI = ApiUtils.getAPIService();
 
         signUpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try{
-                    String _username = firstName.getText().toString();
-                    String _password = password.getText().toString();
-                    Users user = new Users();
-                    user.setPassword(_password);
-                    user.setUsername(_username);
-                    user.setPeople(new People());
-                    UserAPI userAPI = ApiUtils.getAPIService();
-                    userAPI.signup(user).enqueue(new Callback<UserLoginResult>() {
-                        @Override
-                        public void onResponse(Call<UserLoginResult> call, Response<UserLoginResult> response) {
-                            if(response.isSuccessful()){
-                                Intent intent = new Intent(SignUp.this, MainActivity.class);
-                                startActivity(intent);
-                            }
-                        }
 
-                        @Override
-                        public void onFailure(Call<UserLoginResult> call, Throwable t) {
-                            Toast.makeText(SignUp.this, t.toString(), Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                }catch(Exception ex){
-
-                }
             }
         });
         progressBar = findViewById(R.id.sign_up_progressbar);
@@ -223,8 +188,39 @@ public class SignUp extends AppCompatActivity {
         signUpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //to do: send data
-                checkEmailAndPassword();
+//                checkEmailAndPassword();
+
+                try{
+                    Users user = new Users(email.getText().toString(), password.getText().toString());
+                    People people = new People();
+                    people.setFirstName(firstName.getText().toString());
+                    people.setLastName(lastName.getText().toString());
+                    people.setPhoneNumber(phoneNumber.getText().toString());
+                    people.setSex((btnMale.isChecked()?"male":(btnFemale.isChecked())?"female":"else"));
+                    user.setPeople(people);
+                    System.out.println("here");
+                    userAPI.signup(user).enqueue(new Callback<DataSignupResult>() {
+                        @Override
+                        public void onResponse(Call<DataSignupResult> call, Response<DataSignupResult> response) {
+                            System.out.println("on respone");
+                            if(response.isSuccessful()){
+                                Users u = response.body().getUser();
+                                Intent intent = new Intent(SignUp.this, MainActivity.class);
+                                startActivity(intent);
+                                finish();
+                            }else{
+                                System.out.println(response.body());
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<DataSignupResult> call, Throwable t) {
+                            Toast.makeText(SignUp.this, t.toString(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }catch(Exception ex){
+                    Toast.makeText(SignUp.this, "wrong", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

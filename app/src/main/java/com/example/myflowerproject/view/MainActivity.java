@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.SystemClock;
 
 import com.example.myflowerproject.R;
+import com.example.myflowerproject.fragment.SignIn;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -16,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         SystemClock.sleep(2000);
-        Intent loginIntent = new Intent(MainActivity.this, RegisterActivity.class);
+        Intent loginIntent = new Intent(MainActivity.this, SignIn.class);
         startActivity(loginIntent);
         finish();
     }
