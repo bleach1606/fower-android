@@ -7,23 +7,25 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
-import androidx.core.view.MenuItemCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.myflowerproject.R;
 import com.example.myflowerproject.fragment.HomeFragment;
+import com.example.myflowerproject.fragment.NavigationFragment;
 import com.example.myflowerproject.model.adapter.CategoryAdapter;
 import com.example.myflowerproject.model.api.ApiUtils;
 import com.example.myflowerproject.model.api.CategoryAPI;
@@ -40,8 +42,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, SearchView.OnQueryTextListener{
+public class HomeActivity extends AppCompatActivity implements SearchView.OnQueryTextListener{
 
+    private AppBarConfiguration mAppBarConfiguration;
     private ViewPager categoryViewPager;
     private TabLayout categoryTabLayout;
 
@@ -55,6 +58,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private TextView txtNameUser;
     private TextView txtEmailUser;
 
+    private ImageButton hamburger_icon_imagebutton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,22 +68,29 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+//
+//        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+//        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+//        drawer.addDrawerListener(toggle);
+//        toggle.syncState();
 
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
+        Fragment homeFragment = new HomeFragment();
+        Fragment navigationFragment = new NavigationFragment();
 
-        navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-        navigationView.getMenu().getItem(0).setChecked(true);
-        navigationView.setOnClickListener(new View.OnClickListener() {
+        hamburger_icon_imagebutton = findViewById(R.id.hamburger_imagebutton);
+
+        FragmentManager manager = this.getSupportFragmentManager();
+
+        hamburger_icon_imagebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                setFragment(navigationFragment);
+                manager.beginTransaction()
+                        .show(navigationFragment)
+                        .hide(homeFragment)
+                        .commit();
             }
         });
-        System.out.println("__"+navigationView.toString());
 
         categoryViewPager = findViewById(R.id.category_viewpager);
         categoryTabLayout = findViewById(R.id.category_tab_layout);
@@ -106,7 +118,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         });
 
         frameLayout = findViewById(R.id.home_framelayout);
-        setFragment(new HomeFragment());
+        setFragment(homeFragment);
 
     }
 
@@ -125,8 +137,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         // Inflate the menu; this adds items to the action bar if it is present.
 
         getMenuInflater().inflate(R.menu.home, menu);
-        txtNameUser = findViewById(R.id.nav_header_home_fullname);
-        txtEmailUser = findViewById(R.id.nav_header_home_email);
+//
+//        txtNameUser = findViewById(R.id.nav_header_home_fullname);
+//        txtEmailUser = findViewById(R.id.nav_header_home_email);
 
         // lây dữ liệu về
         Gson gson = new Gson();
@@ -137,11 +150,12 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         getListCategory();
 
         Toast.makeText( getBaseContext(), user.toString(), Toast.LENGTH_SHORT).show();
+//
+//        txtNameUser.setText(user.getPeople().getFirstName() + user.getPeople().getLastName());
+//        txtEmailUser.setText(user.getUsername());
 
-        txtNameUser.setText(user.getPeople().getFirstName() + user.getPeople().getLastName());
-        txtEmailUser.setText(user.getUsername());
         SearchView searchView = (SearchView) menu.findItem(R.id.app_bar_search).getActionView();
-        System.out.println("searchview "+searchView);
+
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -184,48 +198,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        System.out.println("BCO");
-
-        int id = item.getItemId();
-
-        if(id == R.id.nav_add_image){
-
-        }
-        else if(id == R.id.nav_home){
-            Intent homeIntent = new Intent(HomeActivity.this, HomeFragment.class);
-            startActivity(homeIntent);
-        }
-        else if(id == R.id.nav_my_orders){
-            System.out.println("My order clicked");
-
-        }
-        else if(id == R.id.nav_my_rewards){
-
-        }
-        else if(id == R.id.nav_my_cart){
-            Intent intent = new Intent(HomeActivity.this, MyCartActivity.class);
-            startActivity(intent);
-        }
-        else if(id == R.id.nav_my_account){
-            Intent intent = new Intent(HomeActivity.this, MyAccount.class);
-            startActivity(intent);
-        }
-        else if(id == R.id.nav_change_password){
-            Intent intent = new Intent(HomeActivity.this, ChangePassword.class);
-            startActivity(intent);
-        }
-        else if(id == R.id.nav_sign_out){
-
-        }
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
     }
 
     public void setFragment(Fragment fragment){
