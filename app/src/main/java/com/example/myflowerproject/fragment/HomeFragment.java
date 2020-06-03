@@ -54,9 +54,14 @@ import retrofit2.Response;
  */
 public class HomeFragment extends Fragment {
 
+    private int type;
+
     public HomeFragment() {
 
         // Required empty public constructor
+    }
+    public HomeFragment(int i) {
+        this.type = i;
     }
 
 //    private RecyclerView categoryRecyclerView;
@@ -76,7 +81,7 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        View view = inflater.inflate(R.layout.fragment_home2, container, false);
+        View view = inflater.inflate(R.layout.fragment_home_3, container, false);
 
         //BannerSlider
         bannerSliderViewPager = view.findViewById(R.id.banner_slider_view_pager);
@@ -132,15 +137,29 @@ public class HomeFragment extends Fragment {
                 return false;
             }
         });
-
-        List<HomePageModel> homePageModelList = new ArrayList<>();
-        for(CategoryModel categoryModel: Container.listCategory){
-            List<PreviewItemModel> list = new ArrayList<>();
-            for(FlowerProducts fp: categoryModel.getFlowerProductsList()){
-                list.add(new PreviewItemModel(fp));
+        List<HomePageModel> homePageModelList;
+        if(type<1){
+            homePageModelList = new ArrayList<>();
+            for(CategoryModel categoryModel: Container.listCategory){
+                List<PreviewItemModel> list = new ArrayList<>();
+                for(FlowerProducts fp: categoryModel.getFlowerProductsList()){
+                    list.add(new PreviewItemModel(fp));
+                }
+                HomePageModel homePageModel = new HomePageModel(1, categoryModel.getCategoryName(), list , categoryModel.getId());
+                homePageModelList.add(homePageModel);
             }
-            HomePageModel homePageModel = new HomePageModel(1, categoryModel.getCategoryName(), list , categoryModel.getId());
-            homePageModelList.add(homePageModel);
+        }else{
+            homePageModelList = new ArrayList<>();
+            for(CategoryModel categoryModel: Container.listCategory){
+                if(categoryModel.getId()==type){
+                    List<PreviewItemModel> list = new ArrayList<>();
+                    for(FlowerProducts fp: categoryModel.getFlowerProductsList()){
+                        list.add(new PreviewItemModel(fp));
+                    }
+                    HomePageModel homePageModel = new HomePageModel(2, categoryModel.getCategoryName(), list , categoryModel.getId());
+                    homePageModelList.add(homePageModel);
+                }
+            }
         }
 
         RecyclerView testing = view.findViewById(R.id.testing);

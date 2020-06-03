@@ -10,8 +10,11 @@ import android.view.MenuItem;
 import android.widget.GridView;
 import android.widget.TextView;
 
+import com.example.myflowerproject.Container;
 import com.example.myflowerproject.R;
 import com.example.myflowerproject.model.adapter.BouquetGridLayoutAdapter;
+import com.example.myflowerproject.model.entity.CategoryModel;
+import com.example.myflowerproject.model.entity.FlowerProducts;
 import com.example.myflowerproject.model.entity.PreviewItemModel;
 import com.example.myflowerproject.model.entity.Users;
 
@@ -27,13 +30,14 @@ public class ListItemActivity extends AppCompatActivity {
     private GridView itemGridLayoutGridView;
 
     private List<PreviewItemModel> listItem = new ArrayList<>();
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_item);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -41,7 +45,7 @@ public class ListItemActivity extends AppCompatActivity {
         int productType = getIntent().getIntExtra("product type",0);
         setListItem(productType);
 
-        toolbar.setTitle("ABC");
+
         itemGridLayoutGridView = findViewById(R.id.item_grid_layout_grid_view);
         BouquetGridLayoutAdapter bouquetGridLayoutAdapter = new BouquetGridLayoutAdapter(listItem);
         itemGridLayoutGridView.setAdapter(bouquetGridLayoutAdapter);
@@ -50,14 +54,23 @@ public class ListItemActivity extends AppCompatActivity {
     }
 
     public void setListItem(int type){
-        listItem.add(new PreviewItemModel(R.mipmap.vuong_do_bq15,"Bouqet Red","800.000 VND"));
-        listItem.add(new PreviewItemModel(R.mipmap.vuong_do_bq13,"Bouqet Red","500.000 VND"));
-        listItem.add(new PreviewItemModel(R.mipmap.vuong_hong_bq27,"Bouqet Pink","1.000.000 VND"));
-        listItem.add(new PreviewItemModel(R.mipmap.vuong_hong_bq17,"Bouqet Pink","800.000 VND"));
-        listItem.add(new PreviewItemModel(R.mipmap.vuong_do_bq15,"Bouqet Red","800.000 VND"));
-        listItem.add(new PreviewItemModel(R.mipmap.vuong_do_bq13,"Bouqet Red","500.000 VND"));
-        listItem.add(new PreviewItemModel(R.mipmap.vuong_hong_bq27,"Bouqet Pink","1.000.000 VND"));
-        listItem.add(new PreviewItemModel(R.mipmap.vuong_hong_bq17,"Bouqet Pink","800.000 VND"));
+//        listItem.add(new PreviewItemModel(R.mipmap.vuong_do_bq15,"Bouqet Red","800.000 VND"));
+//        listItem.add(new PreviewItemModel(R.mipmap.vuong_do_bq13,"Bouqet Red","500.000 VND"));
+//        listItem.add(new PreviewItemModel(R.mipmap.vuong_hong_bq27,"Bouqet Pink","1.000.000 VND"));
+//        listItem.add(new PreviewItemModel(R.mipmap.vuong_hong_bq17,"Bouqet Pink","800.000 VND"));
+//        listItem.add(new PreviewItemModel(R.mipmap.vuong_do_bq15,"Bouqet Red","800.000 VND"));
+//        listItem.add(new PreviewItemModel(R.mipmap.vuong_do_bq13,"Bouqet Red","500.000 VND"));
+//        listItem.add(new PreviewItemModel(R.mipmap.vuong_hong_bq27,"Bouqet Pink","1.000.000 VND"));
+//        listItem.add(new PreviewItemModel(R.mipmap.vuong_hong_bq17,"Bouqet Pink","800.000 VND"));
+        for(CategoryModel cm: Container.listCategory){
+            if(cm.getId()==type){
+                toolbar.setTitle(cm.getCategoryName());
+                for(FlowerProducts fp: cm.getFlowerProductsList()){
+                    listItem.add(new PreviewItemModel(fp));
+                }
+                break;
+            }
+        }
     }
 
     @Override

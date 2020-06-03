@@ -20,7 +20,7 @@ public class CategoryModel implements Serializable {
     @Expose
     private String categoryName;
 
-//    @SerializedName("id")
+//    @SerializedName("type")
 //    @Expose
     private int type;
     public CategoryModel(){

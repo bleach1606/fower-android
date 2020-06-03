@@ -31,7 +31,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.example.myflowerproject.Container;
 import com.example.myflowerproject.R;
 import com.example.myflowerproject.fragment.HomeFragment;
-import com.example.myflowerproject.model.adapter.CategoryAdapter2;
+import com.example.myflowerproject.model.adapter.CategoryAdapter;
 import com.example.myflowerproject.model.api.ApiUtils;
 import com.example.myflowerproject.model.api.CategoryAPI;
 import com.example.myflowerproject.model.api.GetImage;
@@ -76,7 +76,7 @@ public class HomeActivity extends AppCompatActivity  implements NavigationView.O
         categoryViewPager = findViewById(R.id.category_viewpager);
         categoryTabLayout = findViewById(R.id.category_tab_layout);
 
-        final CategoryAdapter2 categoryAdapter = new CategoryAdapter2(getSupportFragmentManager(), categoryTabLayout.getTabCount());
+        final CategoryAdapter categoryAdapter = new CategoryAdapter(getSupportFragmentManager(), categoryTabLayout.getTabCount());
         categoryViewPager.setAdapter(categoryAdapter);
 
         categoryViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(categoryTabLayout));
@@ -84,7 +84,7 @@ public class HomeActivity extends AppCompatActivity  implements NavigationView.O
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 categoryViewPager.setCurrentItem(tab.getPosition());
-                setFragment(categoryAdapter.getItem(tab.getPosition()));
+                setFragment(new HomeFragment(tab.getPosition()));
             }
 
             @Override
@@ -102,28 +102,6 @@ public class HomeActivity extends AppCompatActivity  implements NavigationView.O
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-        System.out.println("*");
-//        navigationView = findViewById(R.id.nav_view);
-//        navigationView.callOnClick();
-//        navigationView.setActivated(true);
-//        navigationView.setSelected(true);
-//        navigationView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Toast.makeText(HomeActivity.this, "Here", Toast.LENGTH_SHORT).show();
-//                int id = v.getId();
-//                if(id==R.id.nav_my_cart){
-//                    Toast.makeText(HomeActivity.this, "Here", Toast.LENGTH_SHORT).show();
-////                    Intent intent = new Intent(HomeActivity.this, MyCartActivity.class);
-////                    startActivity(intent);
-//                }
-//            }
-//        });
-//        navigationView.setNavigationItemSelectedListener(this);
-//        navigationView.getMenu().getItem(0).setChecked(true);
-//        for(int i = 0; i <= 5; i++){
-//            navigationView.getMenu().getItem(i).setCheckable(true);
-//        }
         getListCategory();
     }
 
@@ -236,7 +214,7 @@ public class HomeActivity extends AppCompatActivity  implements NavigationView.O
                         CategoryResult rs = response.body();
                         Container.listCategory = rs.getCategoryModelList();
                         frameLayout = findViewById(R.id.home_framelayout);
-                        setFragment(new HomeFragment());
+                        setFragment(new HomeFragment(-1));
                     } else {
                         Toast.makeText(HomeActivity.this, "Loi ???", Toast.LENGTH_SHORT).show();
                         System.out.println("loi ");
