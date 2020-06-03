@@ -49,25 +49,7 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        View view = inflater.inflate(R.layout.fragment_home_3, container, false);
-
-//        categoryRecyclerView = view.findViewById(R.id.category_recyclerview);
-//        LinearLayoutManager layoutManagerCategory = new LinearLayoutManager(getActivity());
-//        layoutManagerCategory.setOrientation(LinearLayoutManager.HORIZONTAL); //list view ngang
-//        categoryRecyclerView.setLayoutManager(layoutManagerCategory);
-//
-//        List<CategoryModel> categoryModelList = new ArrayList<CategoryModel>();
-//        categoryModelList.add(new CategoryModel(R.mipmap.home_icon,"Home",0));
-//        categoryModelList.add(new CategoryModel(R.mipmap.bo_hoa_icon,"Bouquet",1));
-//        categoryModelList.add(new CategoryModel(R.mipmap.hop_hoa_icon,"Box",2));
-//        categoryModelList.add(new CategoryModel(R.mipmap.ke_hoa_icon,"Shelf",3));
-//        categoryModelList.add(new CategoryModel(R.mipmap.gio_hoa_icon,"Basket",4));
-//        categoryModelList.add(new CategoryModel(R.mipmap.lo_hoa_icon,"Vase",5));
-//        categoryModelList.add(new CategoryModel(R.mipmap.hoa_cuoi_icon,"Wedding",6));
-//
-//        categoryAdapter = new CategoryAdapter(categoryModelList);
-//        categoryRecyclerView.setAdapter(categoryAdapter);
-//        categoryAdapter.notifyDataSetChanged();
+        View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         //BannerSlider
         bannerSliderViewPager = view.findViewById(R.id.banner_slider_view_pager);
