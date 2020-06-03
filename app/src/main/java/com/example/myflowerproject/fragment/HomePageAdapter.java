@@ -21,6 +21,7 @@ import com.example.myflowerproject.model.adapter.BouquetGridLayoutAdapter;
 import com.example.myflowerproject.model.adapter.SliderAdapter;
 import com.example.myflowerproject.model.entity.PreviewItemModel;
 import com.example.myflowerproject.model.entity.SliderModel;
+import com.example.myflowerproject.view.ListItemActivity;
 
 import java.util.List;
 import java.util.Timer;
@@ -215,8 +216,8 @@ public class HomePageAdapter extends RecyclerView.Adapter {
             btnBasketProductViewAll.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(itemView.getContext(), ListItem.class);
-                    intent.putExtra("type category",typeProduct);
+                    Intent intent = new Intent(itemView.getContext(), ListItemActivity.class);
+                    intent.putExtra("product type",typeProduct);
                     itemView.getContext().startActivity(intent);
                 }
             });
@@ -252,8 +253,8 @@ public class HomePageAdapter extends RecyclerView.Adapter {
             btnBouquetGridLayoutViewAll.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(itemView.getContext(), ListItem.class);
-                    intent.putExtra("type category",typeProduct);
+                    Intent intent = new Intent(itemView.getContext(), ListItemActivity.class);
+                    intent.putExtra("product type",typeProduct);
                     itemView.getContext().startActivity(intent);
                 }
             });
