@@ -49,27 +49,27 @@ public class ListItem extends AppCompatActivity {
         int type = intent.getIntExtra("type category",0);
         switch (type){
             case 1:
-//                toolbar.setTitle("Flower Bouquet");
+                toolbar.setTitle("Flower Bouquet");
                 setListItem(type);
                 break;
             case 2:
-//                toolbar.setTitle("Flower Box");
+                toolbar.setTitle("Flower Box");
                 setListItem(type);
                 break;
             case 3:
-//                toolbar.setTitle("Flower Shelf");
+                toolbar.setTitle("Flower Shelf");
                 setListItem(type);
                 break;
             case 4:
-//                toolbar.setTitle("Flower Basket");
+                toolbar.setTitle("Flower Basket");
                 setListItem(type);
                 break;
             case 5:
-//                toolbar.setTitle("Flower Vase");
+                toolbar.setTitle("Flower Vase");
                 setListItem(type);
                 break;
             case 6:
-//                toolbar.setTitle("Wedding");
+                toolbar.setTitle("Wedding");
                 setListItem(type);
                 break;
             default:

@@ -4,6 +4,7 @@ import android.content.SharedPreferences;
 import android.os.SystemClock;
 import android.util.Log;
 
+import com.example.myflowerproject.Container;
 import com.example.myflowerproject.model.api.ApiUtils;
 import com.example.myflowerproject.model.api.UserAPI;
 import com.example.myflowerproject.model.entity.Users;
@@ -117,17 +118,11 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         // TODO: Implement this method to send token to your app server.
         userAPI = ApiUtils.getAPIService();
 
-        Gson gson = new Gson();
-        SharedPreferences mPrefs = getSharedPreferences( "user", MODE_PRIVATE);
-        String json = mPrefs.getString("user", "");
-        Users user = gson.fromJson(json, Users.class);
-        while (user == null) {
+        while (Container.users == null) {
             SystemClock.sleep(2000);
-            json = mPrefs.getString("user", "");
-            user = gson.fromJson(json, Users.class);
         }
 
-        userAPI.updateTokenFCM(user.getToken(), token).enqueue(new Callback<UserResult>() {
+        userAPI.updateTokenFCM(Container.users.getToken(), token).enqueue(new Callback<UserResult>() {
             @Override
             public void onResponse(Call<UserResult> call, Response<UserResult> response) {
                 //todo update user

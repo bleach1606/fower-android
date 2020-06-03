@@ -103,7 +103,7 @@ public class HomeActivity extends AppCompatActivity  implements NavigationView.O
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         System.out.println("*");
-        navigationView = findViewById(R.id.nav_view);
+//        navigationView = findViewById(R.id.nav_view);
 //        navigationView.callOnClick();
 //        navigationView.setActivated(true);
 //        navigationView.setSelected(true);
@@ -119,11 +119,11 @@ public class HomeActivity extends AppCompatActivity  implements NavigationView.O
 //                }
 //            }
 //        });
-        navigationView.setNavigationItemSelectedListener(this);
-        navigationView.getMenu().getItem(0).setChecked(true);
-        for(int i = 0; i <= 5; i++){
-            navigationView.getMenu().getItem(i).setCheckable(true);
-        }
+//        navigationView.setNavigationItemSelectedListener(this);
+//        navigationView.getMenu().getItem(0).setChecked(true);
+//        for(int i = 0; i <= 5; i++){
+//            navigationView.getMenu().getItem(i).setCheckable(true);
+//        }
         getListCategory();
     }
 
@@ -190,31 +190,6 @@ public class HomeActivity extends AppCompatActivity  implements NavigationView.O
         return true;
     }
 
-    private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
-        ImageView bmImage;
-
-        public DownloadImageTask(ImageView bmImage) {
-            this.bmImage = bmImage;
-        }
-
-        protected Bitmap doInBackground(String... urls) {
-            String urldisplay = "http://192.168.1.21:8080/public/download/"+urls[0]+".jpg";
-//            System.out.println(urls);
-            Bitmap mIcon11 = null;
-            try {
-                InputStream in = new java.net.URL(urldisplay).openStream();
-                mIcon11 = BitmapFactory.decodeStream(in);
-            } catch (Exception e) {
-                Log.e("Error", e.getMessage());
-                e.printStackTrace();
-            }
-            return mIcon11;
-        }
-
-        protected void onPostExecute(Bitmap result) {
-            bmImage.setImageBitmap(result);
-        }
-    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
