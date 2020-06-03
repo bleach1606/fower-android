@@ -24,9 +24,11 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.viewpager.widget.ViewPager;
+<<<<<<<<< Temporary merge branch 1
 
 import com.example.myflowerproject.Container;
 import com.example.myflowerproject.R;
@@ -48,7 +50,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class HomeActivity extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener{
+public class HomeActivity extends AppCompatActivity implements SearchView.OnQueryTextListener{
 
     private ViewPager categoryViewPager;
     private TabLayout categoryTabLayout;
@@ -58,11 +60,13 @@ public class HomeActivity extends AppCompatActivity  implements NavigationView.O
     private NavigationView navigationView;
 
     private Users user;
+    private List<CategoryModel> categoryModelList;
     private CategoryAPI categoryAPI;
 
     private TextView txtNameUser;
     private TextView txtEmailUser;
-    private ImageView imgAvatar;
+
+    private ImageButton hamburger_icon_imagebutton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,8 +74,27 @@ public class HomeActivity extends AppCompatActivity  implements NavigationView.O
         setContentView(R.layout.activity_home);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
+
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+        Fragment homeFragment = new HomeFragment();
+        Fragment navigationFragment = new NavigationFragment();
+
+        hamburger_icon_imagebutton = findViewById(R.id.hamburger_imagebutton);
+
+        FragmentManager manager = this.getSupportFragmentManager();
+
+        hamburger_icon_imagebutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setFragment(navigationFragment);
+                manager.beginTransaction()
+                        .show(navigationFragment)
+                        .hide(homeFragment)
+                        .commit();
+            }
+        });
 
         categoryViewPager = findViewById(R.id.category_viewpager);
         categoryTabLayout = findViewById(R.id.category_tab_layout);
@@ -98,51 +121,9 @@ public class HomeActivity extends AppCompatActivity  implements NavigationView.O
             }
         });
 
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
-        getListCategory();
-    }
+        frameLayout = findViewById(R.id.home_framelayout);
+        setFragment(homeFragment);
 
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        Toast.makeText(HomeActivity.this, "herre", Toast.LENGTH_SHORT).show();
-        int id = item.getItemId();
-
-        if(id == R.id.nav_add_image){
-
-        }
-        else if(id == R.id.nav_home){
-            Intent homeIntent = new Intent(HomeActivity.this, HomeFragment.class);
-            startActivity(homeIntent);
-//            finish();
-        }
-        else if(id == R.id.nav_my_orders){
-
-        }
-        else if(id == R.id.nav_my_rewards){
-
-        }
-        else if(id == R.id.nav_my_cart){
-            Intent intent = new Intent(HomeActivity.this, MyCartActivity.class);
-            startActivity(intent);
-            return true;
-        }
-        else if(id == R.id.nav_my_account){
-            Intent intent = new Intent(HomeActivity.this, MyAccount.class);
-            startActivity(intent);
-            finish();
-        }
-        else if(id == R.id.nav_change_password){
-            Intent intent = new Intent(HomeActivity.this, ChangePassword.class);
-            startActivity(intent);
-            finish();
-        }
-        else if(id == R.id.nav_sign_out){
-
-        }
-        return HomeActivity.super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -169,9 +150,26 @@ public class HomeActivity extends AppCompatActivity  implements NavigationView.O
     }
 
 
+        SearchView searchView = (SearchView) menu.findItem(R.id.app_bar_search).getActionView();
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                System.out.println(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                System.out.println(newText);
+                return false;
+            }
+        });
+        return true;
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Toast.makeText(this, "hi", Toast.LENGTH_SHORT).show();
         switch (item.getItemId())
         {
             case android.R.id.home:
@@ -199,6 +197,7 @@ public class HomeActivity extends AppCompatActivity  implements NavigationView.O
     }
 
     private void setFragment(Fragment fragment){
+    public void setFragment(Fragment fragment){
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(frameLayout.getId(),fragment);
         fragmentTransaction.commit();
@@ -231,4 +230,8 @@ public class HomeActivity extends AppCompatActivity  implements NavigationView.O
         }
     }
 
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        return false;
+    }
 }

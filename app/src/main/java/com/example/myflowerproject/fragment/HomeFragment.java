@@ -83,6 +83,8 @@ public class HomeFragment extends Fragment {
         super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_home_3, container, false);
 
+        View view = inflater.inflate(R.layout.fragment_home, container, false);
+
         //BannerSlider
         bannerSliderViewPager = view.findViewById(R.id.banner_slider_view_pager);
 
