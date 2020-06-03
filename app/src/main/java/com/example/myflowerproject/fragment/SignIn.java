@@ -158,8 +158,8 @@ public class SignIn extends AppCompatActivity {
         String username = txtemail.getText().toString();
         String passWord = txtpassword.getText().toString();
         Users users = new Users(username, passWord);
-        sendPost(users);
-//        sendPostLocal(users);
+//        sendPost(users);
+        sendPostLocal(users);
     }
 
     private void sendPostLocal(Users user) {
