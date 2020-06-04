@@ -8,6 +8,7 @@ import java.util.List;
 
 public class Container extends Application {
     public static Users users;
+    public static OrderBill orderBill;
     public static List<CategoryModel> listCategory;
 
     @Override

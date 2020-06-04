@@ -210,6 +210,7 @@ public class SignUp extends AppCompatActivity {
                                 finish();
                             }else{
                                 System.out.println(response.body());
+                                Toast.makeText(SignUp.this, response.body().getResult(), Toast.LENGTH_SHORT).show();
                             }
                         }
 

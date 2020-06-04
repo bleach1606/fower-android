@@ -1,24 +1,16 @@
 package com.example.myflowerproject.view;
 
-import android.content.ClipData;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
-import android.widget.ImageView;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
@@ -28,15 +20,18 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.viewpager.widget.ViewPager;
-<<<<<<<<< Temporary merge branch 1
 
 import com.example.myflowerproject.Container;
 import com.example.myflowerproject.R;
 import com.example.myflowerproject.fragment.HomeFragment;
+import com.example.myflowerproject.fragment.NavigationFragment;
 import com.example.myflowerproject.model.adapter.CategoryAdapter;
 import com.example.myflowerproject.model.api.ApiUtils;
 import com.example.myflowerproject.model.api.CategoryAPI;
 import com.example.myflowerproject.model.api.GetImage;
+import com.example.myflowerproject.model.api.OrderBillAPI;
+import com.example.myflowerproject.model.entity.CategoryModel;
+import com.example.myflowerproject.model.entity.OrderBill;
 import com.example.myflowerproject.model.entity.Users;
 import com.example.myflowerproject.model.results.CategoryResult;
 import com.google.android.material.navigation.NavigationView;
@@ -57,14 +52,12 @@ public class HomeActivity extends AppCompatActivity implements SearchView.OnQuer
 
     private AppBarConfiguration mAppBarConfiguration;
     private FrameLayout frameLayout;
-    private NavigationView navigationView;
 
     private Users user;
     private List<CategoryModel> categoryModelList;
     private CategoryAPI categoryAPI;
+    private OrderBillAPI orderBillAPI;
 
-    private TextView txtNameUser;
-    private TextView txtEmailUser;
 
     private ImageButton hamburger_icon_imagebutton;
 
@@ -82,12 +75,13 @@ public class HomeActivity extends AppCompatActivity implements SearchView.OnQuer
         Fragment navigationFragment = new NavigationFragment();
 
         hamburger_icon_imagebutton = findViewById(R.id.hamburger_imagebutton);
-
+        hamburger_icon_imagebutton.setVisibility(View.VISIBLE);
         FragmentManager manager = this.getSupportFragmentManager();
 
         hamburger_icon_imagebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                hamburger_icon_imagebutton.setVisibility(View.INVISIBLE);
                 setFragment(navigationFragment);
                 manager.beginTransaction()
                         .show(navigationFragment)
@@ -121,8 +115,10 @@ public class HomeActivity extends AppCompatActivity implements SearchView.OnQuer
             }
         });
 
-        frameLayout = findViewById(R.id.home_framelayout);
-        setFragment(homeFragment);
+        getListCategory();
+        getCurrentOrderBill();
+//        frameLayout = findViewById(R.id.home_framelayout);
+//        setFragment(homeFragment);
 
     }
 
@@ -140,15 +136,6 @@ public class HomeActivity extends AppCompatActivity implements SearchView.OnQuer
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.home, menu);
-        txtNameUser = findViewById(R.id.nav_header_home_fullname);
-        txtEmailUser = findViewById(R.id.nav_header_home_email);
-        txtNameUser.setText(Container.users.getPeople().getFirstName() + Container.users.getPeople().getLastName());
-        txtEmailUser.setText(Container.users.getUsername());
-        new GetImage(findViewById(R.id.imageView))
-                .execute(Container.users.getPeople().getAvatar());
-        return true;
-    }
-
 
         SearchView searchView = (SearchView) menu.findItem(R.id.app_bar_search).getActionView();
 
@@ -190,13 +177,13 @@ public class HomeActivity extends AppCompatActivity implements SearchView.OnQuer
                     ex.printStackTrace();
                 }
                 return true;
-            default:break;
+            default:
+                break;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-    private void setFragment(Fragment fragment){
     public void setFragment(Fragment fragment){
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(frameLayout.getId(),fragment);
@@ -231,7 +218,34 @@ public class HomeActivity extends AppCompatActivity implements SearchView.OnQuer
     }
 
     @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
+
+    @Override
     public boolean onQueryTextChange(String newText) {
         return false;
     }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+
+    }
+
+    public void getCurrentOrderBill() {
+        orderBillAPI = ApiUtils.getOrderBillAPI();
+        orderBillAPI.getCurrentOrder(Container.users.getToken()).enqueue(new Callback<OrderBill>() {
+            @Override
+            public void onResponse(Call<OrderBill> call, Response<OrderBill> response) {
+                Container.orderBill = response.body();
+                Toast.makeText(HomeActivity.this, Container.orderBill.toString(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<OrderBill> call, Throwable t) {
+
+            }
+        });
+    }
 }
+

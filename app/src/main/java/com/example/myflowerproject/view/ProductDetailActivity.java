@@ -45,6 +45,7 @@ public class ProductDetailActivity extends AppCompatActivity {
 
     private Button btnProductSubQuantity;
     private Button btnProductAddQuantity;
+    private LinearLayout btnAddToCart;
     private EditText editTextProductQuantity;
 
     private TextView productDescription;
@@ -62,6 +63,7 @@ public class ProductDetailActivity extends AppCompatActivity {
     private TextView totalRatingsOf_2_Star;
     private TextView totalRatingsOf_1_Star;
     private LinearLayout yourStarContainer;
+    private FlowerProducts fp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +73,19 @@ public class ProductDetailActivity extends AppCompatActivity {
         Intent intent = getIntent();
         int id = intent.getIntExtra("id",0);
         Toast.makeText(this, ""+id, Toast.LENGTH_SHORT).show();
-        FlowerProducts fp = Container.getProductsById(id);
+        fp = Container.getProductsById(id);
+        ((TextView)findViewById(R.id.product_name)).setText(fp.getName());
+        ((TextView)findViewById(R.id.product_price)).setText(""+fp.getPrice());
+        ((TextView)findViewById(R.id.product_price)).setText(""+fp.getPrice());
+        btnAddToCart = findViewById(R.id.add_to_cart);
+        btnAddToCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int quatity = Integer.parseInt(editTextProductQuantity.getText().toString());
+                Toast.makeText(ProductDetailActivity.this, fp.getName()+" "+quatity, Toast.LENGTH_SHORT).show();
+            }
+        });
+
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

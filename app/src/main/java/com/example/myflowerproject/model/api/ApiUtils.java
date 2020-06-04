@@ -1,5 +1,7 @@
 package com.example.myflowerproject.model.api;
 
+import com.example.myflowerproject.model.entity.OrderBill;
+
 public class ApiUtils {
     private ApiUtils() {}
 
@@ -13,5 +15,9 @@ public class ApiUtils {
     public static CategoryAPI getCategoryAPI() {
 
         return RetrofitClient.getClient(BASE_URL).create(CategoryAPI.class);
+    }
+
+    public static OrderBillAPI getOrderBillAPI() {
+        return RetrofitClient.getClient(BASE_URL).create(OrderBillAPI.class);
     }
 }

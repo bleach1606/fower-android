@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        SystemClock.sleep(500);
+        SystemClock.sleep(200);
         Intent loginIntent = new Intent(MainActivity.this, SignIn.class);
         startActivity(loginIntent);
         finish();

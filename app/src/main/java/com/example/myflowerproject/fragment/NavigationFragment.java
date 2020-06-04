@@ -7,13 +7,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import com.example.myflowerproject.Container;
 import com.example.myflowerproject.R;
+import com.example.myflowerproject.model.api.GetImage;
 import com.example.myflowerproject.view.HomeActivity;
 import com.example.myflowerproject.view.MyAccount;
 import com.example.myflowerproject.view.MyCartActivity;
@@ -25,6 +28,8 @@ public class NavigationFragment extends Fragment {
     private LinearLayout linearLayoutMyOrders;
     private LinearLayout linearLayoutMyAccount;
     private LinearLayout linearLayoutSignOut;
+    private TextView txtNameUser;
+    private TextView txtEmailUser;
 
     @Nullable
     @Override
@@ -39,6 +44,12 @@ public class NavigationFragment extends Fragment {
         linearLayoutMyAccount = view.findViewById(R.id.nav_my_account);
         linearLayoutSignOut = view.findViewById(R.id.nav_sign_out);
 
+        txtNameUser = view.findViewById(R.id.nav_header_home_fullname);
+        txtEmailUser = view.findViewById(R.id.nav_header_home_email);
+        txtNameUser.setText(Container.users.getPeople().getFirstName() + Container.users.getPeople().getLastName());
+        txtEmailUser.setText(Container.users.getUsername());
+        new GetImage(view.findViewById(R.id.imageView))
+                .execute(Container.users.getPeople().getAvatar());
         linearLayoutMyCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,6 +82,14 @@ public class NavigationFragment extends Fragment {
         });
 
         linearLayoutHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent cart_intent = new Intent(getContext(), HomeActivity.class);
+                startActivity(cart_intent);
+            }
+        });
+
+        view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent cart_intent = new Intent(getContext(), HomeActivity.class);

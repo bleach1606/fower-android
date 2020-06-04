@@ -26,7 +26,7 @@
                 android:layout_width="45dp"
                 android:background="@color/colorPrimary"
                 android:layout_height="45dp"
-                app:srcCompat="@mipmap/hamburger_menu_icon" />
+                app:srcCompat="@mipmap/add_icon" />
 
         </androidx.appcompat.widget.Toolbar>
 
