@@ -1,12 +1,32 @@
 package com.example.myflowerproject.model.entity;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
+import java.util.List;
 
 public class CategoryModel implements Serializable {
 
+    @SerializedName("id")
+    @Expose
+    private int id;
+
+    @SerializedName("avatars")
+    @Expose
     private int categoryIconLink;
+
+    @SerializedName("name")
+    @Expose
     private String categoryName;
+
+    @SerializedName("type")
+    @Expose
     private int type;
+
+    @SerializedName("flowerProductsList")
+    @Expose
+    private List<FlowerProducts> flowerProductsList;
 
     public int getCategoryIconLink() {
         return categoryIconLink;
@@ -36,5 +56,13 @@ public class CategoryModel implements Serializable {
         this.categoryIconLink = categoryIconLink;
         this.categoryName = categoryName;
         this.type = type;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
