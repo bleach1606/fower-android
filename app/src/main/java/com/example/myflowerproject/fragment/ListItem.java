@@ -5,24 +5,18 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.GridView;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager.widget.ViewPager;
 
 import com.example.myflowerproject.R;
 import com.example.myflowerproject.model.adapter.BouquetGridLayoutAdapter;
 import com.example.myflowerproject.model.adapter.CategoryAdapter;
-import com.example.myflowerproject.model.entity.CategoryModel;
 import com.example.myflowerproject.model.entity.PreviewItemModel;
 import com.example.myflowerproject.model.entity.Users;
-import com.example.myflowerproject.view.HomeActivity;
 import com.example.myflowerproject.view.MyCartActivity;
-import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 import java.util.List;

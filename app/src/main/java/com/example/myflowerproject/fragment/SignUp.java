@@ -4,18 +4,13 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
@@ -234,8 +229,20 @@ public class SignUp extends AppCompatActivity {
             if(!TextUtils.isEmpty(firstName.getText())){
                 if(!TextUtils.isEmpty(password.getText())){
                     if(!TextUtils.isEmpty(confirmPassword.getText())){
-                        signUpBtn.setEnabled(true);
-                        signUpBtn.setTextColor(Color.rgb(255,255,255));
+                        if(!TextUtils.isEmpty(lastName.getText())){
+                            if(!TextUtils.isEmpty(phoneNumber.getText())){
+                                signUpBtn.setEnabled(true);
+                                signUpBtn.setTextColor(Color.rgb(255,255,255));
+                            }
+                            else{
+                                signUpBtn.setEnabled(true);
+                                signUpBtn.setTextColor(Color.rgb(255,255,255));
+                            }
+                        }
+                        else {
+                            signUpBtn.setEnabled(true);
+                            signUpBtn.setTextColor(Color.rgb(255,255,255));
+                        }
                     }
                     else {
                         signUpBtn.setEnabled(false);

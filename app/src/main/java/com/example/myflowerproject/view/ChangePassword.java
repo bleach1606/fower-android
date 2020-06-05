@@ -1,15 +1,18 @@
 package com.example.myflowerproject.view;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
 import com.example.myflowerproject.R;
+import com.example.myflowerproject.fragment.ResetPassword;
 
 public class ChangePassword extends AppCompatActivity {
     TextView txtForgotPass;
@@ -19,6 +22,10 @@ public class ChangePassword extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_password);
+        Toolbar toolbar = findViewById(R.id.toolbar4);
+
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         txtForgotPass = findViewById(R.id.txtForgotPass);
         tmp = findViewById(R.id.____);
@@ -26,18 +33,21 @@ public class ChangePassword extends AppCompatActivity {
         txtForgotPass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                findViewById(R.id.txtOldPass).setVisibility(View.INVISIBLE);
-                findViewById(R.id.txtNewPass).setVisibility(View.INVISIBLE);
-                findViewById(R.id.txtEnterNewPass).setVisibility(View.INVISIBLE);
-                findViewById(R.id.btnSaveChange).setVisibility(View.INVISIBLE);
-                findViewById(R.id.txtForgotPass).setVisibility(View.INVISIBLE);
-                findViewById(R.id.tbChangPass).setVisibility(View.INVISIBLE);
-                FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-//                fragmentTransaction.replace(tmp.getId(), new ResetPasswordFragment());
-//                tmp.setVisibility(View.INVISIBLE);
-//                fragmentTransaction.hide();
-                fragmentTransaction.commit();
+                Intent cart_intent = new Intent(ChangePassword.this, ResetPassword.class);
+                startActivity(cart_intent);
             }
         });
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId())
+        {
+            case android.R.id.home:
+                finish();
+                return true;
+            default:break;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

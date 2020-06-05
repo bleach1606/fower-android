@@ -25,7 +25,6 @@ import com.example.myflowerproject.model.entity.People;
 import com.example.myflowerproject.model.entity.Users;
 import com.example.myflowerproject.model.results.UserLoginResult;
 import com.example.myflowerproject.view.HomeActivity;
-import com.example.myflowerproject.view.HomeActivityVer2;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -170,7 +169,7 @@ public class SignIn extends AppCompatActivity {
         signInBtn.setTextColor(Color.rgb(238,180,180));
 
         progressBar.setVisibility(View.VISIBLE);
-        Intent homeIntent = new Intent(SignIn.this, HomeActivityVer2.class);
+        Intent homeIntent = new Intent(SignIn.this, HomeActivity.class);
         homeIntent.putExtra("user", user);
         startActivity(homeIntent);
         finish();
@@ -187,7 +186,7 @@ public class SignIn extends AppCompatActivity {
                     signInBtn.setTextColor(Color.rgb(238,180,180));
 
                     progressBar.setVisibility(View.VISIBLE);
-                    Intent homeIntent = new Intent(SignIn.this, HomeActivityVer2.class);
+                    Intent homeIntent = new Intent(SignIn.this, HomeActivity.class);
                     homeIntent.putExtra("user", user);
                     startActivity(homeIntent);
                     finish();

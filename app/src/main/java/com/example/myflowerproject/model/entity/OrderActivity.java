@@ -35,7 +35,7 @@ public class OrderActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        orderCartRecyclerView = findViewById(R.id.order_cart_recyclerview);
+        orderCartRecyclerView = findViewById(R.id.rvOrderCart);
         LinearLayoutManager layoutManagerCategory = new LinearLayoutManager(OrderActivity.this);
         layoutManagerCategory.setOrientation(LinearLayoutManager.HORIZONTAL); //list view ngang
         orderCartRecyclerView.setLayoutManager(layoutManagerCategory);

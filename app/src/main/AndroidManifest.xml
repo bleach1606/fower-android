@@ -13,27 +13,21 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:targetApi="n">
-        <activity android:name=".model.entity.OrderActivity">
-        </activity>
+        <activity android:name=".ProductDetail"></activity>
+        <activity android:name=".MyOrder" />
+        <activity android:name=".model.entity.OrderActivity" />
         <activity
             android:name=".view.HomeActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".view.HomeActivityVer2"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <activity
             android:name=".view.Notification"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".view.MyAccount"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".view.ChangePassword"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".fragment.SignIn"
             android:theme="@style/AppTheme.NoActionBar" />
