@@ -28,9 +28,9 @@
             android:id="@+id/nav_change_password"
             android:icon="@drawable/ic_vpn_key_black_24dp"
             android:title="Change Password" />
+        <item
+            android:id="@+id/nav_sign_out"
+            android:icon="@mipmap/sign_out_icon"
+            android:title="Sign Out" />
     </group>
-    <item
-        android:id="@+id/nav_sign_out"
-        android:icon="@mipmap/sign_out_icon"
-        android:title="Sign Out" />
 </menu>

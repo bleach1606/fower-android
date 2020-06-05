@@ -9,6 +9,8 @@
         android:orderInCategory="1"
         android:title="Search"
         app:actionViewClass="android.widget.SearchView"
+        android:iconifiedByDefault="true"
+        android:queryHint="Search view"
         app:showAsAction="always" />
     <item
         android:id="@+id/home_notification_icon"
