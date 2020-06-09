@@ -1,4 +1,4 @@
-package com.example.myflowerproject.fragment;
+package com.example.myflowerproject.view;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -21,13 +21,13 @@ import android.widget.Toast;
 import com.example.myflowerproject.Container;
 import com.example.myflowerproject.R;
 import com.example.myflowerproject.model.api.ApiUtils;
+import com.example.myflowerproject.model.api.OrderBillAPI;
 import com.example.myflowerproject.model.api.UserAPI;
+import com.example.myflowerproject.model.entity.OrderBill;
 import com.example.myflowerproject.model.entity.People;
 import com.example.myflowerproject.model.entity.Users;
 import com.example.myflowerproject.model.results.CategoryResult;
 import com.example.myflowerproject.model.results.UserLoginResult;
-import com.example.myflowerproject.view.Activity_Home;
-import com.example.myflowerproject.view.Activity_Signup;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -37,7 +37,7 @@ import retrofit2.Response;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SignIn extends AppCompatActivity {
+public class Activity_SignIn extends AppCompatActivity {
 
     private TextView dontHaveAnAccount;
     private FrameLayout parentFrameLayout;
@@ -54,9 +54,8 @@ public class SignIn extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_sign_in);
+        setContentView(R.layout.activity_sign_in);
         dontHaveAnAccount = findViewById(R.id.tv_already_have_an_account);
-        parentFrameLayout = findViewById(R.id.register_framelayout);
         txtemail = findViewById(R.id.sign_in_email);
         txtpassword = findViewById(R.id.sign_in_password);
         signInBtn = findViewById(R.id.sign_in_btn);
@@ -69,7 +68,7 @@ public class SignIn extends AppCompatActivity {
         dontHaveAnAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SignIn.this, Activity_Signup.class);
+                Intent intent = new Intent(Activity_SignIn.this, Activity_Signup.class);
                 startActivity(intent);
             }
         });
@@ -77,7 +76,7 @@ public class SignIn extends AppCompatActivity {
         forgotPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SignIn.this, ResetPassword.class);
+                Intent intent = new Intent(Activity_SignIn.this, Activity_ResetPassword.class);
                 startActivity(intent);
             }
         });
@@ -174,7 +173,7 @@ public class SignIn extends AppCompatActivity {
         user.setToken( "1312312");
 
         progressBar.setVisibility(View.VISIBLE);
-        Intent homeIntent = new Intent(SignIn.this, Activity_Home.class);
+        Intent homeIntent = new Intent(Activity_SignIn.this, Activity_Home.class);
         startActivity(homeIntent);
         finish();
     }
@@ -190,9 +189,10 @@ public class SignIn extends AppCompatActivity {
                     Container.users = user;
                     signInBtn.setEnabled(false);
                     signInBtn.setTextColor(Color.rgb(238,180,180));
+                    getCurrentOrderBill();
                     getListCategory();
                 } else {
-                    Toast.makeText(SignIn.this, "Sai Mật khẩu", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Activity_SignIn.this, "Sai Mật khẩu", Toast.LENGTH_SHORT).show();
                     progressBar.setVisibility(View.INVISIBLE);
                     signInBtn.setEnabled(true);
                     signInBtn.setTextColor(Color.rgb(255,255,255));
@@ -201,7 +201,7 @@ public class SignIn extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<UserLoginResult> call, Throwable t) {
-                Toast.makeText(SignIn.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(Activity_SignIn.this, t.getMessage(), Toast.LENGTH_SHORT).show();
                 progressBar.setVisibility(View.INVISIBLE);
                 signInBtn.setEnabled(true);
                 signInBtn.setTextColor(Color.rgb(255,255,255));
@@ -217,12 +217,12 @@ public class SignIn extends AppCompatActivity {
                 public void onResponse(Call<CategoryResult> call, Response<CategoryResult> response) {
                     if (response.isSuccessful()) {
                         CategoryResult rs = response.body();
-                        Container.listCategory = rs.getCategoryModelList();
-                        Intent homeIntent = new Intent(SignIn.this, Activity_Home.class);
+                        Container.listCategory = rs.getCategoryList();
+                        Intent homeIntent = new Intent(Activity_SignIn.this, Activity_Home.class);
                         startActivity(homeIntent);
                         finish();
                     } else {
-                        Toast.makeText(SignIn.this, "Loi ???", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Activity_SignIn.this, "Loi ???", Toast.LENGTH_SHORT).show();
 //                        System.out.println("loi ");
                     }
                 }
@@ -234,5 +234,22 @@ public class SignIn extends AppCompatActivity {
         }catch (Exception e){
             System.out.println(e.toString());
         }
+    }
+
+
+    public void getCurrentOrderBill() {
+        OrderBillAPI orderBillAPI = ApiUtils.getOrderBillAPI();
+        orderBillAPI.getCurrentOrder(Container.users.getToken()).enqueue(new Callback<OrderBill>() {
+            @Override
+            public void onResponse(Call<OrderBill> call, Response<OrderBill> response) {
+                Container.orderBill = response.body();
+                System.out.println(Container.orderBill.toString());
+            }
+
+            @Override
+            public void onFailure(Call<OrderBill> call, Throwable t) {
+
+            }
+        });
     }
 }

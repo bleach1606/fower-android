@@ -1,4 +1,4 @@
-package com.example.myflowerproject.fragment;
+package com.example.myflowerproject.view.activity_productdetail;
 
 import android.os.Bundle;
 

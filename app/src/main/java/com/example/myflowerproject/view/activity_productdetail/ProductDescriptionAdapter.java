@@ -1,4 +1,4 @@
-package com.example.myflowerproject.model.adapter;
+package com.example.myflowerproject.view.activity_productdetail;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;

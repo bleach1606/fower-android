@@ -1,4 +1,4 @@
-package com.example.myflowerproject.model.adapter;
+package com.example.myflowerproject.ui.cart;
 
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myflowerproject.R;
 import com.example.myflowerproject.model.api.GetImage;
-import com.example.myflowerproject.model.entity.CartItemModel;
+import com.example.myflowerproject.ui.cart.CartItemModel;
 
 import java.util.List;
 

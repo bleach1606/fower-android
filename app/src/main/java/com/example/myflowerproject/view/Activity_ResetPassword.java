@@ -1,4 +1,4 @@
-package com.example.myflowerproject.fragment;
+package com.example.myflowerproject.view;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -18,13 +18,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myflowerproject.R;
-import com.example.myflowerproject.view.Activity_SignIn;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ResetPassword extends AppCompatActivity {
+public class Activity_ResetPassword extends AppCompatActivity {
 
     private EditText registeredEmail;
     private Button resetPasswordBtn;
@@ -69,7 +68,7 @@ public class ResetPassword extends AppCompatActivity {
                 //Nếu tồn tại Email registed
                 //send email
                 //Nếu đã gửi email xong
-                Toast.makeText(ResetPassword.this,"Email sent successfully! Please check your email.",Toast.LENGTH_LONG).show();
+                Toast.makeText(Activity_ResetPassword.this,"Email sent successfully! Please check your email.",Toast.LENGTH_LONG).show();
 
                 //Nếu Email không tồn tại
                 /*
@@ -82,7 +81,7 @@ public class ResetPassword extends AppCompatActivity {
         goBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ResetPassword.this, Activity_SignIn.class);
+                Intent intent = new Intent(Activity_ResetPassword.this, Activity_SignIn.class);
                 startActivity(intent);
             }
         });

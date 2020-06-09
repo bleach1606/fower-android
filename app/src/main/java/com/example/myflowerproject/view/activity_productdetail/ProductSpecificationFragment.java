@@ -1,4 +1,4 @@
-package com.example.myflowerproject.fragment;
+package com.example.myflowerproject.view.activity_productdetail;
 
 import android.os.Bundle;
 
@@ -11,8 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.myflowerproject.R;
-import com.example.myflowerproject.model.adapter.ProductSpecificationAdapter;
-import com.example.myflowerproject.model.entity.ProductSpecificationModel;
 
 import java.util.ArrayList;
 import java.util.List;

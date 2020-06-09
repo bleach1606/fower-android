@@ -26,6 +26,13 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    sourceSets {
+        main {
+            res {
+                srcDirs 'src/main/res', 'src/main/res/layouts', 'src/main/res/layout_subs/cart', 'src/main/res/layout_cart', 'src/main/res/x/y', 'src/main/res/layout_sub/cart', 'src/main/res/layout_sub/product_detail', 'src/main/res/layout_sub/home'
+            }
+        }
+    }
 
 }
 
@@ -48,5 +55,5 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     implementation 'com.google.firebase:firebase-messaging:20.2.0'
     implementation 'android.arch.work:work-runtime:1.0.1'
-    compile 'de.hdodenhof:circleimageview:2.1.0'
+    implementation 'de.hdodenhof:circleimageview:2.1.0'
 }

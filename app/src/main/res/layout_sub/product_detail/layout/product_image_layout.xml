@@ -122,6 +122,7 @@
             android:id="@+id/product_image_layout_btn_sub_quantity"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
             android:text="-"
             android:textStyle="bold" />
 

@@ -1,4 +1,6 @@
-package com.example.myflowerproject.model.entity;
+package com.example.myflowerproject.ui.cart;
+
+import com.example.myflowerproject.model.entity.CartDetail;
 
 public class CartItemModel {
 

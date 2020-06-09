@@ -1,6 +1,5 @@
 package com.example.myflowerproject.model.adapter;
 
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,7 +58,7 @@ public class OrderCartItemAdapter extends RecyclerView.Adapter<OrderCartItemAdap
         }
 
         private void setItemQuantity(int quantity){
-            String str = "x" + quantity;
+            String str = "" + quantity;
             orderCartItemQuantity.setText(str);
         }
     }

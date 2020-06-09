@@ -1,4 +1,4 @@
-package com.example.myflowerproject.fragment;
+package com.example.myflowerproject.view;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -19,7 +19,6 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.myflowerproject.view.Activity_Home;
 import com.example.myflowerproject.R;
 import com.example.myflowerproject.model.api.ApiUtils;
 import com.example.myflowerproject.model.api.UserAPI;
@@ -34,7 +33,7 @@ import retrofit2.Response;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SignUp extends AppCompatActivity {
+public class Activity_Signup extends AppCompatActivity {
 
     private TextView alreadyHaveAnAccount;
     private FrameLayout parentFrameLayout;
@@ -55,7 +54,7 @@ public class SignUp extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_sign_up);
+        setContentView(R.layout.activity_sign_up);
 
         alreadyHaveAnAccount = findViewById(R.id.tv_already_have_an_account);
 
@@ -65,10 +64,10 @@ public class SignUp extends AppCompatActivity {
         phoneNumber = findViewById(R.id.sign_up_phone_number);
         password = findViewById(R.id.sign_up_password);
         confirmPassword = findViewById(R.id.sign_up_confirm_password);
-        parentFrameLayout = findViewById(R.id.register_framelayout);
         signUpBtn = findViewById(R.id.sign_up_btn);
         btnMale = findViewById(R.id.sign_up_sex_male);
         btnFemale = findViewById(R.id.sign_up_sex_female);
+        progressBar = findViewById(R.id.sign_up_progressbar);
         userAPI = ApiUtils.getAPIService();
 
         signUpBtn.setOnClickListener(new View.OnClickListener() {
@@ -82,7 +81,7 @@ public class SignUp extends AppCompatActivity {
         alreadyHaveAnAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SignUp.this, SignIn.class);
+                Intent intent = new Intent(Activity_Signup.this, Activity_SignIn.class);
                 startActivity(intent);
             }
         });
@@ -187,8 +186,7 @@ public class SignUp extends AppCompatActivity {
         signUpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                checkEmailAndPassword();
-
+                progressBar.setVisibility(View.VISIBLE);
                 try{
                     Users user = new Users(email.getText().toString(), password.getText().toString());
                     People people = new People();
@@ -197,28 +195,27 @@ public class SignUp extends AppCompatActivity {
                     people.setPhoneNumber(phoneNumber.getText().toString());
                     people.setSex((btnMale.isChecked()?"male":(btnFemale.isChecked())?"female":"else"));
                     user.setPeople(people);
-                    System.out.println("here");
                     userAPI.signup(user).enqueue(new Callback<DataSignupResult>() {
                         @Override
                         public void onResponse(Call<DataSignupResult> call, Response<DataSignupResult> response) {
                             System.out.println("on respone");
                             if(response.isSuccessful()){
                                 Users u = response.body().getUser();
-                                Intent intent = new Intent(SignUp.this, Activity_Home.class);
+                                Intent intent = new Intent(Activity_Signup.this, Activity_SignIn.class);
                                 startActivity(intent);
                                 finish();
                             }else{
-                                System.out.println(response.body());
+                                Toast.makeText(Activity_Signup.this, "trùng username", Toast.LENGTH_SHORT).show();
                             }
                         }
 
                         @Override
                         public void onFailure(Call<DataSignupResult> call, Throwable t) {
-                            Toast.makeText(SignUp.this, t.toString(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Activity_Signup.this, t.toString(), Toast.LENGTH_SHORT).show();
                         }
                     });
                 }catch(Exception ex){
-                    Toast.makeText(SignUp.this, "wrong", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Activity_Signup.this, "wrong", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -253,26 +250,26 @@ public class SignUp extends AppCompatActivity {
         }
     }
 
-    private void checkEmailAndPassword() {
-        signUpBtn.setEnabled(false);
-        signUpBtn.setTextColor(Color.rgb(238,180,180));
-
-        progressBar.setVisibility(View.VISIBLE);
-
-        //Nếu không có lỗi
-        Intent homeIntent = new Intent(SignUp.this, Activity_Home.class);
-        startActivity(homeIntent);
-        finish();
-
-        /*
-        //Nếu có lỗi
-        //Toast lỗi ra màn hình ("Password doesn't matched!","Invalid Email!", ...)
-        // Sau đó gán lại các giá trị hiển thị
-
-        progressBar.setVisibility(View.INVISIBLE);
-        signUpBtn.setEnabled(true);
-        signUpBtn.setTextColor(Color.rgb(255,255,255));
-
-         */
-    }
+//    private void checkEmailAndPassword() {
+//        signUpBtn.setEnabled(false);
+//        signUpBtn.setTextColor(Color.rgb(238,180,180));
+//
+//        progressBar.setVisibility(View.VISIBLE);
+//
+//        //Nếu không có lỗi
+//        Intent homeIntent = new Intent(Activity_Signup.this, Activity_Home.class);
+//        startActivity(homeIntent);
+//        finish();
+//
+//        /*
+//        //Nếu có lỗi
+//        //Toast lỗi ra màn hình ("Password doesn't matched!","Invalid Email!", ...)
+//        // Sau đó gán lại các giá trị hiển thị
+//
+//        progressBar.setVisibility(View.INVISIBLE);
+//        signUpBtn.setEnabled(true);
+//        signUpBtn.setTextColor(Color.rgb(255,255,255));
+//
+//         */
+//    }
 }

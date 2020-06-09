@@ -1,4 +1,4 @@
-package com.example.myflowerproject.model.adapter;
+package com.example.myflowerproject.ui.home;
 
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -11,19 +11,19 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myflowerproject.model.api.GetImage;
-import com.example.myflowerproject.model.entity.PreviewItemModel;
+import com.example.myflowerproject.model.entity.FlowerProducts;
 import com.example.myflowerproject.R;
-import com.example.myflowerproject.view.ProductDetailActivity;
+import com.example.myflowerproject.view.activity_productdetail.Activity_ProductDetail;
 
 import java.util.List;
 
 public class BasketHorizontalScrollAdapter extends RecyclerView.Adapter<BasketHorizontalScrollAdapter.ViewHolder> {
 
-    private List<PreviewItemModel> previewItemModelList;
+    private List<FlowerProducts> flowerProductsList;
 
 
-    public BasketHorizontalScrollAdapter(List<PreviewItemModel> previewItemModelList) {
-        this.previewItemModelList = previewItemModelList;
+    public BasketHorizontalScrollAdapter(List<FlowerProducts> previewItemModelList) {
+        this.flowerProductsList = previewItemModelList;
     }
 
     @NonNull
@@ -35,9 +35,9 @@ public class BasketHorizontalScrollAdapter extends RecyclerView.Adapter<BasketHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
-        int resource = Integer.parseInt(previewItemModelList.get(position).getProducts().getAvatar());
-        String name = previewItemModelList.get(position).getProducts().getName();
-        String price = ""+previewItemModelList.get(position).getProducts().getPrice();
+        int resource = Integer.parseInt(flowerProductsList.get(position).getAvatar());
+        String name = flowerProductsList.get(position).getName();
+        String price = ""+flowerProductsList.get(position).getPrice();
 
         viewHolder.setProductImage(resource);
         viewHolder.setProductName(name);
@@ -46,7 +46,7 @@ public class BasketHorizontalScrollAdapter extends RecyclerView.Adapter<BasketHo
 
     @Override
     public int getItemCount() {
-        return previewItemModelList.size();
+        return Math.min(flowerProductsList.size(), 6);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -64,8 +64,8 @@ public class BasketHorizontalScrollAdapter extends RecyclerView.Adapter<BasketHo
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(itemView.getContext(), ProductDetailActivity.class);
-                    intent.putExtra("id",  previewItemModelList.get(getAdapterPosition()).getProducts().getId());
+                    Intent intent = new Intent(itemView.getContext(), Activity_ProductDetail.class);
+                    intent.putExtra("id",  flowerProductsList.get(getAdapterPosition()).getId());
                     itemView.getContext().startActivity(intent);
                 }
             });

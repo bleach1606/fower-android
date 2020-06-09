@@ -1,4 +1,4 @@
-package com.example.myflowerproject.model.entity;
+package com.example.myflowerproject.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -13,11 +13,13 @@ import android.widget.TextView;
 
 import com.example.myflowerproject.R;
 import com.example.myflowerproject.model.adapter.OrderCartItemAdapter;
+import com.example.myflowerproject.model.entity.OrderCartItemModel;
+import com.example.myflowerproject.model.entity.Users;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class OrderActivity extends AppCompatActivity {
+public class Activity_Order extends AppCompatActivity {
     private Users user;
     private TextView txtNameUser;
     private TextView txtEmailUser;
@@ -36,7 +38,7 @@ public class OrderActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         orderCartRecyclerView = findViewById(R.id.order_cart_recyclerview);
-        LinearLayoutManager layoutManagerCategory = new LinearLayoutManager(OrderActivity.this);
+        LinearLayoutManager layoutManagerCategory = new LinearLayoutManager(Activity_Order.this);
         layoutManagerCategory.setOrientation(LinearLayoutManager.HORIZONTAL); //list view ngang
         orderCartRecyclerView.setLayoutManager(layoutManagerCategory);
 

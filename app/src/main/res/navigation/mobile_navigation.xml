@@ -30,14 +30,27 @@
     </fragment>
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.example.myflowerproject.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        android:id="@+id/nav_my_cart"
+        android:name="com.example.myflowerproject.ui.cart.Fragment_Cart"
+        android:label="MyCart"
+        tools:layout="@layout/fragment__cart"></fragment>
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.example.myflowerproject.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/nav_my_account"
+        android:name="com.example.myflowerproject.ui.account.Fragment_Account"
+        android:label="My Account"
+        tools:layout="@layout/fragment__account"></fragment>
+
+    <fragment
+        android:id="@+id/nav_my_order"
+        android:name="com.example.myflowerproject.ui.list_order.Fragment_List_Order"
+        android:label="My Order"
+        tools:layout="@layout/fragment__list_order"></fragment>
+
+    <fragment
+        android:id="@+id/nav_notification"
+        android:name="com.example.myflowerproject.ui.notification.Fragment_Notification"
+        android:label="Notification"
+        tools:layout="@layout/fragment__notification"></fragment>
+
 </navigation>

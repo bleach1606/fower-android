@@ -1,4 +1,4 @@
-package com.example.myflowerproject.model.adapter;
+package com.example.myflowerproject.view.activity_productdetail;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +9,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myflowerproject.R;
-import com.example.myflowerproject.view.activity_productdetail.ProductSpecificationModel;
 
 import java.util.List;
 

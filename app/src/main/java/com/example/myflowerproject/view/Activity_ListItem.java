@@ -3,7 +3,6 @@ package com.example.myflowerproject.view;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,14 +12,14 @@ import android.widget.TextView;
 import com.example.myflowerproject.Container;
 import com.example.myflowerproject.R;
 import com.example.myflowerproject.ui.home.BouquetGridLayoutAdapter;
-import com.example.myflowerproject.model.entity.CategoryModel;
+import com.example.myflowerproject.model.entity.Category;
 import com.example.myflowerproject.model.entity.FlowerProducts;
 import com.example.myflowerproject.model.entity.Users;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListItemActivity extends AppCompatActivity {
+public class Activity_ListItem extends AppCompatActivity {
 
     private Users user;
     private TextView txtNameUser;
@@ -52,7 +51,7 @@ public class ListItemActivity extends AppCompatActivity {
     }
 
     public void setListItem(int type){
-        for(CategoryModel cm: Container.listCategory){
+        for(Category cm: Container.listCategory){
             if(cm.getType()==type){
                 toolbar.setTitle(cm.getCategoryName());
                 listItem = cm.getFlowerProductsList();

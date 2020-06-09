@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 import java.util.List;
 
-public class CategoryModel implements Serializable {
+public class Category implements Serializable {
 
     @SerializedName("id")
     @Expose
@@ -52,7 +52,7 @@ public class CategoryModel implements Serializable {
         this.type = type;
     }
 
-    public CategoryModel(int categoryIconLink, String categoryName) {
+    public Category(int categoryIconLink, String categoryName) {
         this.categoryIconLink = categoryIconLink;
         this.categoryName = categoryName;
 //        this.type = type;

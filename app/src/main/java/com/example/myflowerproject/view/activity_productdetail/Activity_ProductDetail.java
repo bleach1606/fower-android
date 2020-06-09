@@ -1,4 +1,4 @@
-package com.example.myflowerproject.view;
+package com.example.myflowerproject.view.activity_productdetail;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -21,10 +21,8 @@ import android.widget.Toast;
 
 import com.example.myflowerproject.Container;
 import com.example.myflowerproject.R;
-import com.example.myflowerproject.model.adapter.ProductDescriptionAdapter;
 import com.example.myflowerproject.model.api.GetImage;
 import com.example.myflowerproject.model.entity.CartDetail;
-import com.example.myflowerproject.model.entity.Users;
 import com.google.android.material.tabs.TabLayout;
 import com.example.myflowerproject.model.entity.FlowerProducts;
 
@@ -210,8 +208,6 @@ public class Activity_ProductDetail extends AppCompatActivity {
                 //to do: Search
                 return true;
             case R.id.home_cart_icon:
-                Intent intent = new Intent(Activity_ProductDetail.this, MyCartActivity.class);
-                startActivity(intent);
                 return true;
             default:break;
         }

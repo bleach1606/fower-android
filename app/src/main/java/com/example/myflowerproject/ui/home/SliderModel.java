@@ -1,4 +1,4 @@
-package com.example.myflowerproject.model.entity;
+package com.example.myflowerproject.ui.home;
 
 public class SliderModel {
 

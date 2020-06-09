@@ -16,7 +16,7 @@ public class GetImage extends AsyncTask<String, Void, Bitmap> {
     }
 
     protected Bitmap doInBackground(String... urls) {
-        String urldisplay = "http://192.168.1.25:8080/public/download/"+urls[0]+".jpg";
+        String urldisplay = ApiUtils.BASE_URL+"public/download/"+urls[0]+".png";
 //            System.out.println(urls);
         Bitmap mIcon11 = null;
         try {

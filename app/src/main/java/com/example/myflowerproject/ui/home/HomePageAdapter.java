@@ -1,4 +1,4 @@
-package com.example.myflowerproject.fragment;
+package com.example.myflowerproject.ui.home;
 
 import android.content.Intent;
 import android.os.Handler;
@@ -16,12 +16,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.myflowerproject.R;
-import com.example.myflowerproject.model.adapter.BasketHorizontalScrollAdapter;
-import com.example.myflowerproject.model.adapter.BouquetGridLayoutAdapter;
-import com.example.myflowerproject.model.adapter.SliderAdapter;
-import com.example.myflowerproject.model.entity.PreviewItemModel;
-import com.example.myflowerproject.model.entity.SliderModel;
-import com.example.myflowerproject.view.ListItemActivity;
+import com.example.myflowerproject.model.entity.FlowerProducts;
+import com.example.myflowerproject.view.Activity_ListItem;
 
 import java.util.List;
 import java.util.Timer;
@@ -70,7 +66,7 @@ public class HomePageAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
         String title;
-        List<PreviewItemModel> previewItemModelList;
+        List<FlowerProducts> flowerProductsList;
         int typeProduct;
         switch (homePageModelList.get(position).getType()){
             case HomePageModel.BANNERSLIDER:
@@ -80,14 +76,14 @@ public class HomePageAdapter extends RecyclerView.Adapter {
             case HomePageModel.HORIZONTAL_PRODUCT_PREVIEW:
                 title = homePageModelList.get(position).getTitle();
                 typeProduct = homePageModelList.get(position).getTypeProduct();
-                previewItemModelList = homePageModelList.get(position).getPreviewItemModelList();
-                ((HorizontalProductViewHolder) viewHolder).setHorizontalProductLayout(previewItemModelList,title,typeProduct);
+                flowerProductsList = homePageModelList.get(position).getFlowerProductsList();
+                ((HorizontalProductViewHolder) viewHolder).setHorizontalProductLayout(flowerProductsList,title,typeProduct);
                 break;
             case HomePageModel.GRID_PRODUCT_PREVIEW:
                 title = homePageModelList.get(position).getTitle();
                 typeProduct = homePageModelList.get(position).getTypeProduct();
-                previewItemModelList = homePageModelList.get(position).getPreviewItemModelList();
-                ((GridProductViewHolder) viewHolder).setGridProductLayout(previewItemModelList,title,typeProduct);
+                flowerProductsList = homePageModelList.get(position).getFlowerProductsList();
+                ((GridProductViewHolder) viewHolder).setGridProductLayout(flowerProductsList,title,typeProduct);
                 ((GridProductViewHolder)viewHolder).setIsRecyclable(true);
                 break;
             default:
@@ -111,7 +107,7 @@ public class HomePageAdapter extends RecyclerView.Adapter {
             bannerSliderViewPager = itemView.findViewById(R.id.banner_slider_view_pager);
         }
         private void setBannerSliderViewPager(final List<SliderModel> sliderModelList){
-            SliderAdapter sliderAdapter = new SliderAdapter(sliderModelList);
+            HomeFragment.SliderAdapter sliderAdapter = new HomeFragment.SliderAdapter(sliderModelList);
             bannerSliderViewPager.setAdapter(sliderAdapter);
             bannerSliderViewPager.setClipToPadding(false);
             bannerSliderViewPager.setPageMargin(20);
@@ -198,11 +194,11 @@ public class HomePageAdapter extends RecyclerView.Adapter {
 
         }
 
-        private void setHorizontalProductLayout(List<PreviewItemModel> previewItemModelList, String title, final int typeProduct){
+        private void setHorizontalProductLayout(List<FlowerProducts> flowerProductsList, String title, final int typeProduct){
             LinearLayoutManager linearLayoutManagerBasketProduct = new LinearLayoutManager(itemView.getContext());
             linearLayoutManagerBasketProduct.setOrientation(LinearLayoutManager.HORIZONTAL);
             recyclerViewBasketProduct.setLayoutManager(linearLayoutManagerBasketProduct);
-            BasketHorizontalScrollAdapter basketHorizontalScrollAdapter = new BasketHorizontalScrollAdapter(previewItemModelList);
+            BasketHorizontalScrollAdapter basketHorizontalScrollAdapter = new BasketHorizontalScrollAdapter(flowerProductsList);
             recyclerViewBasketProduct.setAdapter(basketHorizontalScrollAdapter);
             basketHorizontalScrollAdapter.notifyDataSetChanged();
 
@@ -211,7 +207,7 @@ public class HomePageAdapter extends RecyclerView.Adapter {
             btnBasketProductViewAll.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(itemView.getContext(), ListItemActivity.class);
+                    Intent intent = new Intent(itemView.getContext(), Activity_ListItem.class);
                     intent.putExtra("product type", typeProduct);
                     itemView.getContext().startActivity(intent);
                 }
@@ -228,15 +224,14 @@ public class HomePageAdapter extends RecyclerView.Adapter {
             super(itemView);
             bouquetGridLayoutTitle = itemView.findViewById(R.id.bouquet_grid_layout_tittle);
             bouquetGridLayoutGridView = itemView.findViewById(R.id.bouquet_grid_layout_grid_view);
-
+            bouquetGridLayoutGridView.smoothScrollBy(1, 1);
         }
 
-        private void setGridProductLayout(List<PreviewItemModel> previewItemModelList, String title, final int typeProduct){
-            BouquetGridLayoutAdapter bouquetGridLayoutAdapter = new BouquetGridLayoutAdapter(previewItemModelList);
+        private void setGridProductLayout(List<FlowerProducts> flowerProductsList, String title, final int typeProduct){
+            bouquetGridLayoutTitle.setText(title);
+            BouquetGridLayoutAdapter bouquetGridLayoutAdapter = new BouquetGridLayoutAdapter(flowerProductsList);
             bouquetGridLayoutGridView.setAdapter(bouquetGridLayoutAdapter);
             bouquetGridLayoutAdapter.notifyDataSetChanged();
-            bouquetGridLayoutTitle.setText(title);
-
         }
     }
 
