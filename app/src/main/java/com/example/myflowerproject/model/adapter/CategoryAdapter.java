@@ -8,8 +8,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.myflowerproject.fragment.HomeFragment;
+import com.example.myflowerproject.fragment.ListItemFragment;
 import com.example.myflowerproject.model.entity.CategoryModel;
 import com.example.myflowerproject.fragment.ListItem;
 import com.example.myflowerproject.R;
@@ -23,6 +27,9 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
 
     public CategoryAdapter(List<CategoryModel> categoryModelList) {
         this.categoryModelList = categoryModelList;
+    }
+
+    public CategoryAdapter(FragmentManager supportFragmentManager, int tabCount) {
     }
 
     @NonNull
@@ -43,6 +50,18 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     @Override
     public int getItemCount() {
         return categoryModelList.size();
+    }
+
+    @NonNull
+    public Fragment getItem(int i) {
+        switch (i){
+            case 0:
+                HomeFragment homeFragment = new HomeFragment(-1);
+                return homeFragment;
+            default:
+                ListItemFragment listItemFragment = new ListItemFragment(i);
+                return listItemFragment;
+        }
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

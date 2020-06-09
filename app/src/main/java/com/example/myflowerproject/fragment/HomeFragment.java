@@ -28,10 +28,14 @@ import java.util.TimerTask;
  * A simple {@link Fragment} subclass.
  */
 public class HomeFragment extends Fragment {
+    private int type;
 
     public HomeFragment() {
 
         // Required empty public constructor
+    }
+    public HomeFragment(int i) {
+        this.type = i;
     }
 
 //    private RecyclerView categoryRecyclerView;

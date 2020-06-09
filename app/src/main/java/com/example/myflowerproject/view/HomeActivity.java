@@ -17,11 +17,11 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.viewpager.widget.ViewPager;
-
+import androidx.viewpager.widget.ViewPager;
 import com.example.myflowerproject.MyOrder;
 import com.example.myflowerproject.R;
 import com.example.myflowerproject.fragment.HomeFragment;
-import com.example.myflowerproject.model.adapter.CategoryAdapter2;
+import com.example.myflowerproject.model.adapter.CategoryAdapter;
 import com.example.myflowerproject.model.entity.Users;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
@@ -49,10 +49,12 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         categoryViewPager = findViewById(R.id.category_viewpager);
+
         categoryTabLayout = findViewById(R.id.category_tab_layout);
 
-        final CategoryAdapter2 categoryAdapter = new CategoryAdapter2(getSupportFragmentManager(), categoryTabLayout.getTabCount());
-        categoryViewPager.setAdapter(categoryAdapter);
+
+        final CategoryAdapter categoryAdapter = new CategoryAdapter(getSupportFragmentManager(), categoryTabLayout.getTabCount());
+        //categoryViewPager.setAdapter(categoryAdapter);
 
         categoryViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(categoryTabLayout));
         categoryTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -78,7 +80,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        navigationView = findViewById(R.id.nav_view);
+        navigationView = findViewById(R.id.nav_view_test);
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.getMenu().getItem(0).setChecked(true);
 

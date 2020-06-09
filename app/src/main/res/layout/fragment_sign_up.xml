@@ -157,16 +157,18 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:backgroundTint="#70FFFFFF"
+                android:buttonTint="@color/colorAccent"
                 android:text="Male"
-                android:textColor="@color/cardview_dark_background" />
+                android:textColor="@color/cardview_light_background" />
 
             <RadioButton
                 android:id="@+id/sign_up_sex_female"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:buttonTint="@color/colorAccent"
                 android:text="Female"
-                android:textColor="@color/cardview_dark_background" />
+                android:textColor="@color/cardview_light_background" />
         </RadioGroup>
 
         <ProgressBar
