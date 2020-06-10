@@ -46,7 +46,7 @@ public class Activity_Home extends AppCompatActivity {
         NavigationView navigationView = findViewById(R.id.nav_view);
         frameLayout = findViewById(R.id.frame_layout);
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_my_account, R.id.nav_my_cart, R.id.nav_my_order, R.id.nav_notification)
+                R.id.nav_home, R.id.nav_my_cart, R.id.nav_my_order, R.id.nav_notification)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
