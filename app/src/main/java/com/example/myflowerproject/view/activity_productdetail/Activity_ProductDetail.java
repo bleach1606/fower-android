@@ -23,6 +23,7 @@ import com.example.myflowerproject.Container;
 import com.example.myflowerproject.R;
 import com.example.myflowerproject.model.api.GetImage;
 import com.example.myflowerproject.model.entity.CartDetail;
+import com.example.myflowerproject.view.Activity_Home;
 import com.google.android.material.tabs.TabLayout;
 import com.example.myflowerproject.model.entity.FlowerProducts;
 
@@ -177,6 +178,9 @@ public class Activity_ProductDetail extends AppCompatActivity {
                 addCartDetail.setFlowerProduct(fp);
                 Container.orderBill.addCartDetail(addCartDetail);
                 Toast.makeText(Activity_ProductDetail.this, "Bạn đã thêm thành công", Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(Activity_ProductDetail.this, Activity_Home.class);
+                startActivity(intent);
                 // TODO back to home
             }
         });

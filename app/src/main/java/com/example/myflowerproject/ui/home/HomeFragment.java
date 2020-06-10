@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.PagerAdapter;
@@ -55,41 +56,15 @@ public class HomeFragment extends Fragment {
         sliderModelList = new ArrayList<SliderModel>();
         sliderModelList.add(new SliderModel(R.mipmap.banner_tet_holiday));
         sliderModelList.add(new SliderModel(R.mipmap.banner_christmas_day));
+
         sliderModelList.add(new SliderModel(R.mipmap.banner_women_day));
         sliderModelList.add(new SliderModel(R.mipmap.banner_valentine_day));
-        SliderAdapter sliderAdapter = new SliderAdapter(sliderModelList);
-        bannerSliderViewPager.setAdapter(sliderAdapter);
-        bannerSliderViewPager.setClipToPadding(false);
-        bannerSliderViewPager.setPageMargin(20);
-        ViewPager.OnPageChangeListener onPageChangeListener = new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+        sliderModelList.add(new SliderModel(R.mipmap.banner_tet_holiday));
+        sliderModelList.add(new SliderModel(R.mipmap.banner_christmas_day));
 
-            }
-            @Override
-            public void onPageSelected(int i) {
-                currentPage = i;
-            }
-            @Override
-            public void onPageScrollStateChanged(int i) {
-                if(i == ViewPager.SCROLL_STATE_IDLE){
-                    pageLooper();
-                }
-            }
-        };
-        bannerSliderViewPager.addOnPageChangeListener(onPageChangeListener);
-        startBannerSlideShow();
-        bannerSliderViewPager.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                pageLooper();
-                stopBannerSlideShow();
-                if(event.getAction() == MotionEvent.ACTION_UP){
-                    startBannerSlideShow();
-                }
-                return false;
-            }
-        });
+        sliderModelList.add(new SliderModel(R.mipmap.banner_women_day));
+        sliderModelList.add(new SliderModel(R.mipmap.banner_valentine_day));
+
         setListFlower(-1);
 
         testing = view.findViewById(R.id.testing);
@@ -113,43 +88,10 @@ public class HomeFragment extends Fragment {
         return view;
     }
 
-    private void pageLooper(){
-        if(currentPage == sliderModelList.size() - 1){
-            currentPage = 3;
-            bannerSliderViewPager.setCurrentItem(currentPage,false);
-        }
-        if(currentPage == 0){
-            currentPage = sliderModelList.size() - 4;
-            bannerSliderViewPager.setCurrentItem(currentPage,false);
-        }
-    }
-
-    private void startBannerSlideShow(){
-        final Handler handler = new Handler();
-        final Runnable update = new Runnable() {
-            @Override
-            public void run() {
-                if(currentPage >= sliderModelList.size()){
-                    currentPage = 1;
-                }
-                bannerSliderViewPager.setCurrentItem(currentPage++,true);
-            }
-        };
-        timer = new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                handler.post(update);
-            }
-        }, DELAY_TIME, PERIOD_TIME);
-    }
-
-    private void stopBannerSlideShow(){
-        timer.cancel();
-    }
-
     private void setListFlower(int type){
         homePageModelList.clear();
+        HomePageModel sliderBanner = new HomePageModel(0, sliderModelList);
+        homePageModelList.add(sliderBanner);
         if(type==-1){
             for(Category category : Container.listCategory){
                 HomePageModel homePageModel = new HomePageModel(1, category.getCategoryName(), category.getFlowerProductsList() , category.getType());

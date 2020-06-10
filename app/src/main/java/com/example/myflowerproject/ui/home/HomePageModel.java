@@ -15,6 +15,11 @@ public class HomePageModel {
     private String title;
     private List<FlowerProducts> flowerProductsList;
 
+    public HomePageModel(int type, List<SliderModel> sliderModelList) {
+        this.type = type;
+        this.sliderModelList = sliderModelList;
+    }
+
     public HomePageModel(int type, String title, List<FlowerProducts> previewItemModelList, int typeProduct) {
         this.type = type;
         this.title = title;
