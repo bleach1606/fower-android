@@ -34,7 +34,6 @@ public class Activity_Order extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         orderCartRecyclerView = findViewById(R.id.order_cart_recyclerview);
@@ -54,17 +53,4 @@ public class Activity_Order extends AppCompatActivity {
         orderCartRecyclerView.setAdapter(orderCartItemAdapter);
         orderCartItemAdapter.notifyDataSetChanged();
     }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.search_and_cart_icon, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        finish();
-        return true;
-    }
-
 }

@@ -37,7 +37,6 @@ public class Activity_ListItem extends AppCompatActivity {
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         int productType = getIntent().getIntExtra("product type",0);
@@ -59,28 +58,4 @@ public class Activity_ListItem extends AppCompatActivity {
             }
         }
     }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.search_and_cart_icon, menu);
-        return true;
-    }
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId())
-        {
-            case android.R.id.home:
-                finish();
-                return true;
-            case R.id.app_bar_search:
-                //to do: Search
-                return true;
-            case R.id.home_cart_icon:
-                return true;
-            default:break;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
 }

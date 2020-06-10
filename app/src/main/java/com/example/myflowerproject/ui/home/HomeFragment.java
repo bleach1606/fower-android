@@ -90,9 +90,9 @@ public class HomeFragment extends Fragment {
 
     private void setListFlower(int type){
         homePageModelList.clear();
-        HomePageModel sliderBanner = new HomePageModel(0, sliderModelList);
-        homePageModelList.add(sliderBanner);
         if(type==-1){
+            HomePageModel sliderBanner = new HomePageModel(0, sliderModelList);
+            homePageModelList.add(sliderBanner);
             for(Category category : Container.listCategory){
                 HomePageModel homePageModel = new HomePageModel(1, category.getCategoryName(), category.getFlowerProductsList() , category.getType());
                 homePageModelList.add(homePageModel);

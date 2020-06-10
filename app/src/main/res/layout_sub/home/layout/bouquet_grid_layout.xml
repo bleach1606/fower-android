@@ -7,24 +7,24 @@
     android:orientation="vertical"
     android:background="@drawable/slider_background">
 
-    <TextView
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:id="@+id/bouquet_grid_layout_tittle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="3dp"
-        android:layout_gravity="center"
-        android:text="Flower Bouquet"
-        android:textColor="#777777"
-        android:textSize="19sp"
-        android:textStyle="bold"/>
+<!--    <TextView-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--        app:layout_constraintRight_toRightOf="parent"-->
+<!--        android:id="@+id/bouquet_grid_layout_tittle"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_margin="3dp"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:text="Flower Bouquet"-->
+<!--        android:textColor="#777777"-->
+<!--        android:textSize="19sp"-->
+<!--        android:textStyle="bold"/>-->
 <!--    <androidx.core.widget.NestedScrollView-->
 <!--        android:layout_width="match_parent"-->
 <!--        android:layout_height="wrap_content"-->
     <GridView
-        app:layout_constraintTop_toBottomOf="@id/bouquet_grid_layout_tittle"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:id="@+id/bouquet_grid_layout_grid_view"

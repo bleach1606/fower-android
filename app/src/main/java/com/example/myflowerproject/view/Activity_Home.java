@@ -7,18 +7,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import com.example.myflowerproject.Container;
+import com.example.myflowerproject.Fragment_Search;
 import com.example.myflowerproject.R;
 import com.example.myflowerproject.model.api.GetImage;
-import com.example.myflowerproject.ui.cart.Fragment_Cart;
-import com.example.myflowerproject.ui.home.HomeFragment;
-import com.example.myflowerproject.ui.notification.Fragment_Notification;
 import com.google.android.material.navigation.NavigationView;
 
-import androidx.core.view.GravityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
@@ -34,6 +31,7 @@ public class Activity_Home extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
     private FrameLayout frameLayout;
     private Toolbar toolbar;
+    private NavController navController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +39,7 @@ public class Activity_Home extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         frameLayout = findViewById(R.id.frame_layout);
@@ -49,44 +47,63 @@ public class Activity_Home extends AppCompatActivity {
                 R.id.nav_home, R.id.nav_my_cart, R.id.nav_my_order, R.id.nav_notification)
                 .setDrawerLayout(drawer)
                 .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+        navigationView.getMenu().getItem(5).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                Intent intent = new Intent(Activity_Home.this, Activity_SignIn.class);
+                startActivity(intent);
+                return false;
+            }
+        });
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main_activity2, menu);
 
+        SearchView searchView = (SearchView) menu.findItem(R.id.app_bar_search_icon).getActionView();
+
+        searchView.setOnSearchClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.navigate(R.id.fragment_Search);
+                searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                    @Override
+                    public boolean onQueryTextSubmit(String query) {
+                        System.out.println(query);
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onQueryTextChange(String newText) {
+                        System.out.println(newText);
+                        return false;
+                    }
+                });
+            }
+        });
         menu.getItem(2).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                setFragment(new Fragment_Cart());
+                navController.navigate(R.id.nav_my_cart);
                 return true;
             }
         });
         menu.getItem(1).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                setFragment(new Fragment_Notification());
+                navController.navigate(R.id.nav_notification);
                 return true;
             }
         });
 
         ((TextView)findViewById(R.id.tvUsername)).setText(Container.users.getUsername());
-        new GetImage(findViewById(R.id.ivAvatar))
-                .execute(Container.users.getPeople().getAvatar());
-        ((Button)findViewById(R.id.btnSignout)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Container.users = null;
-                Container.listCategory = null;
-                Intent intent = new Intent(Activity_Home.this, Activity_SignIn.class);
-                startActivity(intent);
-                finish();
-            }
-        });
+        //((TextView)findViewById(R.id.tvFullname)).setText(Container.users.getPeople().getFirstName() + " " + Container.users.getPeople().getLastName());
+        new GetImage(findViewById(R.id.ivAvatar)).execute(Container.users.getPeople().getAvatar());
         return true;
     }
 
@@ -95,13 +112,6 @@ public class Activity_Home extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
-    }
-
-    private void setFragment(Fragment fragment){
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(frameLayout.getId(),fragment);
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
     }
 
 }

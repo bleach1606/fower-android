@@ -45,21 +45,4 @@ public class Notification extends AppCompatActivity {
         );
         lvNotifi.setAdapter(adapter);
     }
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId())
-        {
-            case android.R.id.home:
-                finish();
-                return true;
-            case R.id.app_bar_search:
-                //to do: Search
-                return true;
-            case R.id.home_cart_icon:
-                return true;
-            default:break;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 }

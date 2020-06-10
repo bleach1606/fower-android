@@ -196,27 +196,4 @@ public class Activity_ProductDetail extends AppCompatActivity {
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.search_and_cart_icon, menu);
-        return true;
-    }
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId())
-        {
-            case android.R.id.home:
-                finish();
-                return true;
-            case R.id.app_bar_search:
-                //to do: Search
-                return true;
-            case R.id.home_cart_icon:
-                return true;
-            default:break;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
 }

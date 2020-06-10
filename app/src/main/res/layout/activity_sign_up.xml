@@ -10,6 +10,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_margin="16dp"
         android:orientation="vertical">
 
         <ImageView
@@ -40,6 +41,7 @@
                 android:backgroundTint="#70FFFFFF"
                 android:ems="10"
                 android:hint="First Name"
+                android:textColor="@color/colorAccent"
                 android:inputType="textPersonName"
                 android:textColorHint="#70FFFFFF" />
 
@@ -156,16 +158,18 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:backgroundTint="#70FFFFFF"
+                android:buttonTint="@color/colorAccent"
                 android:text="Male"
-                android:textColor="@color/cardview_dark_background" />
+                android:textColor="@color/colorAccent"/>
 
             <RadioButton
                 android:id="@+id/sign_up_sex_female"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:buttonTint="@color/colorAccent"
                 android:text="Female"
-                android:textColor="@color/cardview_dark_background" />
+                android:textColor="@color/colorAccent" />
         </RadioGroup>
 
         <ProgressBar

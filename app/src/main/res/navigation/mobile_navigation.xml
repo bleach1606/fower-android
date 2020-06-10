@@ -32,7 +32,7 @@
     <fragment
         android:id="@+id/nav_my_cart"
         android:name="com.example.myflowerproject.ui.cart.Fragment_Cart"
-        android:label="MyCart"
+        android:label="My Cart"
         tools:layout="@layout/fragment__cart"></fragment>
 
     <fragment
@@ -52,5 +52,10 @@
         android:name="com.example.myflowerproject.ui.notification.Fragment_Notification"
         android:label="Notification"
         tools:layout="@layout/fragment__notification"></fragment>
+    <fragment
+        android:id="@+id/fragment_Search"
+        android:name="com.example.myflowerproject.Fragment_Search"
+        android:label="Search"
+        tools:layout="@layout/fragment__search" />
 
 </navigation>

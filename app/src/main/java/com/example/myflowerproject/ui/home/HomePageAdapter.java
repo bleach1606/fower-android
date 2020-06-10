@@ -222,13 +222,13 @@ public class HomePageAdapter extends RecyclerView.Adapter {
 
         public GridProductViewHolder(@NonNull View itemView) {
             super(itemView);
-            bouquetGridLayoutTitle = itemView.findViewById(R.id.bouquet_grid_layout_tittle);
+//            bouquetGridLayoutTitle = itemView.findViewById(R.id.bouquet_grid_layout_tittle);
             bouquetGridLayoutGridView = itemView.findViewById(R.id.bouquet_grid_layout_grid_view);
             bouquetGridLayoutGridView.smoothScrollBy(1, 1);
         }
 
         private void setGridProductLayout(List<FlowerProducts> flowerProductsList, String title, final int typeProduct){
-            bouquetGridLayoutTitle.setText(title);
+//            bouquetGridLayoutTitle.setText(title);
             BouquetGridLayoutAdapter bouquetGridLayoutAdapter = new BouquetGridLayoutAdapter(flowerProductsList);
             bouquetGridLayoutGridView.setAdapter(bouquetGridLayoutAdapter);
             bouquetGridLayoutAdapter.notifyDataSetChanged();
