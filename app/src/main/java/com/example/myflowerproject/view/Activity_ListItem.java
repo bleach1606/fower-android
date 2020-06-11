@@ -21,10 +21,6 @@ import java.util.List;
 
 public class Activity_ListItem extends AppCompatActivity {
 
-    private Users user;
-    private TextView txtNameUser;
-    private TextView txtEmailUser;
-
     private GridView itemGridLayoutGridView;
 
     private List<FlowerProducts> listItem = new ArrayList<>();
@@ -57,5 +53,11 @@ public class Activity_ListItem extends AppCompatActivity {
                 break;
             }
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        finish();
+        return true;
     }
 }

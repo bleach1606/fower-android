@@ -10,12 +10,14 @@ public class Container extends Application {
     public static Users users;
     public static List<Category> listCategory;
     public static OrderBill orderBill;
+    public static List<FlowerProducts> flowerProductsList;
 
     @Override
     public void onCreate() {
         super.onCreate();
         users = new Users();
         listCategory = new ArrayList<Category>();
+        flowerProductsList = new ArrayList<>();
     }
 
     static public FlowerProducts getProductsById(int id){

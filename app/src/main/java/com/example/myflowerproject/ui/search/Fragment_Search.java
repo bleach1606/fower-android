@@ -1,4 +1,4 @@
-package com.example.myflowerproject;
+package com.example.myflowerproject.ui.search;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,13 +9,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
-import com.example.myflowerproject.model.adapter.NotificationAdapter;
-import com.example.myflowerproject.model.entity.NotificationModel;
-import com.example.myflowerproject.view.Notification;
+import com.example.myflowerproject.Container;
+import com.example.myflowerproject.R;
+import com.example.myflowerproject.model.entity.FlowerProducts;
+import com.example.myflowerproject.ui.notification.NotificationAdapter;
+import com.example.myflowerproject.ui.notification.NotificationModel;
 import com.example.myflowerproject.view.activity_productdetail.Activity_ProductDetail;
 
 import java.util.ArrayList;
@@ -25,6 +25,7 @@ public class Fragment_Search extends Fragment {
     private ArrayList<NotificationModel> al;
 
     public Fragment_Search() {
+
     }
 
     @Override
@@ -32,11 +33,15 @@ public class Fragment_Search extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment__search, container, false);
-        al = new ArrayList<NotificationModel>();
-        al.add(new NotificationModel("Product Name","Color",R.mipmap.doc_hong_bk33));
-        al.add(new NotificationModel("Product Name","Color",R.mipmap.doc_hong_bk33));
-        al.add(new NotificationModel("Product Name","Color",R.mipmap.doc_hong_bk33));
-        al.add(new NotificationModel("Product Name","Color",R.mipmap.doc_hong_bk33));
+        al = new ArrayList<>();
+        for ( FlowerProducts sp: Container.flowerProductsList) {
+            al.add(new NotificationModel(sp.getName(),String.valueOf(sp.getPrice()), Integer.parseInt(sp.getAvatar())));
+        }
+
+//        al.add(new NotificationModel("Product Name","Color",R.mipmap.doc_hong_bk33));
+//        al.add(new NotificationModel("Product Name","Color",R.mipmap.doc_hong_bk33));
+//        al.add(new NotificationModel("Product Name","Color",R.mipmap.doc_hong_bk33));
+//        al.add(new NotificationModel("Product Name","Color",R.mipmap.doc_hong_bk33));
         NotificationAdapter adapter = new NotificationAdapter(getContext(), R.layout.lines_notification, al);
         ListView listItemSearch = (ListView) view.findViewById(R.id.listItemSearch);
         listItemSearch.setAdapter(adapter);

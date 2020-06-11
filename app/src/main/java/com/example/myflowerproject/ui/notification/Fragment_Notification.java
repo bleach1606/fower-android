@@ -1,22 +1,16 @@
 package com.example.myflowerproject.ui.notification;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
 import com.example.myflowerproject.R;
-import com.example.myflowerproject.model.adapter.NotificationAdapter;
-import com.example.myflowerproject.model.entity.NotificationModel;
-import com.example.myflowerproject.view.Activity_Home;
-import com.example.myflowerproject.view.Notification;
 
 import java.util.ArrayList;
 

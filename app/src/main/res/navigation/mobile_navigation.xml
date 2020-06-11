@@ -54,7 +54,7 @@
         tools:layout="@layout/fragment__notification"></fragment>
     <fragment
         android:id="@+id/fragment_Search"
-        android:name="com.example.myflowerproject.Fragment_Search"
+        android:name="com.example.myflowerproject.ui.search.Fragment_Search"
         android:label="Search"
         tools:layout="@layout/fragment__search" />
 

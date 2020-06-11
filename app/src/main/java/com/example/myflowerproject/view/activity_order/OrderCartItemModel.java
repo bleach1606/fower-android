@@ -1,4 +1,4 @@
-package com.example.myflowerproject.model.entity;
+package com.example.myflowerproject.view.activity_order;
 
 public class OrderCartItemModel {
 

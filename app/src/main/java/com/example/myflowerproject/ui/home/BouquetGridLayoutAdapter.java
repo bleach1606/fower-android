@@ -35,23 +35,37 @@ public class BouquetGridLayoutAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int position) {
-        return flowerProductsList.get(position).getId();
+        return position;
+    }
+
+    private class ViewHoder {
+        ImageView imageView;
+        TextView productName;
+        TextView productPrice;
     }
 
     @Override
     public View getView(int position, View convertView, final ViewGroup parent) {
         View view;
-        if(convertView == null){
-            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.preview_item_layout,null);
-            ImageView productImage = view.findViewById(R.id.product_image);
-            TextView productName = view.findViewById(R.id.preview_item_name);
-            TextView productPrice = view.findViewById(R.id.preview_item_price);
+        ViewHoder hoder;
+        if(convertView == null || convertView.getTag() == null ){
+            convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.preview_item_layout,null);
+            hoder = new ViewHoder();
+            hoder.imageView = convertView.findViewById(R.id.product_image);
+            hoder.productName = convertView.findViewById(R.id.preview_item_name);
+            hoder.productPrice = convertView.findViewById(R.id.preview_item_price);
 
-            new GetImage(productImage).execute(""+flowerProductsList.get(position).getAvatar());
-            productName.setText(flowerProductsList.get(position).getName());
-            productPrice.setText(""+flowerProductsList.get(position).getPrice());
+//            ImageView productImage = view.findViewById(R.id.product_image);
+//            TextView productName = view.findViewById(R.id.preview_item_name);
+//            TextView productPrice = view.findViewById(R.id.preview_item_price);
 
-            view.setOnClickListener(new View.OnClickListener() {
+//            new GetImage(productImage).execute(""+flowerProductsList.get(position).getAvatar());
+//            productName.setText(flowerProductsList.get(position).getName());
+//            productPrice.setText(""+flowerProductsList.get(position).getPrice());
+
+
+
+            convertView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(parent.getContext(), Activity_ProductDetail.class);
@@ -61,8 +75,14 @@ public class BouquetGridLayoutAdapter extends BaseAdapter {
             });
         }
         else {
-            view = convertView;
+//            view = convertView;
+            hoder = (ViewHoder) convertView.getTag();
         }
-        return view;
+
+        new GetImage(hoder.imageView).execute(""+flowerProductsList.get(position).getAvatar());
+        hoder.productName.setText(flowerProductsList.get(position).getName());
+        hoder.productPrice.setText(""+flowerProductsList.get(position).getPrice());
+
+        return convertView;
     }
 }

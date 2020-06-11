@@ -1,4 +1,4 @@
-package com.example.myflowerproject.model.adapter;
+package com.example.myflowerproject.ui.notification;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,8 +8,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.myflowerproject.model.entity.NotificationModel;
 import com.example.myflowerproject.R;
+import com.example.myflowerproject.model.api.GetImage;
 
 import java.util.List;
 
@@ -48,7 +48,8 @@ public class NotificationAdapter extends BaseAdapter {
         TextView txtNotification = convertView.findViewById(R.id.txtNotification);
         txtNotification.setText(arrayNotification.get(position).notifications);
         ImageView imgFlower = convertView.findViewById(R.id.imgFlower);
-        imgFlower.setImageResource(arrayNotification.get(position).image);
+//        imgFlower.setImageResource(arrayNotification.get(position).image);
+        new GetImage(imgFlower).execute(""+arrayNotification.get(position).getImage());
         return convertView;
     }
 }

@@ -29,13 +29,7 @@
             android:name="com.google.firebase.messaging.default_notification_channel_id"
             android:value="@string/default_notification_channel_id" />
 
-        <activity android:name=".view.Activity_Order" />
-        <activity
-            android:name=".view.Notification"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".view.MyAccount"
-            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".view.activity_order.Activity_Order" />
         <activity
             android:name=".view.ChangePassword"
             android:theme="@style/AppTheme.NoActionBar" />

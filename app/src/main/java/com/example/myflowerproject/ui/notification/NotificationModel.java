@@ -1,4 +1,4 @@
-package com.example.myflowerproject.model.entity;
+package com.example.myflowerproject.ui.notification;
 
 public class NotificationModel {
     public String status;

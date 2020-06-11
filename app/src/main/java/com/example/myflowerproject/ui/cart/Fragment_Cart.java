@@ -15,7 +15,7 @@ import android.widget.Button;
 import com.example.myflowerproject.Container;
 import com.example.myflowerproject.R;
 import com.example.myflowerproject.model.entity.CartDetail;
-import com.example.myflowerproject.view.Activity_Order;
+import com.example.myflowerproject.view.activity_order.Activity_Order;
 
 import java.util.ArrayList;
 import java.util.List;

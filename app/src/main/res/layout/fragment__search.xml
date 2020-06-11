@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorAccent"
-    tools:context=".Fragment_Search">
+    tools:context=".ui.search.Fragment_Search">
 
     <ListView
         android:id="@+id/listItemSearch"

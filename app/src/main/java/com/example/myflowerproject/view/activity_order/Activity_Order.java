@@ -1,19 +1,15 @@
-package com.example.myflowerproject.view;
+package com.example.myflowerproject.view.activity_order;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.example.myflowerproject.R;
-import com.example.myflowerproject.model.adapter.OrderCartItemAdapter;
-import com.example.myflowerproject.model.entity.OrderCartItemModel;
 import com.example.myflowerproject.model.entity.Users;
 
 import java.util.ArrayList;
@@ -53,4 +49,11 @@ public class Activity_Order extends AppCompatActivity {
         orderCartRecyclerView.setAdapter(orderCartItemAdapter);
         orderCartItemAdapter.notifyDataSetChanged();
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        finish();
+        return true;
+    }
+
 }
