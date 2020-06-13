@@ -3,7 +3,7 @@ package com.example.myflowerproject.model.api;
 public class ApiUtils {
     private ApiUtils() {}
 
-    public static final String BASE_URL = "http://192.168.43.32:8080/";
+    public static final String BASE_URL = "http://192.168.1.15:8080/";
 
     public static UserAPI getAPIService() {
 

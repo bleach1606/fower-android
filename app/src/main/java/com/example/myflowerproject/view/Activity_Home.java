@@ -17,6 +17,10 @@ import com.google.android.material.navigation.NavigationView;
 
 //import androidx.navigation.NavController;
 //import androidx.navigation.Navigation;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -39,9 +43,9 @@ public class Activity_Home extends AppCompatActivity {
                 R.id.nav_home, R.id.nav_my_cart, R.id.nav_my_order, R.id.nav_notification)
                 .setDrawerLayout(drawer)
                 .build();
-//        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-//        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
-//        NavigationUI.setupWithNavController(navigationView, navController);
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
+        NavigationUI.setupWithNavController(navigationView, navController);
 
     }
 
@@ -52,16 +56,16 @@ public class Activity_Home extends AppCompatActivity {
         ((TextView)findViewById(R.id.tvUsername)).setText(Container.users.getUsername());
         new GetImage(findViewById(R.id.ivAvatar))
                 .execute(Container.users.getPeople().getAvatar());
-        ((Button)findViewById(R.id.btnSignout)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Container.users = null;
-                Container.listCategory = null;
-                Intent intent = new Intent(Activity_Home.this, Activity_SignIn.class);
-                startActivity(intent);
-                finish();
-            }
-        });
+//        ((Button)findViewById(R.id.btnSignout)).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Container.users = null;
+//                Container.listCategory = null;
+//                Intent intent = new Intent(Activity_Home.this, Activity_SignIn.class);
+//                startActivity(intent);
+//                finish();
+//            }
+//        });
         return true;
     }
 
@@ -80,16 +84,19 @@ public class Activity_Home extends AppCompatActivity {
             case android.R.id.home:
                 onBackPressed();
                 return true;
-            case R.id.app_bar_search:
+            case R.id.app_bar_search_icon:
                 ///to do : Search
                 return true;
-            case R.id.home_cart_icon:
+            case R.id.app_bar_cart_icon:
                 return true;
-            case R.id.home_notification_icon:
+            case R.id.app_bar_notification_icon:
                 try {
-                    Intent intent = new Intent(Activity_Home.this,Fragment_Notification.class);
-                    startActivity(intent);
+//                    Intent intent = new Intent(Activity_Home.this, Fragment_Notification.class);
+//                    startActivity(intent);
 
+                    Fragment fragment = new Fragment_Notification();
+                    FragmentManager fragmentManager = getSupportFragmentManager();
+                    fragmentManager.beginTransaction().replace(R.id.constraintLayout, fragment).commit();
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }

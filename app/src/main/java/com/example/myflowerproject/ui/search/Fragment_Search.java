@@ -35,7 +35,7 @@ public class Fragment_Search extends Fragment {
         View view = inflater.inflate(R.layout.fragment__search, container, false);
         al = new ArrayList<>();
         for ( FlowerProducts sp: Container.flowerProductsList) {
-            al.add(new NotificationModel(sp.getName(),String.valueOf(sp.getPrice()), Integer.parseInt(sp.getAvatar())));
+//            al.add(new NotificationModel(sp.getName(),String.valueOf(sp.getPrice()), Integer.parseInt(sp.getAvatar())));
         }
 
 //        al.add(new NotificationModel("Product Name","Color",R.mipmap.doc_hong_bk33));
