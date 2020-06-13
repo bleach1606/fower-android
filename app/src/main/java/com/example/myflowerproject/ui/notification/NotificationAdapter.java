@@ -9,7 +9,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.myflowerproject.R;
-import com.example.myflowerproject.model.api.GetImage;
 
 import java.util.List;
 
@@ -48,8 +47,31 @@ public class NotificationAdapter extends BaseAdapter {
         TextView txtNotification = convertView.findViewById(R.id.txtNotification);
         txtNotification.setText(arrayNotification.get(position).notifications);
         ImageView imgFlower = convertView.findViewById(R.id.imgFlower);
-//        imgFlower.setImageResource(arrayNotification.get(position).image);
-        new GetImage(imgFlower).execute(""+arrayNotification.get(position).getImage());
+        imgFlower.setImageResource(arrayNotification.get(position).image);
+        TextView txtHour = convertView.findViewById(R.id.txtHour);
+        txtHour.setText(arrayNotification.get(position).hour);
+        TextView txtDay = convertView.findViewById(R.id.txtDay);
+        txtDay.setText(arrayNotification.get(position).day);
+
+
+
+
         return convertView;
     }
+//    public class ViewHolder extends RecyclerView.ViewHolder{
+//        ConstraintLayout cons1;
+//        public ViewHolder(@NonNull View itemView) {
+//            super(itemView);
+//
+//            cons1 = itemView.findViewById(R.id.cons1);
+//            itemView.setOnClickListener(new View.OnClickListener() {
+//                @SuppressLint("ResourceAsColor")
+//                @Override
+//                public void onClick(View v) {
+//                    cons1.setBackgroundColor(R.color.colorAccent);
+//                }
+//            });
+//
+//        }
+//    }
 }

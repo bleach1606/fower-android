@@ -56,4 +56,5 @@ dependencies {
     implementation 'com.google.firebase:firebase-messaging:20.2.0'
     implementation 'android.arch.work:work-runtime:1.0.1'
     implementation 'de.hdodenhof:circleimageview:2.1.0'
+    implementation 'androidx.navigation:navigation-runtime:2.2.2'
 }

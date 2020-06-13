@@ -2,8 +2,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cons1"
     android:layout_width="match_parent"
-    android:layout_height="200dp">
+    android:layout_height="200dp"
+    android:background="?attr/colorButtonNormal">
 
     <ImageView
         android:id="@+id/imgFlower"
@@ -14,13 +16,13 @@
         app:layout_constraintHorizontal_bias="0.003"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.3"
+        app:layout_constraintVertical_bias="0.38"
         app:srcCompat="@mipmap/doc_do_bk32" />
 
     <TextView
         android:id="@+id/txtTrangThai"
         android:layout_width="265dp"
-        android:layout_height="33dp"
+        android:layout_height="30dp"
         android:layout_marginTop="24dp"
         android:text="Đã Giao Hàng"
         android:textColor="#777777"
@@ -33,7 +35,7 @@
     <TextView
         android:id="@+id/txtNotification"
         android:layout_width="265dp"
-        android:layout_height="95dp"
+        android:layout_height="82dp"
         android:layout_marginTop="2dp"
         android:text="Đơn hàng của bạn đã được hoàn thành. Hãy đánh giá sản phẩm để nhận 100 xu và giúp người dùng hiểu hơn về chất lượng sản phẩm nhé!"
         android:textSize="15sp"
@@ -41,4 +43,40 @@
         app:layout_constraintHorizontal_bias="0.232"
         app:layout_constraintStart_toEndOf="@+id/imgFlower"
         app:layout_constraintTop_toBottomOf="@+id/txtTrangThai" />
+
+    <ImageView
+        android:id="@+id/imgClock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="112dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginEnd="275dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtNotification"
+        app:srcCompat="@drawable/ic_access_time_black_24dp" />
+
+    <TextView
+        android:id="@+id/txtHour"
+        android:layout_width="50dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginEnd="208dp"
+        android:text="16:54"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imgClock"
+        app:layout_constraintTop_toBottomOf="@+id/txtNotification" />
+
+    <TextView
+        android:id="@+id/txtDay"
+        android:layout_width="90dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginEnd="132dp"
+        android:text="31-05-2020"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/txtHour"
+        app:layout_constraintTop_toBottomOf="@+id/txtNotification" />
 </androidx.constraintlayout.widget.ConstraintLayout>

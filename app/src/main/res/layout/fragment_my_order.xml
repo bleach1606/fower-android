@@ -4,31 +4,39 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.notification.Fragment_Notification">
+    tools:context=".ui.status.MyOrderFragment">
+
 <!--    <androidx.appcompat.widget.Toolbar-->
-<!--        android:id="@+id/toolbar3"-->
+<!--        android:id="@+id/toolbarOrder"-->
 <!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="54dp"-->
+<!--        android:layout_height="wrap_content"-->
 <!--        android:background="?attr/colorPrimary"-->
 <!--        android:minHeight="?attr/actionBarSize"-->
 <!--        android:theme="?attr/actionBarTheme"-->
 <!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
 <!--        app:layout_constraintTop_toTopOf="parent"-->
 <!--        app:navigationIcon="@drawable/ic_keyboard_backspace_black_24dp"-->
-<!--        app:title="Notification"-->
+<!--        app:title="My Order"-->
 <!--        app:titleTextColor="@color/colorAccent" />-->
 
-    <LinearLayout
-        android:layout_width="411dp"
-        android:layout_height="607dp"
-        android:orientation="vertical"
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar3">
+        app:layout_constraintTop_toBottomOf="@+id/toolbarOrder"
+        app:tabBackground="@color/colorPrimaryDark">
 
-        <ListView
-            android:id="@+id/lvNotifi"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </LinearLayout>
+
+    </com.google.android.material.tabs.TabLayout>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPager_order"
+        android:layout_width="406dp"
+        android:layout_height="553dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tabLayout" />
 </FrameLayout>
