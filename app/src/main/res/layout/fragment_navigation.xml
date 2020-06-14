@@ -4,11 +4,11 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/colorAccent"
-    tools:context=".view.HomeActivity"
+    tools:context=".view.Activity_Home"
     android:id="@+id/minhthiminhde"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <include layout="@layout/nav_header_home"
+    <include layout="@layout/nav_header_main2"
         android:id="@+id/nav_header"
         />
 

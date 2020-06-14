@@ -5,6 +5,4 @@
     <color name="colorAccent">#FFFFFF</color>
     <color name="btnPink">#FFCCCC</color>
     <color name="starGrey">#D6D6D6</color>
-    <color name="notMarkSeen">#FAEDED</color>
-    <color name="markSeen">#FBCCCC</color>
 </resources>

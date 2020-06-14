@@ -2,6 +2,7 @@ package com.example.myflowerproject.ui.notification;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,9 +67,9 @@ public class NotificationAdapter extends BaseAdapter {
         holder.txtDate.setText(String.valueOf(list.get(position).getDate()));
         holder.txtNotification.setText(list.get(position).getContent());
         if (list.get(position).getCheck()) {
-            view.setBackgroundColor(R.color.markSeen);
+            view.setBackgroundColor(Color.parseColor("#FFFFFF"));
         } else {
-            view.setBackgroundColor(R.color.notMarkSeen);
+            view.setBackgroundColor(Color.parseColor("#FFCCCC"));
         }
         new GetImage(holder.imgFlower).execute(""+list.get(position).getImage());;
         return view;

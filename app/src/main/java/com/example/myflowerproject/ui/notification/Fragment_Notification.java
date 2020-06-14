@@ -1,6 +1,7 @@
 package com.example.myflowerproject.ui.notification;
 
 import android.annotation.SuppressLint;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -37,24 +38,15 @@ public class Fragment_Notification extends Fragment {
         View view = inflater.inflate(R.layout.fragment__notification, container, false);
         lvNotifi = view.findViewById(R.id.lvNotifi);
         notificationList = new ArrayList<>();
-        Notification notification = new Notification();
-        notification.setId(1);
-        notification.setCheck(true);
-        notification.setContent("nkt");
-        notification.setDate(new Date());
-        notification.setImage(1);
-        notification.setTitle("nkt");
-        notificationList.add(notification);
-        notificationList.add(notification);
-        notificationList.add(notification);
         lvNotifi.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @SuppressLint("ResourceAsColor")
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                view.setBackgroundColor(R.color.markSeen);
-                adapter.notifyDataSetChanged();
-                if (!notificationList.get(position).getCheck()) seenNotification(notificationList.get(position).getId());
-                notificationList.get(position).setCheck(true);
+                view.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                if (!notificationList.get(position).getCheck()){
+                    seenNotification(notificationList.get(position).getId());
+                    notificationList.get(position).setCheck(true);
+                }
             }
         });
 
@@ -69,14 +61,6 @@ public class Fragment_Notification extends Fragment {
             public void onResponse(Call<NotificationResult> call, Response<NotificationResult> response) {
                 if (response.isSuccessful()) {
                     notificationList = response.body().getList();
-                    Notification notification = new Notification();
-                    notification.setCheck(false);
-                    notification.setContent("nkt");
-                    notification.setDate(new Date());
-                    notification.setImage(1);
-                    notification.setTitle("nkt");
-                    notificationList.add(notification);
-                    notificationList.add(notification);
                     adapter = new NotificationAdapter(getContext(), R.layout.lines_notification, notificationList);
                     lvNotifi.setAdapter(adapter);
                 }
