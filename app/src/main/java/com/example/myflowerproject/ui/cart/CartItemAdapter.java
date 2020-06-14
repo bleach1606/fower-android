@@ -129,6 +129,7 @@ public class CartItemAdapter extends RecyclerView.Adapter {
                     setTotal();
                     String ans = Integer.toString(quantity[0]);
                     productQuantity.setText(ans);
+                    cartItemModelList.get(position).getCd().setNumber(quantity[0]);
                     double sum = price * quantity[0];
                     double exSum = exPrice * quantity[0];
                     productPrice.setText("VND " + (int)sum);
@@ -148,6 +149,7 @@ public class CartItemAdapter extends RecyclerView.Adapter {
                     productQuantity.setText(ans);
                     double sum = price * quantity[0];
                     double exSum = exPrice * quantity[0];
+                    cartItemModelList.get(position).getCd().setNumber(quantity[0]);
                     productPrice.setText("VND " + (int)sum);
                     productExPrice.setText("VND " + (int)exSum);
                 }

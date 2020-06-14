@@ -151,6 +151,7 @@ public class Activity_Order extends AppCompatActivity {
         });
 
         tvTotalBill.setText(total[0] + " VND");
+        tvShippingFee.setText(STANDARD_DELIVERY + " VND");
 
         btnOrderConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
