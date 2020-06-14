@@ -21,7 +21,40 @@ public class CartDetail {
     @Expose
     private FlowerProducts flowerProduct;
 
-    @SerializedName("orderBillId")
-    @Expose
-    private int orderBillId;
+//    @SerializedName("orderBillId")
+//    @Expose
+//    private int orderBillId;
+
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
+    }
+
+    public FlowerProducts getFlowerProduct() {
+        return flowerProduct;
+    }
+
+    public void setFlowerProduct(FlowerProducts flowerProduct) {
+        this.flowerProduct = flowerProduct;
+    }
 }

@@ -17,6 +17,6 @@
     <string name="msg_token_fmt" translatable="false">InstanceID Token: %s</string>
     <string name="home_second">Home Second</string>
     <string name="default_notification_channel_id" translatable="false">fcm_default_channel</string>
-    <string name="title_activity_home2">Home2Activity</string>
+    <string name="title_activity_main2">MainActivity2</string>
 
 </resources>

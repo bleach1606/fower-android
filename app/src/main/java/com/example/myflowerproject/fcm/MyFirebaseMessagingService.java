@@ -126,6 +126,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             @Override
             public void onResponse(Call<UserResult> call, Response<UserResult> response) {
                 //todo update user
+                System.out.println();
             }
 
             @Override

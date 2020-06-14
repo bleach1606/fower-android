@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@mipmap/home_icon"
+            android:title="@string/menu_home" />
+
+        <item
+            android:id="@+id/nav_my_cart"
+            android:icon="@mipmap/cart_black_icon"
+            android:title="My cart"></item>
+
+        <item
+            android:id="@+id/nav_my_account"
+            android:icon="@mipmap/account_icon"
+            android:title="My Account"></item>
+
+        <item
+            android:id="@+id/nav_my_order"
+            android:icon="@mipmap/order_icon"
+            android:title="My Order"></item>
+
+        <item
+            android:id="@+id/nav_notification"
+            android:icon="?android:attr/actionModeFindDrawable"
+            android:title="Notification"></item>
+
+        <item
+            android:id="@+id/nav_change_password"
+            android:icon="@drawable/ic_vpn_key_black_24dp"
+            android:title="Change Password"></item>
+
+        <item
+            android:id="@+id/nav_sign_out"
+            android:icon="@android:drawable/ic_lock_power_off"
+            android:title="Sign Out"></item>
+
+    </group>
+</menu>

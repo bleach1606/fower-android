@@ -26,6 +26,13 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    sourceSets {
+        main {
+            res {
+                srcDirs 'src/main/res', 'src/main/res/layouts', 'src/main/res/layout_subs/cart', 'src/main/res/layout_cart', 'src/main/res/x/y', 'src/main/res/layout_sub/cart', 'src/main/res/layout_sub/product_detail', 'src/main/res/layout_sub/home'
+            }
+        }
+    }
 
 }
 

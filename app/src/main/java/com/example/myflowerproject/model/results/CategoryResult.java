@@ -1,19 +1,19 @@
 package com.example.myflowerproject.model.results;
 
-import com.example.myflowerproject.model.entity.CategoryModel;
+import com.example.myflowerproject.model.entity.Category;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
 public class CategoryResult extends BaseResult {
     @SerializedName("data")
-    private List<CategoryModel> categoryModelList;
+    private List<Category> categoryList;
 
-    public List<CategoryModel> getCategoryModelList() {
-        return categoryModelList;
+    public List<Category> getCategoryList() {
+        return categoryList;
     }
 
-    public void setCategoryModelList(List<CategoryModel> categoryModelList) {
-        this.categoryModelList = categoryModelList;
+    public void setCategoryList(List<Category> categoryList) {
+        this.categoryList = categoryList;
     }
 }

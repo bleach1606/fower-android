@@ -96,4 +96,9 @@ public class OrderBill {
                 ", cartDetailList=" + cartDetailList +
                 '}';
     }
+
+    public void addCartDetail(CartDetail cd){
+        if(this.cartDetailList==null) this.cartDetailList = new ArrayList<>();
+        this.cartDetailList.add(cd);
+    }
 }

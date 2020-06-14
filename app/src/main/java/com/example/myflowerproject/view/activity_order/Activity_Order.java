@@ -1,0 +1,59 @@
+package com.example.myflowerproject.view.activity_order;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import android.os.Bundle;
+import android.view.MenuItem;
+import android.widget.TextView;
+
+import com.example.myflowerproject.R;
+import com.example.myflowerproject.model.entity.Users;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Activity_Order extends AppCompatActivity {
+    private Users user;
+    private TextView txtNameUser;
+    private TextView txtEmailUser;
+
+    private RecyclerView orderCartRecyclerView;
+    private OrderCartItemAdapter orderCartItemAdapter;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_order);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        orderCartRecyclerView = findViewById(R.id.order_cart_recyclerview);
+        LinearLayoutManager layoutManagerCategory = new LinearLayoutManager(Activity_Order.this);
+        layoutManagerCategory.setOrientation(LinearLayoutManager.HORIZONTAL); //list view ngang
+        orderCartRecyclerView.setLayoutManager(layoutManagerCategory);
+
+        List<OrderCartItemModel> orderCartItemModelList = new ArrayList<OrderCartItemModel>();
+//        orderCartItemModelList.add(new OrderCartItemModel(R.mipmap.doc_do_bk32,1));
+//        orderCartItemModelList.add(new OrderCartItemModel(R.mipmap.doc_hong_bk33,1));
+//        orderCartItemModelList.add(new OrderCartItemModel(R.mipmap.doc_vang_bk4,1));
+//        orderCartItemModelList.add(new OrderCartItemModel(R.mipmap.doc_do_bk32,1));
+//        orderCartItemModelList.add(new OrderCartItemModel(R.mipmap.doc_hong_bk33,1));
+//        orderCartItemModelList.add(new OrderCartItemModel(R.mipmap.doc_vang_bk4,1));
+
+        orderCartItemAdapter = new OrderCartItemAdapter(orderCartItemModelList);
+        orderCartRecyclerView.setAdapter(orderCartItemAdapter);
+        orderCartItemAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        finish();
+        return true;
+    }
+
+}
