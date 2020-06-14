@@ -167,9 +167,13 @@ public class Activity_ProductDetail extends AppCompatActivity {
             public void onClick(View v) {
                 if(Container.orderBill.getCartDetailList() != null)
                     for(CartDetail cd: Container.orderBill.getCartDetailList()){
-                        if(cd.getId()==fp.getId()){
+                        if(cd.getFlowerProduct().getId() == fp.getId()){
                             cd.setNumber(cd.getNumber()
                                     +(Integer.parseInt(editTextProductQuantity.getText().toString())));
+                            Toast.makeText(Activity_ProductDetail.this, "Bạn đã thêm thành công", Toast.LENGTH_SHORT).show();
+
+                            Intent intent = new Intent(Activity_ProductDetail.this, Activity_Home.class);
+                            startActivity(intent);
                             return;
                         }
                     }
