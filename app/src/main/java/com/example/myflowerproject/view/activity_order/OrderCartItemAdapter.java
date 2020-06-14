@@ -10,15 +10,17 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myflowerproject.R;
+import com.example.myflowerproject.model.api.GetImage;
+import com.example.myflowerproject.model.entity.CartDetail;
 
 import java.util.List;
 
 public class OrderCartItemAdapter extends RecyclerView.Adapter<OrderCartItemAdapter.ViewHolder> {
 
-    private List<OrderCartItemModel> orderCartItemModelList;
+    private List<CartDetail> cartDetaillList;
 
-    public OrderCartItemAdapter(List<OrderCartItemModel> orderCartItemModelList) {
-        this.orderCartItemModelList = orderCartItemModelList;
+    public OrderCartItemAdapter(List<CartDetail> cartDetaillList) {
+        this.cartDetaillList = cartDetaillList;
     }
 
     @NonNull
@@ -30,15 +32,15 @@ public class OrderCartItemAdapter extends RecyclerView.Adapter<OrderCartItemAdap
 
     @Override
     public void onBindViewHolder(@NonNull OrderCartItemAdapter.ViewHolder viewHolder, int position) {
-        int image = orderCartItemModelList.get(position).getItemImage();
-        int quantity = orderCartItemModelList.get(position).getItemQuantity();
+        int image = Integer.parseInt(cartDetaillList.get(position).getFlowerProduct().getAvatar());
+        int quantity = cartDetaillList.get(position).getNumber();
         viewHolder.setItemImage(image);
         viewHolder.setItemQuantity(quantity);
     }
 
     @Override
     public int getItemCount() {
-        return orderCartItemModelList.size();
+        return cartDetaillList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -53,11 +55,11 @@ public class OrderCartItemAdapter extends RecyclerView.Adapter<OrderCartItemAdap
         }
 
         private void setItemImage(int resource){
-            orderCartItemImage.setImageResource(resource);
+            new GetImage(orderCartItemImage).execute(""+resource);
         }
 
         private void setItemQuantity(int quantity){
-            String str = "" + quantity;
+            String str = "x" + quantity;
             orderCartItemQuantity.setText(str);
         }
     }

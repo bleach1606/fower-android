@@ -19,6 +19,12 @@ public class Payment {
     @Expose
     private Time timeOfTransaction;
 
+    public Payment(double money, String kind, Boolean active) {
+        this.money = money;
+        this.kind = kind;
+        this.active = active;
+    }
+
     @SerializedName("kind")
     @Expose
     private String kind;

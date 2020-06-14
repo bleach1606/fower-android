@@ -37,6 +37,18 @@ public class OrderBill {
     @Expose
     private Address address;
 
+    @SerializedName("receiverName")
+    @Expose
+    private String receiverName;
+
+    @SerializedName("receiverTel")
+    @Expose
+    private String receiverTel;
+
+    @SerializedName("receiverAddress")
+    @Expose
+    private String receiverAddress;
+
     @SerializedName("cartDetailList")
     @Expose
     private List<CartDetail> cartDetailList;
@@ -122,5 +134,29 @@ public class OrderBill {
     public void addCartDetail(CartDetail cd){
         if(this.cartDetailList==null) this.cartDetailList = new ArrayList<>();
         this.cartDetailList.add(cd);
+    }
+
+    public String getReceiverName() {
+        return receiverName;
+    }
+
+    public void setReceiverName(String receiverName) {
+        this.receiverName = receiverName;
+    }
+
+    public String getReceiverTel() {
+        return receiverTel;
+    }
+
+    public void setReceiverTel(String receiverTel) {
+        this.receiverTel = receiverTel;
+    }
+
+    public String getReceiverAddress() {
+        return receiverAddress;
+    }
+
+    public void setReceiverAddress(String receiverAddress) {
+        this.receiverAddress = receiverAddress;
     }
 }
