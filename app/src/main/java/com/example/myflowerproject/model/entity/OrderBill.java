@@ -25,13 +25,17 @@ public class OrderBill {
     @Expose
     private Date orderDate;
 
-//    private Payment payment;
+    @SerializedName("payment")
+    @Expose
+    private Payment payment;
 
     @SerializedName("users")
     @Expose
     private Users users;
 
-//    private Address address;
+    @SerializedName("address")
+    @Expose
+    private Address address;
 
     @SerializedName("cartDetailList")
     @Expose
@@ -92,9 +96,27 @@ public class OrderBill {
                 ", active=" + active +
                 ", status=" + status +
                 ", orderDate=" + orderDate +
+                ", payment=" + payment +
                 ", users=" + users +
+                ", address=" + address +
                 ", cartDetailList=" + cartDetailList +
                 '}';
+    }
+
+    public Payment getPayment() {
+        return payment;
+    }
+
+    public void setPayment(Payment payment) {
+        this.payment = payment;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     public void addCartDetail(CartDetail cd){
