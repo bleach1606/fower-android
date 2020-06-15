@@ -14,10 +14,10 @@ import retrofit2.http.POST;
 public interface OrderBillAPI {
 
     @GET("/orderbill/get-current-order")
-    Call<OrderBill> getCurrentOrder(@Header("Authorization") String auth);
+    Call<OrderBillResult> getCurrentOrder(@Header("Authorization") String auth);
 
     @GET("/orderbill/get-order-list")
-    Call<OrderBill> getOrderList(@Header("Authorization") String auth);
+    Call<OrderBillResult> getOrderList(@Header("Authorization") String auth);
 
     @POST("/orderbill/update-orderBill")
     Call<OrderBillResult> updateOrderBill(
