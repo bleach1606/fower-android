@@ -13,6 +13,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.myflowerproject.Container;
 import com.example.myflowerproject.R;
 import com.example.myflowerproject.model.api.GetImage;
 import com.example.myflowerproject.ui.cart.CartItemModel;
@@ -157,7 +158,25 @@ public class CartItemAdapter extends RecyclerView.Adapter {
             btnCartRemoveItem.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    cartItemModelList.remove(cartItemModelList.get(position));
+                    int qtt = Container.orderBill.getCartDetailList().get(position).getNumber();
+                    System.out.println("SỐ LƯỢNG: " + qtt);
+                    totalPrice -= Container.orderBill.getCartDetailList().get(position).getFlowerProduct().getPrice() * qtt;
+                    System.out.println("SỐ LƯỢNG TỔNG: " + totalItems);
+                    totalItems -= qtt;
+                    System.out.println("SỐ LƯỢNG TỔNG: " + totalItems);
+                    totalAmount = totalPrice;
+                    cartTotalPrice.setText("VND " + (int)totalPrice);
+                    cartTotalAmount.setText("VND " + (int)totalAmount);
+                    if(totalItems > 1) {
+                        cartTotalPriceTitle.setText("Price (" + totalItems + " items)");
+                    }
+                    else {
+                        cartTotalPriceTitle.setText("Price (" + totalItems + " item)");
+                    }
+//                    cartItemModelList.remove(cartItemModelList.get(position));
+                    CartItemModel cartItemModel = cartItemModelList.get(position);
+                    cartItemModelList.remove(position);
+                    Container.orderBill.getCartDetailList().remove(position);
                 }
             });
         }
