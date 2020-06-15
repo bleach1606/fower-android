@@ -2,6 +2,7 @@ package com.example.myflowerproject.model.api;
 
 import com.example.myflowerproject.model.entity.OrderBill;
 import com.example.myflowerproject.model.entity.Users;
+import com.example.myflowerproject.model.results.OrderBillResult;
 import com.example.myflowerproject.model.results.UserLoginResult;
 
 import retrofit2.Call;
@@ -18,6 +19,10 @@ public interface OrderBillAPI {
     @GET("/orderbill/get-order-list")
     Call<OrderBill> getOrderList(@Header("Authorization") String auth);
 
-    @POST("/category/create")
-    Call<OrderBill> createOrderBill(@Header("Authorization") String auth);
+    @POST("/orderbill/update-orderBill")
+    Call<OrderBillResult> updateOrderBill(
+            @Header("Authorization") String auth,
+            @Body OrderBill orderBill
+    );
+
 }

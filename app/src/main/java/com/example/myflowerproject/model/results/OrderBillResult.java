@@ -1,17 +1,18 @@
 package com.example.myflowerproject.model.results;
 
+import com.example.myflowerproject.model.entity.OrderBill;
 import com.example.myflowerproject.model.entity.Users;
 import com.google.gson.annotations.SerializedName;
 
 public class OrderBillResult {
     @SerializedName("data")
-    private Users users;
+    private OrderBill orderBill;
 
-    public Users getUsers() {
-        return users;
+    public OrderBill getOrderBill() {
+        return orderBill;
     }
 
-    public void setUsers(Users users) {
-        this.users = users;
+    public void setOrderBill(OrderBill orderBill) {
+        this.orderBill = orderBill;
     }
 }

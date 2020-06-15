@@ -77,14 +77,6 @@ public class OrderBill {
         this.status = status;
     }
 
-    public Date getOrderDate() {
-        return orderDate;
-    }
-
-    public void setOrderDate(Date orderDate) {
-        this.orderDate = orderDate;
-    }
-
     public Users getUsers() {
         return users;
     }

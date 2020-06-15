@@ -17,13 +17,22 @@ import android.widget.Toast;
 
 import com.example.myflowerproject.Container;
 import com.example.myflowerproject.R;
+import com.example.myflowerproject.constant.Constant;
+import com.example.myflowerproject.model.api.ApiUtils;
 import com.example.myflowerproject.model.entity.CartDetail;
+import com.example.myflowerproject.model.entity.OrderBill;
 import com.example.myflowerproject.model.entity.Payment;
 import com.example.myflowerproject.model.entity.Users;
+import com.example.myflowerproject.model.results.OrderBillResult;
 import com.example.myflowerproject.view.Activity_Home;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class Activity_Order extends AppCompatActivity {
     private Users user;
@@ -160,7 +169,11 @@ public class Activity_Order extends AppCompatActivity {
                 Container.orderBill.setReceiverAddress(edtAddress.getText().toString());
                 Container.orderBill.setReceiverName(edtFullName.getText().toString());
                 Container.orderBill.setReceiverTel(edtTel.getText().toString());
-
+                Container.orderBill.setStatus(Constant.OrderStatus.WAIT.getId());
+                Container.orderBill.setActive(true);
+                Container.orderBill.setUsers(Container.users);
+                Container.orderBill.setId(0);
+                sendPayMent();
                 Toast.makeText(Activity_Order.this,"Bạn đã đặt hàng thành công",Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(Activity_Order.this, Activity_Home.class);
                 startActivity(intent);
@@ -175,4 +188,24 @@ public class Activity_Order extends AppCompatActivity {
         return true;
     }
 
+    public void sendPayMent() {
+        (ApiUtils.getOrderBillAPI()).updateOrderBill(Container.users.getToken(), Container.orderBill).enqueue(new Callback<OrderBillResult>() {
+            @Override
+            public void onResponse(Call<OrderBillResult> call, Response<OrderBillResult> response) {
+                System.out.println(Container.users.toString());
+                System.out.println(Container.orderBill.toString());
+                if (response.isSuccessful()) {
+                    Container.orderBill = new OrderBill();
+                } else {
+                    Toast.makeText(Activity_Order.this, "Đặt hàng thất bại, vui lòng thử lại sau", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<OrderBillResult> call, Throwable t) {
+
+            }
+        });
+    }
 }
