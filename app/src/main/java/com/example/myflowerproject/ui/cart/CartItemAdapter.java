@@ -15,10 +15,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myflowerproject.Container;
 import com.example.myflowerproject.R;
+import com.example.myflowerproject.model.api.ApiUtils;
 import com.example.myflowerproject.model.api.GetImage;
+import com.example.myflowerproject.model.results.OrderBillResult;
 import com.example.myflowerproject.ui.cart.CartItemModel;
 
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class CartItemAdapter extends RecyclerView.Adapter {
 
@@ -115,7 +121,7 @@ public class CartItemAdapter extends RecyclerView.Adapter {
             productName.setText(name);
             productPrice.setText("VND " + (int)price);
             productExPrice.setText("VND " + (int)exPrice);
-;
+
             productQuantity.setText(""+cartItemModelList.get(position).getCd().getNumber());
             String str = productQuantity.getText().toString();
             final int[] quantity = {Integer.parseInt(str)};
@@ -135,6 +141,7 @@ public class CartItemAdapter extends RecyclerView.Adapter {
                     double exSum = exPrice * quantity[0];
                     productPrice.setText("VND " + (int)sum);
                     productExPrice.setText("VND " + (int)exSum);
+                    updateCart();
                 }
             });
             btnSubProductQuantity.setOnClickListener(new View.OnClickListener() {
@@ -153,6 +160,7 @@ public class CartItemAdapter extends RecyclerView.Adapter {
                     cartItemModelList.get(position).getCd().setNumber(quantity[0]);
                     productPrice.setText("VND " + (int)sum);
                     productExPrice.setText("VND " + (int)exSum);
+                    updateCart();
                 }
             });
             btnCartRemoveItem.setOnClickListener(new View.OnClickListener() {
@@ -177,6 +185,7 @@ public class CartItemAdapter extends RecyclerView.Adapter {
                     CartItemModel cartItemModel = cartItemModelList.get(position);
                     cartItemModelList.remove(position);
                     Container.orderBill.getCartDetailList().remove(position);
+                    updateCart();
                 }
             });
         }
@@ -238,4 +247,22 @@ public class CartItemAdapter extends RecyclerView.Adapter {
             cartTotalPriceTitle.setText("Price (" + totalItems + " item)");
         }
     }
+
+    public void updateCart() {
+        (ApiUtils.getOrderBillAPI()).updateOrderBill(Container.users.getToken(), Container.orderBill).enqueue(new Callback<OrderBillResult>() {
+            @Override
+            public void onResponse(Call<OrderBillResult> call, Response<OrderBillResult> response) {
+                if (response.isSuccessful()) {
+                } else {
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<OrderBillResult> call, Throwable t) {
+
+            }
+        });
+    }
+
 }

@@ -174,9 +174,8 @@ public class Activity_Order extends AppCompatActivity {
 //                Container.orderBill.setUsers(Container.users);
                 Container.orderBill.setId(0);
                 sendPayMent();
-                Toast.makeText(Activity_Order.this,"Bạn đã đặt hàng thành công",Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(Activity_Order.this, Activity_Home.class);
-                startActivity(intent);
+
+
             }
         });
 
@@ -196,8 +195,11 @@ public class Activity_Order extends AppCompatActivity {
                 System.out.println(Container.orderBill.toString());
                 if (response.isSuccessful()) {
                     Container.orderBill = new OrderBill();
+                    Toast.makeText(Activity_Order.this,"Bạn đã đặt hàng thành công",Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(Activity_Order.this, Activity_Home.class);
+                    startActivity(intent);
                 } else {
-//                    Toast.makeText(Activity_Order.this, "Đặt hàng thất bại, vui lòng thử lại sau", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Activity_Order.this, "Đặt hàng thất bại, vui lòng thử lại sau", Toast.LENGTH_SHORT).show();
                 }
 
             }

@@ -21,11 +21,19 @@ import android.widget.Toast;
 
 import com.example.myflowerproject.Container;
 import com.example.myflowerproject.R;
+import com.example.myflowerproject.model.api.ApiUtils;
 import com.example.myflowerproject.model.api.GetImage;
 import com.example.myflowerproject.model.entity.CartDetail;
+import com.example.myflowerproject.model.entity.OrderBill;
+import com.example.myflowerproject.model.results.OrderBillResult;
 import com.example.myflowerproject.view.Activity_Home;
+import com.example.myflowerproject.view.activity_order.Activity_Order;
 import com.google.android.material.tabs.TabLayout;
 import com.example.myflowerproject.model.entity.FlowerProducts;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class Activity_ProductDetail extends AppCompatActivity {
 
@@ -171,7 +179,7 @@ public class Activity_ProductDetail extends AppCompatActivity {
                             cd.setNumber(cd.getNumber()
                                     +(Integer.parseInt(editTextProductQuantity.getText().toString())));
                             Toast.makeText(Activity_ProductDetail.this, "Bạn đã thêm thành công", Toast.LENGTH_SHORT).show();
-
+                            updateCart();
                             Intent intent = new Intent(Activity_ProductDetail.this, Activity_Home.class);
                             startActivity(intent);
                             return;
@@ -182,10 +190,10 @@ public class Activity_ProductDetail extends AppCompatActivity {
                 addCartDetail.setFlowerProduct(fp);
                 Container.orderBill.addCartDetail(addCartDetail);
                 Toast.makeText(Activity_ProductDetail.this, "Bạn đã thêm thành công", Toast.LENGTH_SHORT).show();
-
+                updateCart();
                 Intent intent = new Intent(Activity_ProductDetail.this, Activity_Home.class);
                 startActivity(intent);
-                // TODO back to home
+
             }
         });
     }
@@ -204,6 +212,23 @@ public class Activity_ProductDetail extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         finish();
         return true;
+    }
+
+    public void updateCart() {
+        (ApiUtils.getOrderBillAPI()).updateOrderBill(Container.users.getToken(), Container.orderBill).enqueue(new Callback<OrderBillResult>() {
+            @Override
+            public void onResponse(Call<OrderBillResult> call, Response<OrderBillResult> response) {
+                if (response.isSuccessful()) {
+                } else {
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<OrderBillResult> call, Throwable t) {
+
+            }
+        });
     }
 
 }

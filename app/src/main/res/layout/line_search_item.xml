@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/colorAccent"
+    android:layout_width="match_parent"
+    android:layout_height="200dp">
+
+    <ImageView
+        android:id="@+id/imgFlower"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.003"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.3"
+        app:srcCompat="@mipmap/doc_do_bk32" />
+
+    <TextView
+        android:textStyle="bold"
+        android:id="@+id/txtTrangThai"
+        android:layout_width="265dp"
+        android:layout_height="33dp"
+        android:layout_marginTop="24dp"
+        android:text="Đã Giao Hàng"
+        android:textColor="#777777"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.244"
+        app:layout_constraintStart_toEndOf="@+id/imgFlower"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtNotification"
+        android:layout_width="272dp"
+        android:layout_height="83dp"
+        android:layout_marginTop="2dp"
+        android:text="Đơn hàng của bạn đã được hoàn thành. Hãy đánh giá sản phẩm để nhận 100 xu và giúp người dùng hiểu hơn về chất lượng sản phẩm nhé!"
+        android:textSize="15sp"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.232"
+        app:layout_constraintStart_toEndOf="@+id/imgFlower"
+        app:layout_constraintTop_toBottomOf="@+id/txtTrangThai" />
+
+    <TextView
+        android:id="@+id/txtDate"
+        android:layout_width="181dp"
+        android:layout_height="21dp"
+        android:text=""
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.873"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.837" />
+</androidx.constraintlayout.widget.ConstraintLayout>

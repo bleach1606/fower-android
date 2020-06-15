@@ -37,15 +37,15 @@ public class Fragment_Search extends Fragment {
         View view = inflater.inflate(R.layout.fragment__search, container, false);
         al = new ArrayList<>();
         //todo some thinking
-//        for ( FlowerProducts sp: Container.flowerProductsList) {
-//            al.add(new NotificationModel(sp.getName(),String.valueOf(sp.getPrice()), Integer.parseInt(sp.getAvatar())));
-//        }
+        for ( FlowerProducts sp: Container.flowerProductsList) {
+            al.add(new Notification(sp.getName(),String.valueOf(sp.getPrice()), Integer.parseInt(sp.getAvatar())));
+        }
 
 //        al.add(new NotificationModel("Product Name","Color",R.mipmap.doc_hong_bk33));
 //        al.add(new NotificationModel("Product Name","Color",R.mipmap.doc_hong_bk33));
 //        al.add(new NotificationModel("Product Name","Color",R.mipmap.doc_hong_bk33));
 //        al.add(new NotificationModel("Product Name","Color",R.mipmap.doc_hong_bk33));
-        NotificationAdapter adapter = new NotificationAdapter(getContext(), R.layout.lines_notification, al);
+        SearchAdapter adapter = new SearchAdapter(getContext(), R.layout.line_search_item, al);
         ListView listItemSearch = (ListView) view.findViewById(R.id.listItemSearch);
         listItemSearch.setAdapter(adapter);
 
@@ -54,7 +54,7 @@ public class Fragment_Search extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 //                NotificationModel data = al.get(i);
                 Intent intent = new Intent(getContext(), Activity_ProductDetail.class);
-                intent.putExtra("id", 1);
+                intent.putExtra("id", Container.flowerProductsList.get(i).getId());
                 getContext().startActivity(intent);
             }
         });

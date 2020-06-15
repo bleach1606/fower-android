@@ -243,7 +243,6 @@ public class Activity_SignIn extends AppCompatActivity {
             @Override
             public void onResponse(Call<OrderBill> call, Response<OrderBill> response) {
                 Container.orderBill = response.body();
-                System.out.println(Container.orderBill.toString());
             }
 
             @Override

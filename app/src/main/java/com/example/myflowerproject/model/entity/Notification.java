@@ -43,6 +43,12 @@ public class Notification {
         this.image = image;
     }
 
+    public Notification(String title, String content, Integer image) {
+        this.title = title;
+        this.content = content;
+        this.image = image;
+    }
+
     public int getId() {
         return id;
     }
