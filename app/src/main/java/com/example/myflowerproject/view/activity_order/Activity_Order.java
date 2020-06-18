@@ -174,8 +174,6 @@ public class Activity_Order extends AppCompatActivity {
 //                Container.orderBill.setUsers(Container.users);
                 Container.orderBill.setId(0);
                 sendPayMent();
-
-
             }
         });
 
@@ -194,7 +192,7 @@ public class Activity_Order extends AppCompatActivity {
                 System.out.println(Container.users.toString());
                 System.out.println(Container.orderBill.toString());
                 if (response.isSuccessful()) {
-                    Container.orderBill = new OrderBill();
+                    Container.orderBill = response.body().getOrderBill();
                     Toast.makeText(Activity_Order.this,"Bạn đã đặt hàng thành công",Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(Activity_Order.this, Activity_Home.class);
                     startActivity(intent);

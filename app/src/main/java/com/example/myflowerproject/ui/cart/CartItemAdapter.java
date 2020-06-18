@@ -254,8 +254,8 @@ public class CartItemAdapter extends RecyclerView.Adapter {
             public void onResponse(Call<OrderBillResult> call, Response<OrderBillResult> response) {
                 if (response.isSuccessful()) {
                 } else {
-                }
 
+                }
             }
 
             @Override
