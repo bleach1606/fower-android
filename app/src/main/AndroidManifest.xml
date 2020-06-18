@@ -13,10 +13,11 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:targetApi="n">
+        <activity android:name=".ui.OrderDetail.OrderDetailActivity"></activity>
         <activity
             android:name=".view.Activity_Home"
             android:label="@string/title_activity_main2"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".view.Activity_ListItem" />
 
         <meta-data
@@ -35,10 +36,9 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".view.Activity_SignIn"
-            android:theme="@style/AppTheme.NoActionBar" />
-<!--        <activity-->
-<!--            android:name=".fragment.HomeFragment"-->
-<!--            android:theme="@style/AppTheme.NoActionBar" />-->
+            android:theme="@style/AppTheme.NoActionBar" /> <!-- <activity -->
+        <!-- android:name=".fragment.HomeFragment" -->
+        <!-- android:theme="@style/AppTheme.NoActionBar" /> -->
         <activity
             android:name=".view.Activity_Signup"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -59,7 +59,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
 
         <service
             android:name=".fcm.MyFirebaseMessagingService"
