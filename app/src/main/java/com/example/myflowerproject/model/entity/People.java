@@ -50,6 +50,18 @@ public class People implements Serializable {
     @Expose
     private String avatar;
 
+    @SerializedName("active")
+    @Expose
+    private boolean active;
+
+    public boolean getActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
     public People() {
     }
 
