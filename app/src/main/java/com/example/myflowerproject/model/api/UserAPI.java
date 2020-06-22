@@ -12,6 +12,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 
 public interface UserAPI {
 
@@ -28,7 +29,7 @@ public interface UserAPI {
             @Field("token") String token
     );
 
-    @POST("/users/update")
+    @PUT("/users/update")
     Call<UserResult> updateUser(
             @Header("Authorization") String auth,
             @Body Users user

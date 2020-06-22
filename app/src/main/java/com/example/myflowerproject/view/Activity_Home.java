@@ -118,7 +118,9 @@ public class Activity_Home extends AppCompatActivity {
         });
 
         ((TextView)findViewById(R.id.tvUsername)).setText(Container.users.getUsername());
-        //((TextView)findViewById(R.id.tvFullname)).setText(Container.users.getPeople().getFirstName() + " " + Container.users.getPeople().getLastName());
+        if(Container.users.getPeople().getFirstName()!=null||Container.users.getPeople().getLastName()!=null)
+            ((TextView)findViewById(R.id.tvFullname))
+                    .setText(Container.users.getPeople().getFirstName() + " " + Container.users.getPeople().getLastName());
         new GetImage(findViewById(R.id.ivAvatar)).execute(Container.users.getPeople().getAvatar());
         return true;
     }
