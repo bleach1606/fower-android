@@ -11,6 +11,9 @@ public class DeliveryModel {
         this.money = money;
     }
 
+    public DeliveryModel() {
+    }
+
     public Integer getImg() {
         return img;
     }

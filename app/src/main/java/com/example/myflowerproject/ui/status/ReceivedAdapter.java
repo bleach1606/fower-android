@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myflowerproject.R;
+import com.example.myflowerproject.model.api.GetImage;
 import com.example.myflowerproject.ui.OrderDetail.OrderDetailActivity;
 import com.example.myflowerproject.view.Activity_Home;
 
@@ -34,7 +35,8 @@ public class ReceivedAdapter  extends RecyclerView.Adapter<ReceivedAdapter.ViewH
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.imgDelivery.setImageResource(receivedModels.get(position).getImg());
+//        holder.imgDelivery.setImageResource(receivedModels.get(position).getImg());
+        new GetImage(holder.imgDelivery).execute(String.valueOf(receivedModels.get(position).getImg()));
         holder.txtsl.setText(receivedModels.get(position).getQuantity());
         holder.txtPrice.setText(receivedModels.get(position).getMoney());
     }
