@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class SearchByNameResult {
+public class SearchByNameResult extends BaseResult {
     @SerializedName("data")
     private List<FlowerProducts> flowerProductsList;
 

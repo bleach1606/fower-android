@@ -4,7 +4,7 @@ import com.example.myflowerproject.model.entity.OrderBill;
 import com.example.myflowerproject.model.entity.Users;
 import com.google.gson.annotations.SerializedName;
 
-public class OrderBillResult {
+public class OrderBillResult extends BaseResult{
     @SerializedName("data")
     private OrderBill orderBill;
 

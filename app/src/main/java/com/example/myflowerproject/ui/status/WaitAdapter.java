@@ -10,13 +10,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.myflowerproject.Container;
 import com.example.myflowerproject.R;
+import com.example.myflowerproject.model.api.GetImage;
 import com.example.myflowerproject.ui.OrderDetail.OrderDetailActivity;
 
 import java.util.ArrayList;
 
 public class WaitAdapter extends RecyclerView.Adapter<WaitAdapter.ViewHolder> {
-    ArrayList<WaitModel> waitModels;
+    private ArrayList<WaitModel> waitModels;
     // Context context;
 
     public WaitAdapter(ArrayList<WaitModel> waitModels) {
@@ -37,7 +39,8 @@ public class WaitAdapter extends RecyclerView.Adapter<WaitAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.txtsl.setText(waitModels.get(position).getQuantity());
         holder.txtPrice.setText(waitModels.get(position).getMoney());
-        holder.imgWait.setImageResource(waitModels.get(position).getImg());
+//        holder.imgWait.setImageResource(waitModels.get(position).getImg());
+        new GetImage(holder.imgWait).execute(String.valueOf(waitModels.get(position).getImg()));
     }
 
     @Override

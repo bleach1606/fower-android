@@ -31,6 +31,7 @@ import com.example.myflowerproject.model.entity.OrderBill;
 import com.example.myflowerproject.model.entity.People;
 import com.example.myflowerproject.model.entity.Users;
 import com.example.myflowerproject.model.results.CategoryResult;
+import com.example.myflowerproject.model.results.OrderBillResult;
 import com.example.myflowerproject.model.results.UserLoginResult;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -343,14 +344,14 @@ public class Activity_SignIn extends AppCompatActivity {
 
     public void getCurrentOrderBill() {
         OrderBillAPI orderBillAPI = ApiUtils.getOrderBillAPI();
-        orderBillAPI.getCurrentOrder(Container.users.getToken()).enqueue(new Callback<OrderBill>() {
+        orderBillAPI.getCurrentOrder(Container.users.getToken()).enqueue(new Callback<OrderBillResult>() {
             @Override
-            public void onResponse(Call<OrderBill> call, Response<OrderBill> response) {
-                Container.orderBill = response.body();
+            public void onResponse(Call<OrderBillResult> call, Response<OrderBillResult> response) {
+                Container.orderBill = response.body().getOrderBill();
             }
 
             @Override
-            public void onFailure(Call<OrderBill> call, Throwable t) {
+            public void onFailure(Call<OrderBillResult> call, Throwable t) {
 
             }
         });

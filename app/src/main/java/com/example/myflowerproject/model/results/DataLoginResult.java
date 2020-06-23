@@ -3,7 +3,7 @@ package com.example.myflowerproject.model.results;
 import com.example.myflowerproject.model.entity.Users;
 import com.google.gson.annotations.SerializedName;
 
-public class DataLoginResult {
+public class DataLoginResult extends BaseResult {
 
     @SerializedName("accessToken")
     private String accessToken;

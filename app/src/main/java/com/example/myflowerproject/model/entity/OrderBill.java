@@ -29,10 +29,6 @@ public class OrderBill {
     @Expose
     private Payment payment;
 
-    @SerializedName("users")
-    @Expose
-    private Users users;
-
     @SerializedName("address")
     @Expose
     private Address address;
@@ -77,14 +73,6 @@ public class OrderBill {
         this.status = status;
     }
 
-    public Users getUsers() {
-        return users;
-    }
-
-    public void setUsers(Users users) {
-        this.users = users;
-    }
-
     public List<CartDetail> getCartDetailList() {
         return cartDetailList;
     }
@@ -101,7 +89,6 @@ public class OrderBill {
                 ", status=" + status +
                 ", orderDate=" + orderDate +
                 ", payment=" + payment +
-                ", users=" + users +
                 ", address=" + address +
                 ", cartDetailList=" + cartDetailList +
                 '}';

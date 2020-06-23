@@ -11,12 +11,13 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myflowerproject.R;
+import com.example.myflowerproject.model.api.GetImage;
 import com.example.myflowerproject.ui.OrderDetail.OrderDetailActivity;
 
 import java.util.ArrayList;
 
 public class DeliveryAdapter  extends RecyclerView.Adapter<DeliveryAdapter.ViewHolder> {
-    ArrayList<DeliveryModel> deliveryModels;
+    private ArrayList<DeliveryModel> deliveryModels;
 
     public DeliveryAdapter(ArrayList<DeliveryModel> deliveryModels) {
         this.deliveryModels = deliveryModels;
@@ -33,10 +34,10 @@ public class DeliveryAdapter  extends RecyclerView.Adapter<DeliveryAdapter.ViewH
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.imgDelivery.setImageResource(deliveryModels.get(position).getImg());
+//        holder.imgDelivery.setImageResource(deliveryModels.get(position).getImg());
+        new GetImage(holder.imgDelivery).execute(String.valueOf(deliveryModels.get(position).getImg()));
         holder.txtsl.setText(deliveryModels.get(position).getQuantity());
         holder.txtPrice.setText(deliveryModels.get(position).getMoney());
-
     }
 
     @Override
