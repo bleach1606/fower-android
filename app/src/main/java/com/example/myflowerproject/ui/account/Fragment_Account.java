@@ -55,9 +55,12 @@ public class Fragment_Account extends Fragment {
         btnSave = view.findViewById(R.id.btnSave);
         imgAvt = view.findViewById(R.id.imgAvt);
         imgCreate = view.findViewById(R.id.imgCreate);
-        String uri = "https://graph.facebook.com/"+ AccessToken.getCurrentAccessToken().getUserId()+"/picture";
-        Picasso.get().load(uri).resize(100, 100).centerCrop().into((CircleImageView)view.findViewById(R.id.imgAvt));
-//        new GetImage(imgAvt).execute(Container.users.getPeople().getAvatar());
+        if(Container.users.getType()==2) {
+            String uri = "https://graph.facebook.com/" + AccessToken.getCurrentAccessToken().getUserId() + "/picture";
+            Picasso.get().load(uri).resize(100, 100).centerCrop().into((CircleImageView) view.findViewById(R.id.imgAvt));
+        }else{
+            new GetImage(imgAvt).execute(Container.users.getPeople().getAvatar());
+        }
         etLastName.setText(Container.users.getPeople().getLastName());
         etFirstName.setText(Container.users.getPeople().getFirstName());
         etEmail.setText(Container.users.getPeople().getEmail());
