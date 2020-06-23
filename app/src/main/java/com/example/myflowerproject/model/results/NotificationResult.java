@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class NotificationResult {
+public class NotificationResult extends BaseResult {
     @SerializedName("data")
     private List<Notification> list;
 

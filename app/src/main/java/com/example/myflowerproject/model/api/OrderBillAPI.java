@@ -2,6 +2,7 @@ package com.example.myflowerproject.model.api;
 
 import com.example.myflowerproject.model.entity.OrderBill;
 import com.example.myflowerproject.model.entity.Users;
+import com.example.myflowerproject.model.results.ListOrderBillResult;
 import com.example.myflowerproject.model.results.OrderBillResult;
 import com.example.myflowerproject.model.results.UserLoginResult;
 
@@ -14,10 +15,10 @@ import retrofit2.http.POST;
 public interface OrderBillAPI {
 
     @GET("/orderbill/get-current-order")
-    Call<OrderBill> getCurrentOrder(@Header("Authorization") String auth);
+    Call<OrderBillResult> getCurrentOrder(@Header("Authorization") String auth);
 
     @GET("/orderbill/get-order-list")
-    Call<OrderBill> getOrderList(@Header("Authorization") String auth);
+    Call<ListOrderBillResult> getOrderList(@Header("Authorization") String auth);
 
     @POST("/orderbill/update-orderBill")
     Call<OrderBillResult> updateOrderBill(
