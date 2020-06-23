@@ -19,6 +19,9 @@ public interface UserAPI {
     @POST("/public/login")
     Call<UserLoginResult> postLogin(@Body Users user);
 
+    @POST("/public/login-access")
+    Call<UserLoginResult> postLoginFace(@Body Users user);
+
     @POST("/public/signup")
     Call<DataSignupResult> signup(@Body Users user);
 

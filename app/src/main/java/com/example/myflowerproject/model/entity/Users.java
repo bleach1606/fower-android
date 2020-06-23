@@ -12,6 +12,14 @@ public class Users implements Serializable {
     @Expose
     private int id;
 
+    @SerializedName("type")
+    @Expose
+    private int type;
+
+    @SerializedName("accessToken")
+    @Expose
+    private String accessToken;
+
     @SerializedName("active")
     @Expose
     private Boolean fiActive;
@@ -45,6 +53,22 @@ public class Users implements Serializable {
     }
 
     public Users() {
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
+    public String getAccessToken() {
+        return accessToken;
+    }
+
+    public void setAccessToken(String accessToken) {
+        this.accessToken = accessToken;
     }
 
     public int getId() {

@@ -26,7 +26,10 @@ import com.example.myflowerproject.model.entity.Users;
 import com.example.myflowerproject.model.results.UserLoginResult;
 import com.example.myflowerproject.model.results.UserResult;
 import com.example.myflowerproject.view.Activity_SignIn;
+import com.facebook.AccessToken;
+import com.squareup.picasso.Picasso;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -52,7 +55,9 @@ public class Fragment_Account extends Fragment {
         btnSave = view.findViewById(R.id.btnSave);
         imgAvt = view.findViewById(R.id.imgAvt);
         imgCreate = view.findViewById(R.id.imgCreate);
-        new GetImage(imgAvt).execute(Container.users.getPeople().getAvatar());
+        String uri = "https://graph.facebook.com/"+ AccessToken.getCurrentAccessToken().getUserId()+"/picture";
+        Picasso.get().load(uri).resize(100, 100).centerCrop().into((CircleImageView)view.findViewById(R.id.imgAvt));
+//        new GetImage(imgAvt).execute(Container.users.getPeople().getAvatar());
         etLastName.setText(Container.users.getPeople().getLastName());
         etFirstName.setText(Container.users.getPeople().getFirstName());
         etEmail.setText(Container.users.getPeople().getEmail());

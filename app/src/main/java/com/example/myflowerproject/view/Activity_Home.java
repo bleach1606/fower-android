@@ -16,7 +16,10 @@ import com.example.myflowerproject.model.api.ApiUtils;
 import com.example.myflowerproject.model.api.GetImage;
 import com.example.myflowerproject.model.entity.FlowerProducts;
 import com.example.myflowerproject.model.results.SearchByNameResult;
+import com.facebook.AccessToken;
+import com.facebook.login.LoginManager;
 import com.google.android.material.navigation.NavigationView;
+import com.squareup.picasso.Picasso;
 
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -28,6 +31,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -69,8 +73,13 @@ public class Activity_Home extends AppCompatActivity {
         navigationView.getMenu().getItem(6).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
+                if(Container.users.getType()==2){
+                    LoginManager.getInstance().logOut();
+                }
+                Container.reset();
                 Intent intent = new Intent(Activity_Home.this, Activity_SignIn.class);
                 startActivity(intent);
+                finish();
                 return false;
             }
         });
@@ -88,9 +97,7 @@ public class Activity_Home extends AppCompatActivity {
                 searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
                     @Override
                     public boolean onQueryTextSubmit(String query) {
-//                        System.out.println(query);
                         getListProductsByName(query);
-//                        navController.navigate(R.id.fragment_Search);
                         return false;
                     }
 
@@ -117,11 +124,20 @@ public class Activity_Home extends AppCompatActivity {
             }
         });
 
-        ((TextView)findViewById(R.id.tvUsername)).setText(Container.users.getUsername());
-        if(Container.users.getPeople().getFirstName()!=null||Container.users.getPeople().getLastName()!=null)
-            ((TextView)findViewById(R.id.tvFullname))
-                    .setText(Container.users.getPeople().getFirstName() + " " + Container.users.getPeople().getLastName());
-        new GetImage(findViewById(R.id.ivAvatar)).execute(Container.users.getPeople().getAvatar());
+        if(Container.users.getType()==2){
+            ((TextView)findViewById(R.id.tvUsername)).setText(Container.users.getPeople().getEmail());
+            if(Container.users.getPeople().getFirstName()!=null)
+                ((TextView)findViewById(R.id.tvFullname)).setText(Container.users.getPeople().getFirstName() +" "+ Container.users.getPeople().getLastName());
+            String uri = "https://graph.facebook.com/"+AccessToken.getCurrentAccessToken().getUserId()+"/picture";
+            Picasso.get().load(uri).resize(100, 100).centerCrop().into((CircleImageView)findViewById(R.id.ivAvatar));
+        }else {
+            ((TextView)findViewById(R.id.tvUsername)).setText(Container.users.getUsername());
+            if(Container.users.getPeople().getFirstName()!=null||Container.users.getPeople().getLastName()!=null)
+                ((TextView)findViewById(R.id.tvFullname))
+                        .setText(Container.users.getPeople().getFirstName() + " " + Container.users.getPeople().getLastName());
+            new GetImage(findViewById(R.id.ivAvatar)).execute(Container.users.getPeople().getAvatar());
+        };
+
         return true;
     }
 

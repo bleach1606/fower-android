@@ -20,6 +20,13 @@ public class Container extends Application {
         flowerProductsList = new ArrayList<>();
     }
 
+    static public void reset(){
+        users = new Users();
+        listCategory = new ArrayList<>();
+        flowerProductsList = new ArrayList<>();
+        orderBill = new OrderBill();
+    }
+
     static public FlowerProducts getProductsById(int id){
         for (Category cm: listCategory){
             for(FlowerProducts fp: cm.getFlowerProductsList()){
