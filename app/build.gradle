@@ -59,4 +59,5 @@ dependencies {
     implementation 'com.facebook.android:facebook-login:[5,6)'
     implementation 'com.squareup.picasso:picasso:2.71828'
 
+    implementation 'com.paypal.sdk:paypal-android-sdk:2.15.3'
 }

@@ -3,7 +3,7 @@ package com.example.myflowerproject.model.api;
 public class ApiUtils {
     private ApiUtils() {}
 
-    public static final String BASE_URL = "http://192.168.1.15:8080/";
+    public static final String BASE_URL = "http://192.168.43.209:8080/";
 
     public static UserAPI getAPIService() {
         return RetrofitClient.getClient(BASE_URL).create(UserAPI.class);
@@ -23,5 +23,9 @@ public class ApiUtils {
 
     public static NotificationAPI getNotificationAPI() {
         return RetrofitClient.getClient(BASE_URL).create(NotificationAPI.class);
+    }
+
+    public static UploadImageAPI getUploadAPI() {
+        return RetrofitClient.getClient(BASE_URL).create(UploadImageAPI.class);
     }
 }

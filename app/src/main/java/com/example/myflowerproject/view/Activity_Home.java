@@ -57,20 +57,7 @@ public class Activity_Home extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        try {
-            PackageInfo info = getPackageManager().getPackageInfo(
-                    "com.example.myflowerproject.view",                  //Insert your own package name.
-                    PackageManager.GET_SIGNATURES);
-            for (Signature signature : info.signatures) {
-                MessageDigest md = MessageDigest.getInstance("SHA");
-                md.update(signature.toByteArray());
-                Log.d("KeyHash:", Base64.encodeToString(md.digest(), Base64.DEFAULT));
-            }
-        } catch (PackageManager.NameNotFoundException e) {
 
-        } catch (NoSuchAlgorithmException e) {
-    
-        }
 
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -149,7 +136,7 @@ public class Activity_Home extends AppCompatActivity {
 
         if(Container.users.getType()==2){
             ((TextView)findViewById(R.id.tvUsername)).setText(Container.users.getPeople().getEmail());
-            if(Container.users.getPeople().getFirstName()!=null)
+//            if(Container.users.getPeople().getFirstName()!=null)
                 ((TextView)findViewById(R.id.tvFullname)).setText(Container.users.getPeople().getFirstName() +" "+ Container.users.getPeople().getLastName());
             String uri = "https://graph.facebook.com/"+AccessToken.getCurrentAccessToken().getUserId()+"/picture";
             Picasso.get().load(uri).resize(100, 100).centerCrop().into((CircleImageView)findViewById(R.id.ivAvatar));

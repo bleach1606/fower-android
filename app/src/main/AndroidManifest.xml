@@ -30,6 +30,7 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".view.activity_order.PaymentDetails"></activity>
 
         <activity android:name=".ui.OrderDetail.OrderDetailActivity"></activity>
         <activity
