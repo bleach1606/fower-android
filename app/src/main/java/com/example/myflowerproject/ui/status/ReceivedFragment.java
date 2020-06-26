@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 
 import com.example.myflowerproject.Container;
 import com.example.myflowerproject.R;
+import com.example.myflowerproject.constant.Constant;
 import com.example.myflowerproject.model.api.ApiUtils;
 import com.example.myflowerproject.model.entity.CartDetail;
 import com.example.myflowerproject.model.entity.OrderBill;
@@ -63,8 +64,7 @@ public class ReceivedFragment extends Fragment {
                 public void onResponse(Call<ListOrderBillResult> call, Response<ListOrderBillResult> response) {
                     if (response.isSuccessful()) {
                         for (OrderBill ob : response.body().getOrderBillList() ) {
-                            //todo if else
-                            if (ob.getStatus() == 6 || ob.getStatus() == 7) {
+                            if (ob.getStatus() == 10 || ob.getStatus() == 6) {
 
                             } else {
                                 continue;
@@ -80,7 +80,11 @@ public class ReceivedFragment extends Fragment {
                             }
                             ReceivedModel waitModel = new ReceivedModel(
                                     k,
-                                    String.valueOf(ob.getCartDetailList().size()), String.valueOf(sum));
+                                    String.valueOf(ob.getCartDetailList().size()),
+                                    String.valueOf(sum),
+                                    new Constant().getOrderStatus(ob.getStatus()),
+                                    String.valueOf(ob.getOrderDate())
+                            );
                             arrayList.add(waitModel);
                         }
 

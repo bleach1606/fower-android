@@ -9,13 +9,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.myflowerproject.Container;
 import com.example.myflowerproject.R;
+import com.example.myflowerproject.constant.Constant;
 import com.example.myflowerproject.model.api.ApiUtils;
 import com.example.myflowerproject.model.entity.CartDetail;
 import com.example.myflowerproject.model.entity.OrderBill;
 import com.example.myflowerproject.model.results.ListOrderBillResult;
+import com.example.myflowerproject.model.results.OrderBillResult;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +32,7 @@ public class WaitFragment extends Fragment {
     private ArrayList<WaitModel> arrayList;
     private RecyclerView recyclerView;
     private WaitAdapter waitAdapter;
+    private WaitFragment waitFragment;
 
     public WaitFragment() {
 
@@ -38,7 +42,7 @@ public class WaitFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view= inflater.inflate(R.layout.fragment_wait, container, false);
-
+        waitFragment = this;
         recyclerView = view.findViewById(R.id.rvWait);
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager testingLayoutManager = new LinearLayoutManager(getContext());
@@ -48,7 +52,7 @@ public class WaitFragment extends Fragment {
 
         getListOrderBills();
 
-        waitAdapter = new WaitAdapter(arrayList);
+        waitAdapter = new WaitAdapter(arrayList, this);
 
         recyclerView.setAdapter(waitAdapter);
         waitAdapter.notifyDataSetChanged();
@@ -76,11 +80,14 @@ public class WaitFragment extends Fragment {
                             }
                             WaitModel waitModel = new WaitModel(
                                     k,
-                                    String.valueOf(ob.getCartDetailList().size()), String.valueOf(sum));
+                                    String.valueOf(ob.getCartDetailList().size()),
+                                    String.valueOf(sum),
+                                    ob.getId()
+                            );
                             arrayList.add(waitModel);
                         }
 
-                        waitAdapter = new WaitAdapter(arrayList);
+                        waitAdapter = new WaitAdapter(arrayList, waitFragment);
 
                         recyclerView.setAdapter(waitAdapter);
                         waitAdapter.notifyDataSetChanged();
@@ -90,6 +97,33 @@ public class WaitFragment extends Fragment {
 
                 @Override
                 public void onFailure(Call<ListOrderBillResult> call, Throwable t) {
+
+                }
+            });
+        } catch (Exception ex) {
+            throw ex;
+        }
+    }
+
+    public void updateStatus(int k) {
+        System.out.println(k);
+        try {
+            (ApiUtils.getOrderBillAPI()).updateStatus(Container.users.getToken(), k, Constant.OrderStatus.CANCEL.getId()).enqueue(new Callback<OrderBillResult>() {
+                @Override
+                public void onResponse(Call<OrderBillResult> call, Response<OrderBillResult> response) {
+                    if (response.isSuccessful()) {
+                        for (WaitModel wait: arrayList ) {
+                            if (wait.getId() == k) {
+                                arrayList.remove(wait);
+                                break;
+                            }
+                        }
+                        waitAdapter.notifyDataSetChanged();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<OrderBillResult> call, Throwable t) {
 
                 }
             });

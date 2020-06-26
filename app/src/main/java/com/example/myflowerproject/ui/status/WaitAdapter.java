@@ -1,9 +1,11 @@
 package com.example.myflowerproject.ui.status;
 
+import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -19,11 +21,11 @@ import java.util.ArrayList;
 
 public class WaitAdapter extends RecyclerView.Adapter<WaitAdapter.ViewHolder> {
     private ArrayList<WaitModel> waitModels;
-    // Context context;
+    private WaitFragment context;
 
-    public WaitAdapter(ArrayList<WaitModel> waitModels) {
+    public WaitAdapter(ArrayList<WaitModel> waitModels, WaitFragment context) {
         this.waitModels = waitModels;
-        //this.context = context;
+        this.context = context;
     }
 
     @NonNull
@@ -40,6 +42,7 @@ public class WaitAdapter extends RecyclerView.Adapter<WaitAdapter.ViewHolder> {
         holder.txtsl.setText(waitModels.get(position).getQuantity());
         holder.txtPrice.setText(waitModels.get(position).getMoney());
 //        holder.imgWait.setImageResource(waitModels.get(position).getImg());
+        holder.id = waitModels.get(position).getId();
         new GetImage(holder.imgWait).execute(String.valueOf(waitModels.get(position).getImg()));
     }
 
@@ -52,17 +55,27 @@ public class WaitAdapter extends RecyclerView.Adapter<WaitAdapter.ViewHolder> {
         TextView txtsl;
         TextView txtPrice;
         ImageView imgWait;
+        Button button;
+        int id;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             txtsl = itemView.findViewById(R.id.txtsl);
             txtPrice = itemView.findViewById(R.id.txtPrice);
             imgWait = itemView.findViewById(R.id.imgDelivery);
+            button = itemView.findViewById(R.id.btnRemove);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(itemView.getContext(), OrderDetailActivity.class);
                     //intent.putExtra("id", );
                     itemView.getContext().startActivity(intent);
+                }
+            });
+
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    context.updateStatus(id);
                 }
             });
         }

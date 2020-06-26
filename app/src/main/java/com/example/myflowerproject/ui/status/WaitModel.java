@@ -4,11 +4,27 @@ public class WaitModel {
     public Integer img;
     public String quantity;
     public String money;
+    public int id;
 
     public WaitModel(Integer img, String quantity, String money) {
         this.img = img;
         this.quantity = quantity;
         this.money = money;
+    }
+
+    public WaitModel(Integer img, String quantity, String money, int id) {
+        this.img = img;
+        this.quantity = quantity;
+        this.money = money;
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public Integer getImg() {

@@ -11,66 +11,102 @@
         android:id="@+id/imgDelivery"
         android:layout_width="100dp"
         android:layout_height="100dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="42dp"
-        app:layout_constraintEnd_toStartOf="@+id/textView15"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@mipmap/doc_do_bk32" />
 
     <TextView
         android:id="@+id/txtPrice"
-        android:layout_width="120dp"
-        android:layout_height="32dp"
+        android:layout_width="97dp"
+        android:layout_height="29dp"
+        android:layout_marginTop="28dp"
         android:layout_marginEnd="16dp"
         android:gravity="right|center_vertical"
         android:text="1.600.000"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView17"/>
+        app:layout_constraintHorizontal_bias="0.218"
+        app:layout_constraintStart_toEndOf="@+id/textView17"
+        app:layout_constraintTop_toBottomOf="@+id/txtsl" />
 
     <TextView
         android:id="@+id/textView15"
-        android:layout_width="194dp"
-        android:layout_height="32dp"
+        android:layout_width="111dp"
+        android:layout_height="38dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="20dp"
         android:gravity="center_vertical"
         android:text="Total quantity"
         android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/imgDelivery"
-        app:layout_constraintTop_toTopOf="@+id/imgDelivery" />
+        app:layout_constraintTop_toBottomOf="@+id/create" />
 
     <TextView
         android:id="@+id/txtsl"
         android:layout_width="55dp"
         android:layout_height="32dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginTop="68dp"
+        android:layout_marginEnd="60dp"
         android:gravity="right|center_vertical"
         android:text="16"
         android:textSize="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView15"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintHorizontal_bias="0.226"
+        app:layout_constraintStart_toEndOf="@+id/textView15"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView17"
         android:layout_width="100dp"
-        android:layout_height="32dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="16dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="20dp"
         android:gravity="center_vertical"
         android:text="Total Bill"
         android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="@+id/imgDelivery"
-        app:layout_constraintTop_toBottomOf="@+id/textView15"  />
+        app:layout_constraintStart_toEndOf="@+id/txtStatus"
+        app:layout_constraintTop_toBottomOf="@+id/textView15" />
 
     <View
         android:id="@+id/divider15"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintTop_toBottomOf="@id/txtPrice"
-        android:background="@color/starGrey" />
+        android:background="@color/starGrey"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:layout_editor_absoluteY="184dp" />
+
+    <TextView
+        android:id="@+id/create"
+        android:layout_width="111dp"
+        android:layout_height="27dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Create date : "
+        app:layout_constraintStart_toEndOf="@+id/imgDelivery"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtCreate"
+        android:layout_width="96dp"
+        android:layout_height="31dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="16dp"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/create"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtStatus"
+        android:layout_width="97dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="24dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgDelivery"
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

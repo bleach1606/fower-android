@@ -38,6 +38,8 @@ public class DeliveryAdapter  extends RecyclerView.Adapter<DeliveryAdapter.ViewH
         new GetImage(holder.imgDelivery).execute(String.valueOf(deliveryModels.get(position).getImg()));
         holder.txtsl.setText(deliveryModels.get(position).getQuantity());
         holder.txtPrice.setText(deliveryModels.get(position).getMoney());
+        holder.status.setText(deliveryModels.get(position).getStatus());
+        holder.create.setText(deliveryModels.get(position).getCreate());
     }
 
     @Override
@@ -49,11 +51,15 @@ public class DeliveryAdapter  extends RecyclerView.Adapter<DeliveryAdapter.ViewH
         TextView txtsl;
         TextView txtPrice;
         ImageView imgDelivery;
+        TextView create;
+        TextView status;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             txtsl = itemView.findViewById(R.id.txtsl);
             txtPrice = itemView.findViewById(R.id.txtPrice);
             imgDelivery = itemView.findViewById(R.id.imgDelivery);
+            create = itemView.findViewById(R.id.txtCreate);
+            status = itemView.findViewById(R.id.txtStatus);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

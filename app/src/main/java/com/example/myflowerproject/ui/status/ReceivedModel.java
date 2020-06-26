@@ -4,11 +4,37 @@ public class ReceivedModel {
     public Integer img;
     public String quantity;
     public String money;
+    public String status;
+    public String create;
 
     public ReceivedModel(Integer img, String quantity, String money) {
         this.img = img;
         this.quantity = quantity;
         this.money = money;
+    }
+
+    public ReceivedModel(Integer img, String quantity, String money, String status, String create) {
+        this.img = img;
+        this.quantity = quantity;
+        this.money = money;
+        this.status = status;
+        this.create = create;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getCreate() {
+        return create;
+    }
+
+    public void setCreate(String create) {
+        this.create = create;
     }
 
     public Integer getImg() {

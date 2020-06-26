@@ -11,6 +11,9 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
+import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface OrderBillAPI {
 
@@ -26,4 +29,10 @@ public interface OrderBillAPI {
             @Body OrderBill orderBill
     );
 
+    @PUT("/orderbill/update-status/{id}")
+    Call<OrderBillResult> updateStatus(
+            @Header("Authorization") String auth,
+            @Path("id") int id,
+            @Query("status") int status
+    );
 }

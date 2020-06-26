@@ -39,6 +39,8 @@ public class ReceivedAdapter  extends RecyclerView.Adapter<ReceivedAdapter.ViewH
         new GetImage(holder.imgDelivery).execute(String.valueOf(receivedModels.get(position).getImg()));
         holder.txtsl.setText(receivedModels.get(position).getQuantity());
         holder.txtPrice.setText(receivedModels.get(position).getMoney());
+        holder.status.setText(receivedModels.get(position).getStatus());
+        holder.create.setText(receivedModels.get(position).getCreate());
     }
 
     @Override
@@ -50,11 +52,15 @@ public class ReceivedAdapter  extends RecyclerView.Adapter<ReceivedAdapter.ViewH
         TextView txtsl;
         TextView txtPrice;
         ImageView imgDelivery;
+        TextView create;
+        TextView status;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             txtsl = itemView.findViewById(R.id.txtsl);
             txtPrice = itemView.findViewById(R.id.txtPrice);
             imgDelivery = itemView.findViewById(R.id.imgDelivery);
+            create = itemView.findViewById(R.id.txtCreate);
+            status = itemView.findViewById(R.id.txtStatus);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
