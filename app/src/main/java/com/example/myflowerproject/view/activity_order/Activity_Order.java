@@ -255,9 +255,15 @@ public class Activity_Order extends AppCompatActivity {
                 if (confirmation != null){
                     try {
                         String paymentDetails = confirmation.toJSONObject().toString(4);
-                        startActivity(new Intent(this, PaymentDetails.class)
-                                .putExtra("Payment Details",paymentDetails)
-                                .putExtra("Amount",amount));
+                        Container.orderBill.getPayment();
+                        Payment payment = new Payment();
+                        payment.setActive(true);
+                        payment.setKind("PAYPAL");
+                        payment.setMoney(Double.valueOf(amount));
+                        sendPayMent();
+//                        startActivity(new Intent(this, PaymentDetails.class)
+//                                .putExtra("PaymentDetails",paymentDetails)
+//                                .putExtra("Amount",amount));
                     } catch (JSONException e){
                         e.printStackTrace();
                     }

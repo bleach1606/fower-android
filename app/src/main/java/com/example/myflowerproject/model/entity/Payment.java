@@ -25,6 +25,9 @@ public class Payment {
         this.active = active;
     }
 
+    public Payment() {
+    }
+
     @SerializedName("kind")
     @Expose
     private String kind;
