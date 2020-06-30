@@ -2,14 +2,11 @@ package com.example.myflowerproject.ui.account;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.Path;
 import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
-import android.os.FileUtils;
-import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -21,31 +18,25 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-//import com.bumptech.glide.Glide;
 import com.example.myflowerproject.Container;
 import com.example.myflowerproject.R;
 import com.example.myflowerproject.model.api.ApiUtils;
 import com.example.myflowerproject.model.api.GetImage;
-import com.example.myflowerproject.model.api.UploadImageAPI;
 import com.example.myflowerproject.model.api.UserAPI;
 import com.example.myflowerproject.model.entity.People;
 import com.example.myflowerproject.model.entity.Users;
-import com.example.myflowerproject.model.results.UserLoginResult;
-import com.example.myflowerproject.model.results.UserResult;
-import com.example.myflowerproject.view.Activity_SignIn;
 import com.facebook.AccessToken;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
-import java.io.IOException;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
 import okhttp3.RequestBody;
-import okhttp3.Response;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -162,38 +153,27 @@ public class Fragment_Account extends Fragment {
                     user.setPeople(people);
                     user.getPeople().setBirthday(null);
                     if(uriImage != null){
-//                        String filePath = getRealPathFromURIPath(uri, MainActivity.this);
-//                        File file = new File(uriImage.toString());
-//                        RequestBody mFile = RequestBody.create(MediaType.parse("image/*"), file);
-//                        MultipartBody.Part fileToUpload = MultipartBody.Part.createFormData("file", file.getName(), mFile);
-//                        RequestBody filename = RequestBody.create(MediaType.parse("text/plain"), file.getName());
-//
-//                        ApiUtils.getUploadAPI().postImage(fileToUpload).enqueue(new Callback<String>() {
-//                            @Override
-//                            public void onResponse(Call<String> call, Response<String> response) {
-//                                System.out.println(response.body());
-//                            }
-//
-//                            @Override
-//                            public void onFailure(Call<String> call, Throwable t) {
-//
-//                            }
-//                        });
-                        OkHttpClient client = new OkHttpClient().newBuilder()
-                                .build();
-                        MediaType mediaType = MediaType.parse("text/plain");
-                        RequestBody body = new MultipartBody.Builder().setType(MultipartBody.FORM)
-                                .addFormDataPart("file","a.png",
-                                        RequestBody.create(MediaType.parse("application/octet-stream"),
-                                                new File(uriImage.toString())))
-                                .build();
-                        Request request = new Request.Builder()
-                                .url("http://192.168.43.209:8080/public/upload")
-                                .method("POST", body)
-                                .addHeader("Cookie", "JSESSIONID=78AE6CA3034045B9DA2ACDCCFFE77EB0")
-                                .build();
-                        Response response = client.newCall(request).execute();
+                        System.out.println(uriImage.toString());
+                        File file = new File(uriImage.toString());
+                        RequestBody requestFile =
+                                RequestBody.create(MediaType.parse("multipart/form-data"), file);
 
+                        // MultipartBody.Part is used to send also the actual file name
+                        MultipartBody.Part body =
+                                MultipartBody.Part.createFormData("file", file.getName(), requestFile);
+                        ApiUtils.getUploadAPI().postImage(body).enqueue(new Callback<String>() {
+                            @Override
+                            public void onResponse(Call<String> call, Response<String> response) {
+                                if (response.isSuccessful()) {
+                                    System.out.println(response.body());
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<String> call, Throwable t) {
+                                System.out.println("failure");
+                            }
+                        });
                     }
 
 //                    userAPI.updateUser(user.getToken(), user).enqueue(new Callback<UserResult>() {
