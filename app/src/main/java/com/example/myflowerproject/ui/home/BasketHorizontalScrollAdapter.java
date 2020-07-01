@@ -35,7 +35,7 @@ public class BasketHorizontalScrollAdapter extends RecyclerView.Adapter<BasketHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
-        int resource = Integer.parseInt(flowerProductsList.get(position).getAvatar());
+        String resource = (flowerProductsList.get(position).getAvatar());
         String name = flowerProductsList.get(position).getName();
         String price = ""+(int)flowerProductsList.get(position).getPrice()+" VND";
 
@@ -71,7 +71,7 @@ public class BasketHorizontalScrollAdapter extends RecyclerView.Adapter<BasketHo
             });
         }
 
-        private void setProductImage(int resource){
+        private void setProductImage(String resource){
             new GetImage(productImage).execute(String.valueOf(resource));
         }
 

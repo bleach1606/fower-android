@@ -1,19 +1,19 @@
 package com.example.myflowerproject.ui.status;
 
 public class DeliveryModel {
-    public Integer img;
+    public String img;
     public String quantity;
     public String money;
     public String status;
     public String create;
 
-    public DeliveryModel(Integer img, String quantity, String money) {
+    public DeliveryModel(String img, String quantity, String money) {
         this.img = img;
         this.quantity = quantity;
         this.money = money;
     }
 
-    public DeliveryModel(Integer img, String quantity, String money, String status, String create) {
+    public DeliveryModel(String img, String quantity, String money, String status, String create) {
         this.img = img;
         this.quantity = quantity;
         this.money = money;
@@ -40,11 +40,11 @@ public class DeliveryModel {
     public DeliveryModel() {
     }
 
-    public Integer getImg() {
+    public String getImg() {
         return img;
     }
 
-    public void setImg(Integer img) {
+    public void setImg(String img) {
         this.img = img;
     }
 

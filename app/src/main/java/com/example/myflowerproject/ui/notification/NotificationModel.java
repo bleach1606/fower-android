@@ -3,9 +3,9 @@ package com.example.myflowerproject.ui.notification;
 public class NotificationModel {
     public String status;
     public String notifications;
-    public Integer image;
+    public String image;
 
-    public NotificationModel(String status, String notifications, Integer image) {
+    public NotificationModel(String status, String notifications, String image) {
         this.status = status;
         this.notifications = notifications;
         this.image = image;
@@ -27,11 +27,11 @@ public class NotificationModel {
         this.notifications = notifications;
     }
 
-    public Integer getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(Integer image) {
+    public void setImage(String image) {
         this.image = image;
     }
 }

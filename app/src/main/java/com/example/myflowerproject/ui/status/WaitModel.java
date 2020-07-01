@@ -1,18 +1,18 @@
 package com.example.myflowerproject.ui.status;
 
 public class WaitModel {
-    public Integer img;
+    public String img;
     public String quantity;
     public String money;
     public int id;
 
-    public WaitModel(Integer img, String quantity, String money) {
+    public WaitModel(String img, String quantity, String money) {
         this.img = img;
         this.quantity = quantity;
         this.money = money;
     }
 
-    public WaitModel(Integer img, String quantity, String money, int id) {
+    public WaitModel(String img, String quantity, String money, int id) {
         this.img = img;
         this.quantity = quantity;
         this.money = money;
@@ -27,11 +27,11 @@ public class WaitModel {
         this.id = id;
     }
 
-    public Integer getImg() {
+    public String getImg() {
         return img;
     }
 
-    public void setImg(Integer img) {
+    public void setImg(String img) {
         this.img = img;
     }
 

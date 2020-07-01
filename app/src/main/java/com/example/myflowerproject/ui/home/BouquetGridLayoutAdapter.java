@@ -79,7 +79,7 @@ public class BouquetGridLayoutAdapter extends BaseAdapter {
             hoder = (ViewHoder) convertView.getTag();
         }
 
-        new GetImage(hoder.imageView).execute(""+flowerProductsList.get(position).getAvatar());
+        new GetImage(hoder.imageView).execute(flowerProductsList.get(position).getAvatar());
         hoder.productName.setText(flowerProductsList.get(position).getName());
         hoder.productPrice.setText(""+(int)flowerProductsList.get(position).getPrice()+" VND");
 

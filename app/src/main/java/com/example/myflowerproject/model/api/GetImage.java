@@ -16,8 +16,7 @@ public class GetImage extends AsyncTask<String, Void, Bitmap> {
     }
 
     protected Bitmap doInBackground(String... urls) {
-        String urldisplay = ApiUtils.BASE_URL+"public/download/"+urls[0]+".png";
-//            System.out.println(urls);
+        String urldisplay = ApiUtils.BASE_URL+"public/download/"+urls[0];
         Bitmap mIcon11 = null;
         try {
             InputStream in = new java.net.URL(urldisplay).openStream();

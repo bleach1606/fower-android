@@ -74,9 +74,9 @@ public class ReceivedFragment extends Fragment {
                             for ( CartDetail x : ob.getCartDetailList()) {
                                 sum += x.getFlowerProduct().getPrice() * x.getNumber();
                             }
-                            Integer k = 1;
-                            if (ob.getCartDetailList().size() > 0 && Integer.valueOf(ob.getCartDetailList().get(0).getFlowerProduct().getAvatar()) != null ){
-                                k  = Integer.valueOf(ob.getCartDetailList().get(0).getFlowerProduct().getAvatar());
+                            String k = "1";
+                            if (ob.getCartDetailList().size() > 0 && ob.getCartDetailList().get(0).getFlowerProduct().getAvatar() != null ){
+                                k  = ob.getCartDetailList().get(0).getFlowerProduct().getAvatar();
                             }
                             ReceivedModel waitModel = new ReceivedModel(
                                     k,
