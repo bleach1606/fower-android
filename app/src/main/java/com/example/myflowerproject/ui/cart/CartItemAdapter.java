@@ -75,7 +75,7 @@ public class CartItemAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
         switch (cartItemModelList.get(position).getType()){
             case CartItemModel.CART_ITEM:
-                int resource = Integer.parseInt(cartItemModelList.get(position).getCd().getFlowerProduct().getAvatar());
+                String resource = (cartItemModelList.get(position).getCd().getFlowerProduct().getAvatar());
                 String name = cartItemModelList.get(position).getCd().getFlowerProduct().getName();
                 double price = cartItemModelList.get(position).getCd().getFlowerProduct().getPrice();
                 double exPrice = cartItemModelList.get(position).getCd().getFlowerProduct().getPrice();
@@ -116,7 +116,7 @@ public class CartItemAdapter extends RecyclerView.Adapter {
             btnSubProductQuantity = itemView.findViewById(R.id.cart_item_btn_sub_quantity);
             productQuantity = itemView.findViewById(R.id.cart_item_editText_quantity);
         }
-        private void setItemDetail(int resource, String name, final double price, final double exPrice,int position){
+        private void setItemDetail(String resource, String name, final double price, final double exPrice,int position){
             new GetImage(productImage).execute(""+resource);
             productName.setText(name);
             productPrice.setText("VND " + (int)price);

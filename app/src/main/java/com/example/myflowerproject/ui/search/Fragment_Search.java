@@ -38,7 +38,7 @@ public class Fragment_Search extends Fragment {
         al = new ArrayList<>();
         //todo some thinking
         for ( FlowerProducts sp: Container.flowerProductsList) {
-            al.add(new Notification(sp.getName(),String.valueOf(sp.getPrice()), Integer.parseInt(sp.getAvatar())));
+            al.add(new Notification(sp.getName(),String.valueOf(sp.getPrice()), (sp.getAvatar())));
         }
 
 //        al.add(new NotificationModel("Product Name","Color",R.mipmap.doc_hong_bk33));

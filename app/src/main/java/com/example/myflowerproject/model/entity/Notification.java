@@ -29,12 +29,12 @@ public class Notification {
 
     @SerializedName("avatar")
     @Expose
-    public Integer image;
+    public String image;
 
     public Notification() {
     }
 
-    public Notification(int id, String title, String content, Date date, boolean isCheck, Integer image) {
+    public Notification(int id, String title, String content, Date date, boolean isCheck, String image) {
         this.id = id;
         this.title = title;
         this.content = content;
@@ -43,7 +43,7 @@ public class Notification {
         this.image = image;
     }
 
-    public Notification(String title, String content, Integer image) {
+    public Notification(String title, String content, String image) {
         this.title = title;
         this.content = content;
         this.image = image;
@@ -89,11 +89,11 @@ public class Notification {
         isCheck = check;
     }
 
-    public Integer getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(Integer image) {
+    public void setImage(String image) {
         this.image = image;
     }
 }

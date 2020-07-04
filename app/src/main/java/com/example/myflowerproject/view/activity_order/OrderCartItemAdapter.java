@@ -32,7 +32,7 @@ public class OrderCartItemAdapter extends RecyclerView.Adapter<OrderCartItemAdap
 
     @Override
     public void onBindViewHolder(@NonNull OrderCartItemAdapter.ViewHolder viewHolder, int position) {
-        int image = Integer.parseInt(cartDetaillList.get(position).getFlowerProduct().getAvatar());
+        String image = (cartDetaillList.get(position).getFlowerProduct().getAvatar());
         int quantity = cartDetaillList.get(position).getNumber();
         viewHolder.setItemImage(image);
         viewHolder.setItemQuantity(quantity);
@@ -54,7 +54,7 @@ public class OrderCartItemAdapter extends RecyclerView.Adapter<OrderCartItemAdap
             orderCartItemQuantity = itemView.findViewById(R.id.order_cart_item_quantity);
         }
 
-        private void setItemImage(int resource){
+        private void setItemImage(String resource){
             new GetImage(orderCartItemImage).execute(""+resource);
         }
 
