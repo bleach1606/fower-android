@@ -69,7 +69,9 @@ public class Activity_ResetPassword extends AppCompatActivity {
                 //send email
                 //Nếu đã gửi email xong
                 Toast.makeText(Activity_ResetPassword.this,"Email sent successfully! Please check your email.",Toast.LENGTH_LONG).show();
-
+                Intent intent = new Intent(Activity_ResetPassword.this, Activity_ResetPassword_WithCode.class);
+                startActivity(intent);
+                finish();
                 //Nếu Email không tồn tại
                 /*
                 Toast.makeText(getActivity(),"Unregistered Email!", Toast.LENGTH_LONG).show();

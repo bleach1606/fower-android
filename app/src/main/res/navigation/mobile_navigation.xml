@@ -9,53 +9,60 @@
         android:id="@+id/nav_home"
         android:name="com.example.myflowerproject.ui.home.HomeFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home">
+        tools:layout="@layout/fragment_home_3">
 
         <action
             android:id="@+id/action_HomeFragment_to_HomeSecondFragment"
-            app:destination="@id/nav_home_second" />
-    </fragment>
-    <fragment
-        android:id="@+id/nav_home_second"
-        android:name="com.example.myflowerproject.ui.home.HomeSecondFragment"
-        android:label="@string/home_second"
-        tools:layout="@layout/fragment_home_second">
-        <action
-            android:id="@+id/action_HomeSecondFragment_to_HomeFragment"
             app:destination="@id/nav_home" />
-
-        <argument
-            android:name="myArg"
-            app:argType="string" />
     </fragment>
 
     <fragment
         android:id="@+id/nav_my_cart"
         android:name="com.example.myflowerproject.ui.cart.Fragment_Cart"
         android:label="My Cart"
-        tools:layout="@layout/fragment__cart"></fragment>
+        tools:layout="@layout/fragment__cart">
+        <action
+            android:id="@+id/action_HomeFragment_to_HomeSecondFragment"
+            app:destination="@id/nav_home" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_my_account"
         android:name="com.example.myflowerproject.ui.account.Fragment_Account"
         android:label="My Account"
-        tools:layout="@layout/fragment__account"></fragment>
+        tools:layout="@layout/fragment__account">
+        <action
+            android:id="@+id/action_HomeFragment_to_HomeSecondFragment"
+            app:destination="@id/nav_home" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_my_order"
         android:name="com.example.myflowerproject.ui.status.MyOrderFragment"
         android:label="My Order"
-        tools:layout="@layout/fragment_my_order"></fragment>
+        tools:layout="@layout/fragment_my_order">
+        <action
+            android:id="@+id/action_HomeFragment_to_HomeSecondFragment"
+            app:destination="@id/nav_home" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_notification"
         android:name="com.example.myflowerproject.ui.notification.Fragment_Notification"
         android:label="Notification"
-        tools:layout="@layout/fragment__notification"></fragment>
+        tools:layout="@layout/fragment__notification">
+        <action
+            android:id="@+id/action_HomeFragment_to_HomeSecondFragment"
+            app:destination="@id/nav_home" />
+    </fragment>
     <fragment
         android:id="@+id/fragment_Search"
         android:name="com.example.myflowerproject.ui.search.Fragment_Search"
         android:label="Search"
-        tools:layout="@layout/fragment__search" />
+        tools:layout="@layout/fragment__search">
+        <action
+            android:id="@+id/action_HomeFragment_to_HomeSecondFragment"
+            app:destination="@id/nav_home" />
+    </fragment>
 
 </navigation>
