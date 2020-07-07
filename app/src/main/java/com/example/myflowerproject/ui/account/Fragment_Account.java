@@ -94,7 +94,7 @@ public class Fragment_Account extends Fragment {
         }
         etLastName.setText(Container.users.getPeople().getLastName());
         etFirstName.setText(Container.users.getPeople().getFirstName());
-        etEmail.setText(Container.users.getPeople().getEmail());
+        etEmail.setText(Container.users.getUsername());
         etPhone.setText(Container.users.getPeople().getPhoneNumber());
 
         userAPI = ApiUtils.getAPIService();

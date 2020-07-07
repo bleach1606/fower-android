@@ -188,18 +188,32 @@ public class Activity_Order extends AppCompatActivity {
         btnOrderConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Container.orderBill.setPayment(new Payment(total[0],typePayment[0],true));
-                Container.orderBill.setReceiverAddress(edtAddress.getText().toString());
-                Container.orderBill.setReceiverName(edtFullName.getText().toString());
-                Container.orderBill.setReceiverTel(edtTel.getText().toString());
-                Container.orderBill.setStatus(Constant.OrderStatus.WAIT.getId());
-                Container.orderBill.setActive(true);
-//                Container.orderBill.setUsers(Container.users);
-                Container.orderBill.setId(0);
-                if (typePayment[0] == "Paypal") {
-                    processPayment();
-                } else {
-                    sendPayMent();
+                if(!edtFullName.getText().toString().isEmpty()){
+                    if(!edtTel.getText().toString().isEmpty()) {
+                        if (!edtAddress.getText().toString().isEmpty()) {
+                            Container.orderBill.setPayment(new Payment(total[0], typePayment[0], true));
+                            Container.orderBill.setReceiverAddress(edtAddress.getText().toString());
+                            Container.orderBill.setReceiverName(edtFullName.getText().toString());
+                            Container.orderBill.setReceiverTel(edtTel.getText().toString());
+                            Container.orderBill.setStatus(Constant.OrderStatus.WAIT.getId());
+                            Container.orderBill.setActive(true);
+                            Container.orderBill.setId(0);
+                            if (typePayment[0] == "Paypal") {
+                                processPayment();
+                            } else {
+                                sendPayMent();
+                            }
+                        }
+                        else {
+                            Toast.makeText(Activity_Order.this, "Please enter receiver's address!", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                    else {
+                        Toast.makeText(Activity_Order.this, "Please enter receiver's phone number!", Toast.LENGTH_LONG).show();
+                    }
+                }
+                else {
+                    Toast.makeText(Activity_Order.this, "Please enter receiver's name!", Toast.LENGTH_LONG).show();
                 }
             }
         });

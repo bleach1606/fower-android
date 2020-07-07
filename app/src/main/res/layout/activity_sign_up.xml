@@ -117,7 +117,7 @@
             android:layout_marginEnd="16dp"
             android:backgroundTint="#70FFFFFF"
             android:ems="10"
-            android:hint="Password (at least 8 character)"
+            android:hint="Password"
             android:inputType="textPassword"
             android:textColor="@color/colorAccent"
             android:textColorHint="#70FFFFFF"

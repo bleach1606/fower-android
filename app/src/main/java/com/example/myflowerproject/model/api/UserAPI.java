@@ -1,5 +1,6 @@
 package com.example.myflowerproject.model.api;
 
+import com.example.myflowerproject.model.dao.ForgotPassword;
 import com.example.myflowerproject.model.entity.Users;
 import com.example.myflowerproject.model.results.DataSignupResult;
 import com.example.myflowerproject.model.results.UserLoginResult;
@@ -9,10 +10,12 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
+import retrofit2.http.Query;
 
 public interface UserAPI {
 
@@ -31,6 +34,14 @@ public interface UserAPI {
             @Header("Authorization") String auth,
             @Field("token") String token
     );
+
+    @GET("/public/forget-password")
+    Call<UserResult> resetPassword(
+            @Query("username") String username
+    );
+
+    @POST("/public/forget-password")
+    Call<UserResult> resetPasswordWithCode(@Body ForgotPassword forgotPassword);
 
     @PUT("/users/update")
     Call<UserResult> updateUser(

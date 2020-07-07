@@ -18,6 +18,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myflowerproject.R;
+import com.example.myflowerproject.model.api.ApiUtils;
+import com.example.myflowerproject.model.api.UserAPI;
+import com.example.myflowerproject.model.results.UserResult;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 /**
@@ -64,20 +71,21 @@ public class Activity_ResetPassword extends AppCompatActivity {
             public void onClick(View v) {
                 resetPasswordBtn.setEnabled(false);
                 resetPasswordBtn.setTextColor(Color.rgb(238,180,180));
-                //to do: send & check data
-                //Nếu tồn tại Email registed
-                //send email
-                //Nếu đã gửi email xong
-                Toast.makeText(Activity_ResetPassword.this,"Email sent successfully! Please check your email.",Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(Activity_ResetPassword.this, Activity_ResetPassword_WithCode.class);
-                startActivity(intent);
-                finish();
-                //Nếu Email không tồn tại
-                /*
-                Toast.makeText(getActivity(),"Unregistered Email!", Toast.LENGTH_LONG).show();
-                resetPasswordBtn.setEnabled(true);
-                resetPasswordBtn.setTextColor(Color.rgb(255,255,255));
-                 */
+                ApiUtils.getAPIService().resetPassword(registeredEmail.getText().toString()).enqueue(new Callback<UserResult>() {
+                    @Override
+                    public void onResponse(Call<UserResult> call, Response<UserResult> response) {
+                        Toast.makeText(Activity_ResetPassword.this,"Please check your email and confirm code!",Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(Activity_ResetPassword.this, Activity_ResetPassword_WithCode.class);
+                        startActivity(intent);
+                        finish();
+                    }
+
+                    @Override
+                    public void onFailure(Call<UserResult> call, Throwable t) {
+                        Toast.makeText(Activity_ResetPassword.this,
+                                "Don't find this account. Try again!", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
         goBack.setOnClickListener(new View.OnClickListener() {
